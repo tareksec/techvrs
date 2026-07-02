@@ -151,8 +151,9 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <div className="min-h-screen flex flex-col">
-          <SiteNav />
-          <main className="flex-1">
+          <FloatingNav />
+          {/* Top padding offsets the fixed floating dock */}
+          <main className="flex-1 pt-24 md:pt-28">
             <Outlet />
           </main>
           <SiteFooter />
