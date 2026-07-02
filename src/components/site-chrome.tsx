@@ -26,7 +26,7 @@ export function StatusPulse({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function ThemeToggle() {
+export function ThemeToggle() {
   const { theme, toggle } = useTheme();
   const [iconKey, setIconKey] = useState(0);
   const btnRef = useRef<HTMLButtonElement>(null);

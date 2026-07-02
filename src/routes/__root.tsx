@@ -11,7 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SiteFooter, SiteNav } from "../components/site-chrome";
+import { SiteFooter } from "../components/site-chrome";
+import { FloatingNav } from "../components/floating-nav";
 import { AiAssistant } from "../components/AiAssistant";
 import { ThemeProvider } from "../lib/theme";
 
@@ -150,8 +151,9 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <div className="min-h-screen flex flex-col">
-          <SiteNav />
-          <main className="flex-1">
+          <FloatingNav />
+          {/* Top padding offsets the fixed floating dock */}
+          <main className="flex-1 pt-24 md:pt-28">
             <Outlet />
           </main>
           <SiteFooter />
