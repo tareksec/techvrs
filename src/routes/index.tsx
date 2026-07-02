@@ -70,7 +70,7 @@ function Hero() {
             SOC ANALYST // SECURITY-FIRST ENGINEER
           </div>
 
-          <h1 className="reveal font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] max-w-3xl">
+          <h1 className="reveal flip-fade-text font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] max-w-3xl">
             Secure by Design.
             <br />
             <span className="text-signal">Built to Withstand</span>
@@ -78,7 +78,7 @@ function Hero() {
             What Others Miss.
           </h1>
 
-          <p className="reveal mt-7 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
+          <p className="reveal mt-7 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed flip-text">
             Practical threat detection, hardened infrastructure, and intelligent
             automation — engineered with the same discipline used to defend
             production environments. I don't just build systems; I build systems
@@ -230,11 +230,11 @@ function AboutSnapshot() {
       <div className="grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <SectionLabel>ABOUT</SectionLabel>
-          <h2 className="text-4xl md:text-5xl font-display font-bold leading-tight mb-6">
+          <h2 className="flip-fade-text text-4xl md:text-5xl font-display font-bold leading-tight mb-6">
             Security isn't a feature.<br />
             <span className="text-signal">It's the architecture.</span>
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+          <p className="flip-text text-muted-foreground text-lg leading-relaxed mb-4">
             I'm a SOC analyst and security-first engineer who builds detection
             environments, hardens production infrastructure, and designs AI
             agents that don't leak. Every system I ship is evaluated through
@@ -481,13 +481,13 @@ function ServicesOverview() {
           <span className="w-8 h-px bg-signal opacity-70" />
         </div>
         <h2
-          className="text-4xl md:text-5xl lg:text-6xl font-display font-bold"
+          className="flip-fade-text text-4xl md:text-5xl lg:text-6xl font-display font-bold"
           style={{ color: dk ? "#e2e8f0" : "#0f172a" }}
         >
           Four Disciplines.<br />
           <span style={{ color: "#0891b2" }}>One Security-First Standard.</span>
         </h2>
-        <p className="mt-4 text-lg leading-relaxed max-w-2xl" style={{ color: dk ? "#94a3b8" : "#475569" }}>
+        <p className="flip-text mt-4 text-lg leading-relaxed max-w-2xl" style={{ color: dk ? "#94a3b8" : "#475569" }}>
           Every engagement is held to the same principle: nothing ships until it's been
           evaluated the way an attacker would evaluate it. Scroll through to see how.
         </p>

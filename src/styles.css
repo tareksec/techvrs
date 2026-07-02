@@ -401,6 +401,46 @@ a:hover, button:hover {
   animation: type-in 1.4s steps(40, end) 0.2s both;
 }
 
+@keyframes flip-text {
+  0% {
+    opacity: 0;
+    transform: perspective(700px) rotateX(80deg) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: perspective(700px) rotateX(-10deg) translateY(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(700px) rotateX(0deg) translateY(0);
+  }
+}
+.flip-text {
+  display: inline-block;
+  transform-origin: top center;
+  animation: flip-text 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.2s both;
+}
+
+@keyframes flip-fade-text {
+  0% {
+    opacity: 0;
+    transform: perspective(700px) rotateX(65deg) translateY(28px) scale(0.96);
+  }
+  50% {
+    opacity: 0.45;
+    transform: perspective(700px) rotateX(-12deg) translateY(-8px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(700px) rotateX(0deg) translateY(0) scale(1);
+  }
+}
+.flip-fade-text {
+  display: inline-block;
+  transform-origin: top center;
+  animation: flip-fade-text 1.05s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
 /* Floating wireframe / tech icon motif */
 @keyframes float-y {
   0%, 100% { transform: translateY(0); }
