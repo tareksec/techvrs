@@ -1,0 +1,23 @@
+{
+  "compatibility_date": "2026-07-02",
+  "name": "copyfolio-site",
+  "workers_dev": false,
+  "main": "index.mjs",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "../public"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "no_bundle": true,
+  "rules": [
+    {
+      "type": "ESModule",
+      "globs": [
+        "**/*.mjs",
+        "**/*.js"
+      ]
+    }
+  ]
+}
