@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteFooter, SiteNav } from "../components/site-chrome";
+import { AiAssistant } from "../components/AiAssistant";
 import { ThemeProvider } from "../lib/theme";
 
 function NotFoundComponent() {
@@ -154,6 +155,7 @@ function RootComponent() {
             <Outlet />
           </main>
           <SiteFooter />
+          <AiAssistant />
         </div>
       </ThemeProvider>
     </QueryClientProvider>
