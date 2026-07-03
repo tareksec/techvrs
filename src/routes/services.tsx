@@ -15,7 +15,7 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Four disciplines, one security-first standard: SOC & cyber security, secure web deployment, technical SEO, and secure AI agent development.",
+          "Four disciplines, one security-first standard: SOC & cybersecurity, secure web deployment, technical SEO, and secure AI agent development.",
       },
       { property: "og:title", content: "Services — techvrs" },
       {

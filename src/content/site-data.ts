@@ -28,7 +28,7 @@ export const services: Service[] = [
     slug: "soc-cybersecurity",
     index: "01",
     tagline: "Detect. Investigate. Respond.",
-    title: "SOC & Cyber Security",
+    title: "SOC & Cybersecurity",
     description:
       "Continuous threat monitoring, log analysis, and incident response built on the same frameworks used in production SOC environments.",
     bullets: [
