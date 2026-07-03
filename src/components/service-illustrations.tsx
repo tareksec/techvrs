@@ -1,4 +1,4 @@
-﻿/* Service card illustrations ΓÇö image-based, one per service card */
+/* Service card illustrations — image-based, one per service card */
 
 type SceneProps = {
   className?: string;
@@ -13,7 +13,7 @@ const imgStyle: React.CSSProperties = {
   display: "block",
 };
 
-/* ΓöÇΓöÇ 01: SOC & Cybersecurity ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── 01: SOC & Cybersecurity ────────────────────────────────────────── */
 export function IllustrationSOC({ className = "", style }: SceneProps) {
   return (
     <div
@@ -30,7 +30,7 @@ export function IllustrationSOC({ className = "", style }: SceneProps) {
     >
       <img
         src="/1.png"
-        alt="SOC & Cybersecurity ΓÇö security analyst and shield"
+        alt="SOC & Cybersecurity — security analyst and shield"
         style={imgStyle}
         loading="lazy"
       />
@@ -38,7 +38,7 @@ export function IllustrationSOC({ className = "", style }: SceneProps) {
   );
 }
 
-/* ΓöÇΓöÇ 02: Secure Web Deployment ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── 02: Secure Web Deployment ──────────────────────────────────────── */
 export function IllustrationWebDeploy({ className = "", style }: SceneProps) {
   return (
     <div
@@ -55,7 +55,7 @@ export function IllustrationWebDeploy({ className = "", style }: SceneProps) {
     >
       <img
         src="/2.png"
-        alt="Secure Web Deployment ΓÇö shield with lock and team"
+        alt="Secure Web Deployment — shield with lock and team"
         style={imgStyle}
         loading="lazy"
       />
@@ -63,7 +63,7 @@ export function IllustrationWebDeploy({ className = "", style }: SceneProps) {
   );
 }
 
-/* ΓöÇΓöÇ 03: Technical SEO / Monitoring ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── 03: Technical SEO / Monitoring ─────────────────────────────────── */
 export function IllustrationSEO({ className = "", style }: SceneProps) {
   return (
     <div
@@ -80,7 +80,7 @@ export function IllustrationSEO({ className = "", style }: SceneProps) {
     >
       <img
         src="/3.png"
-        alt="Technical SEO ΓÇö developer monitoring performance dashboard"
+        alt="Technical SEO — developer monitoring performance dashboard"
         style={imgStyle}
         loading="lazy"
       />
@@ -88,7 +88,7 @@ export function IllustrationSEO({ className = "", style }: SceneProps) {
   );
 }
 
-/* ΓöÇΓöÇ 04: Secure AI Agents ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── 04: Secure AI Agents ──────────────────────────────────────────── */
 export function IllustrationAI({ className = "", style }: SceneProps) {
   return (
     <div
@@ -105,7 +105,7 @@ export function IllustrationAI({ className = "", style }: SceneProps) {
     >
       <img
         src="/4.png"
-        alt="Secure AI Agents ΓÇö developers building an AI robot"
+        alt="Secure AI Agents — developers building an AI robot"
         style={imgStyle}
         loading="lazy"
       />

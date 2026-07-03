@@ -79,10 +79,10 @@ function Hero() {
           </h1>
 
           <p className="reveal mt-7 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed flip-text">
-            Practical threat detection, hardened infrastructure, and intelligent
-            automation — engineered with the same discipline used to defend
-            production environments. I don't just build systems; I build systems
-            that hold under pressure.
+            SOC analyst candidate with production-level security engineering
+            skills — practical threat detection, hardened infrastructure, and
+            secure automation, engineered with the same discipline used to
+            defend production environments.
           </p>
 
           <div className="reveal mt-9 flex flex-wrap gap-4">
@@ -103,12 +103,22 @@ function Hero() {
           </div>
 
           <Link
-            to="/services"
+            to="/contact"
             className="reveal mt-5 inline-flex items-center gap-2 mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-signal transition-colors"
           >
             <span className="live-dot" aria-hidden />
-            Free resource — Secure Web Deployment Checklist →
+            Free resource — request the Secure Web Deployment Checklist →
           </Link>
+
+          <a
+            href="https://tareksec.dev"
+            target="_blank"
+            rel="noreferrer"
+            className="reveal mt-3 flex w-fit items-center gap-2 mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-signal transition-colors"
+          >
+            <span className="text-signal">↗</span>
+            This site is a branding project — full resume &amp; portfolio at tareksec.dev
+          </a>
 
           <div className="reveal mt-10 border-t border-hairline pt-5 flex flex-wrap items-center gap-6">
             <StatusPulse />
@@ -1218,7 +1228,7 @@ function Testimonials() {
               <div className="flex items-center justify-between gap-4">
                 <span className="mono text-[10px] uppercase tracking-widest text-signal border border-signal/40 px-2 py-1 inline-flex items-center gap-2">
                   <span className="live-dot" aria-hidden />
-                  VERIFIED ENGAGEMENT
+                  CLIENT ENGAGEMENT · ANONYMIZED
                 </span>
                 <div className="text-right">
                   <div className="mono text-signal text-xl font-bold leading-none">{t.metric}</div>
@@ -1237,6 +1247,11 @@ function Testimonials() {
             </Panel>
           ))}
         </div>
+        <p className="mt-6 mono text-[10px] uppercase tracking-widest text-muted-foreground leading-relaxed max-w-2xl">
+          Client identities are anonymized pending publication approval. Quotes are
+          representative summaries of documented engagement results — verifiable
+          references available on request.
+        </p>
       </div>
     </section>
   );

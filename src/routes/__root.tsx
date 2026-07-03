@@ -90,27 +90,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "techvrs — SOC Analyst & Security-First Engineer" },
+      { title: "techvrs — Tarek | SOC Analyst & Security-First Engineer" },
       {
         name: "description",
         content:
-          "Secure by Design. Threat detection, hardened deployments, technical SEO, and secure AI agent development by a SOC analyst.",
+          "Personal branding project of Tarek, a SOC analyst candidate demonstrating production-level security engineering: threat detection, hardened deployments, and secure AI automation. Full resume and portfolio at tareksec.dev.",
       },
-      { name: "author", content: "techvrs" },
+      { name: "author", content: "Tarek — techvrs" },
       { name: "theme-color", content: "#0D1117" },
-      { property: "og:title", content: "techvrs — SOC Analyst & Security-First Engineer" },
+      { property: "og:title", content: "techvrs — Tarek | SOC Analyst & Security-First Engineer" },
       {
         property: "og:description",
         content:
-          "SOC analyst portfolio and freelance security studio. Detection, secure web deployment, technical SEO, and secure AI agents.",
+          "SOC analyst candidate demonstrating production-level security engineering — detection, hardened deployments, and secure AI automation. Full portfolio at tareksec.dev.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "techvrs — SOC Analyst & Security-First Engineer" },
+      { name: "twitter:title", content: "techvrs — Tarek | SOC Analyst & Security-First Engineer" },
       {
         name: "twitter:description",
         content:
-          "SOC analyst portfolio and freelance security studio. Detection, secure web deployment, technical SEO, and secure AI agents.",
+          "SOC analyst candidate demonstrating production-level security engineering — detection, hardened deployments, and secure AI automation. Full portfolio at tareksec.dev.",
       },
     ],
     links: [

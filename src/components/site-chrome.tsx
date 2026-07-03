@@ -2,8 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "@/lib/theme";
 
-const LAST_AUDIT = "2026.06.28";
-
 export function StatusPulse({ compact = false }: { compact?: boolean }) {
   return (
     <div className="mono flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-widest text-muted-foreground">
@@ -19,7 +17,7 @@ export function StatusPulse({ compact = false }: { compact?: boolean }) {
       {!compact && (
         <>
           <span className="text-hairline">|</span>
-          <span>LAST AUDIT: {LAST_AUDIT}</span>
+          <span>STATUS: OPERATIONAL</span>
         </>
       )}
     </div>
@@ -289,6 +287,19 @@ export function SiteFooter() {
             SOC analyst and security-first engineer. Detection, hardened deployments,
             technical SEO, and secure AI automation — built to last under attack.
           </p>
+          <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
+            techvrs is a personal branding project — my full resume and portfolio live
+            at{" "}
+            <a
+              href="https://tareksec.dev"
+              target="_blank"
+              rel="noreferrer"
+              className="text-signal hover:underline"
+            >
+              tareksec.dev ↗
+            </a>
+            .
+          </p>
           <StatusPulse />
 
           {/* Mini CTA */}
@@ -327,10 +338,11 @@ export function SiteFooter() {
           </div>
           <ul className="flex flex-col gap-2.5 text-sm">
             {[
-              { label: "Email",    href: "mailto:hello@techvrs.com"              },
-              { label: "LinkedIn", href: "https://linkedin.com"                  },
-              { label: "GitHub",   href: "https://github.com"                    },
-              { label: "Medium",   href: "https://medium.com/@mdtareksec"        },
+              { label: "Portfolio — tareksec.dev", href: "https://tareksec.dev"                    },
+              { label: "Email",                    href: "mailto:hello@techvrs.com"                },
+              { label: "LinkedIn",                 href: "https://www.linkedin.com/in/mdtarek404/" },
+              { label: "GitHub",                   href: "https://github.com/tareksec"             },
+              { label: "Medium",                   href: "https://medium.com/@mdtareksec"          },
             ].map((l) => (
               <li key={l.label}>
                 <a
