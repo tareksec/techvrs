@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SectionLabel } from "@/components/site-chrome";
+import { AnimatedCounter } from "@/components/micro-interactions";
 import { skills, certs } from "@/content/site-data";
 import {
   IconShieldLock,
@@ -87,7 +88,7 @@ function AboutPage() {
           >
             <span className="b-tr" /><span className="b-bl" />
             <div className="font-display text-3xl md:text-4xl font-bold text-signal leading-none mb-2 count-glow">
-              {s.value}
+              <AnimatedCounter value={s.value} />
             </div>
             <div className="mono text-[9px] uppercase tracking-widest text-muted-foreground">
               {s.label}
