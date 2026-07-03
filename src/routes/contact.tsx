@@ -9,12 +9,49 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "For hiring managers and prospective clients: reach out for SOC analyst roles, security engagements, or custom AI agent work.",
+          "Reach out for SOC analyst roles, security engagements, hardening audits, or custom AI agent projects. Hiring managers and prospective clients welcome. Response within 24 hours.",
       },
-      { property: "og:title", content: "Contact — techvrs" },
+      // ── Open Graph ───────────────────────────────────────────────────────
+      { property: "og:site_name", content: "techvrs" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://techvrs.com/contact" },
+      { property: "og:title", content: "Contact — techvrs | Open a Secure Channel" },
       {
         property: "og:description",
-        content: "Open a secure channel for roles, engagements, or automation projects.",
+        content:
+          "Reach out for SOC analyst roles, security engagements, hardening audits, or custom AI agent projects. Response within 24 hours.",
+      },
+      { property: "og:image", content: "https://techvrs.com/hero-main.png" },
+      { property: "og:image:alt", content: "techvrs — Open a Secure Channel" },
+      // ── Twitter / X ──────────────────────────────────────────────────────
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Contact — techvrs | Open a Secure Channel" },
+      {
+        name: "twitter:description",
+        content:
+          "Reach out for SOC analyst roles, security engagements, hardening audits, or custom AI agent projects. Response within 24 hours.",
+      },
+      { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
+      { name: "twitter:image:alt", content: "techvrs — Open a Secure Channel" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: "Contact — techvrs",
+          url: "https://techvrs.com/contact",
+          description:
+            "Reach out for SOC analyst roles, security engagements, hardening audits, or custom AI agent projects.",
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
+              { "@type": "ListItem", position: 2, name: "Contact", item: "https://techvrs.com/contact" },
+            ],
+          },
+        }),
       },
     ],
   }),

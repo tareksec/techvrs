@@ -49,16 +49,59 @@ function fmtDate(dateStr: string) {
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
-      { title: "Field Notes — techvrs Blog" },
+      { title: "Field Notes — techvrs | Security & Engineering Blog" },
       {
         name: "description",
         content:
-          "Detection walkthroughs, hardening notes, and lessons from building secure systems. Published on Medium, mirrored here.",
+          "Detection walkthroughs, hardening guides, and lessons from building secure systems — SIEM rules, TLS configs, and LLM security. Published on Medium, cross-posted here.",
       },
-      { property: "og:title", content: "Field Notes — techvrs Blog" },
+      // ── Open Graph ───────────────────────────────────────────────────────
+      { property: "og:site_name", content: "techvrs" },
+      { property: "og:type", content: "blog" },
+      { property: "og:url", content: "https://techvrs.com/blog" },
+      { property: "og:title", content: "Field Notes — techvrs | Security & Engineering Blog" },
       {
         property: "og:description",
-        content: "Notes from the console — detection, hardening, and secure automation write-ups.",
+        content:
+          "Detection walkthroughs, hardening guides, and lessons from building secure systems — SIEM rules, TLS configs, and LLM security.",
+      },
+      { property: "og:image", content: "https://techvrs.com/hero-main.png" },
+      { property: "og:image:alt", content: "techvrs Field Notes — Notes from the console" },
+      // ── Twitter / X ──────────────────────────────────────────────────────
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Field Notes — techvrs | Security & Engineering Blog" },
+      {
+        name: "twitter:description",
+        content:
+          "Detection walkthroughs, hardening guides, and lessons from building secure systems — SIEM rules, TLS configs, and LLM security.",
+      },
+      { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
+      { name: "twitter:image:alt", content: "techvrs Field Notes — Notes from the console" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "Field Notes — techvrs",
+          url: "https://techvrs.com/blog",
+          description:
+            "Detection walkthroughs, hardening guides, and lessons from building secure systems.",
+          author: {
+            "@type": "Person",
+            name: "Tarek",
+            url: "https://techvrs.com/",
+            sameAs: ["https://medium.com/@mdtareksec"],
+          },
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://techvrs.com/blog" },
+            ],
+          },
+        }),
       },
     ],
   }),

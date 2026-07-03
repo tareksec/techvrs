@@ -95,28 +95,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "techvrs — Tarek | SOC Analyst & Security-First Engineer" },
+      { title: "techvrs · Tarek — SOC Analyst & Security Engineer" },
       {
         name: "description",
         content:
-          "Personal branding project of Tarek, a SOC analyst candidate demonstrating production-level security engineering: threat detection, hardened deployments, and secure AI automation. Full resume and portfolio at tareksec.dev.",
+          "Production-level security engineering from a SOC analyst — threat detection, hardened deployments, secure AI automation, and technical SEO. Available for roles and engagements.",
       },
       { name: "author", content: "Tarek — techvrs" },
       { name: "theme-color", content: "#0D1117" },
-      { property: "og:title", content: "techvrs — Tarek | SOC Analyst & Security-First Engineer" },
+      // ── Open Graph ─────────────────────────────────────────────────────────
+      { property: "og:site_name", content: "techvrs" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://techvrs.com/" },
+      { property: "og:title", content: "techvrs · Tarek — SOC Analyst & Security Engineer" },
       {
         property: "og:description",
         content:
-          "SOC analyst candidate demonstrating production-level security engineering — detection, hardened deployments, and secure AI automation. Full portfolio at tareksec.dev.",
+          "Production-level security engineering — threat detection, hardened deployments, and secure AI automation. Available for SOC roles and security engagements.",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://techvrs.com/hero-main.png" },
+      { property: "og:image:alt", content: "techvrs — Secure by Design. Built to Withstand What Others Miss." },
+      // ── Twitter / X ────────────────────────────────────────────────────────
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "techvrs — Tarek | SOC Analyst & Security-First Engineer" },
+      { name: "twitter:title", content: "techvrs · Tarek — SOC Analyst & Security Engineer" },
       {
         name: "twitter:description",
         content:
-          "SOC analyst candidate demonstrating production-level security engineering — detection, hardened deployments, and secure AI automation. Full portfolio at tareksec.dev.",
+          "Production-level security engineering — threat detection, hardened deployments, and secure AI automation. Available for SOC roles and security engagements.",
       },
+      { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
+      { name: "twitter:image:alt", content: "techvrs — Secure by Design. Built to Withstand What Others Miss." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -129,17 +137,52 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
+      // ── WebSite schema ──────────────────────────────────────────────────────
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "techvrs",
+          url: "https://techvrs.com/",
+          description:
+            "SOC analyst and security-first engineer portfolio — threat detection, hardened deployments, secure AI automation, and technical SEO.",
+        }),
+      },
+      // ── ProfilePage + Person schema ─────────────────────────────────────────
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ProfilePage",
           url: "https://techvrs.com/",
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" }],
+          },
           mainEntity: {
             "@type": "Person",
             name: "Tarek",
-            jobTitle: "SOC Analyst & Security-First Engineer",
+            jobTitle: "SOC Analyst & Security Engineer",
+            description:
+              "SOC analyst candidate with production-level security engineering skills — practical threat detection, hardened infrastructure, and secure AI automation.",
             url: "https://techvrs.com/",
+            image: "https://techvrs.com/logo.png",
+            knowsAbout: [
+              "SOC Analysis",
+              "Threat Detection",
+              "Detection Engineering",
+              "SIEM",
+              "MITRE ATT&CK",
+              "Cybersecurity",
+              "Secure Web Deployment",
+              "Technical SEO",
+              "AI Agent Development",
+            ],
+            hasCredential: [
+              { "@type": "EducationalOccupationalCredential", name: "CompTIA Security+" },
+              { "@type": "EducationalOccupationalCredential", name: "CompTIA CySA+" },
+            ],
             sameAs: [
               "https://github.com/tareksec",
               "https://www.linkedin.com/in/mdtarek404/",

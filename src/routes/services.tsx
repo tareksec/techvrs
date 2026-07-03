@@ -11,17 +11,53 @@ import {
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — techvrs | Security, Deployment, SEO, AI" },
+      { title: "Services — techvrs | SOC, Hardened Deployments, SEO & AI" },
       {
         name: "description",
         content:
-          "Four disciplines, one security-first standard: SOC & cybersecurity, secure web deployment, technical SEO, and secure AI agent development.",
+          "Four security-first disciplines: SOC monitoring & detection engineering, hardened web deployments, technical SEO audits, and custom AI agent development.",
       },
-      { property: "og:title", content: "Services — techvrs" },
+      // ── Open Graph ───────────────────────────────────────────────────────
+      { property: "og:site_name", content: "techvrs" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://techvrs.com/services" },
+      { property: "og:title", content: "Services — techvrs | SOC, Hardened Deployments, SEO & AI" },
       {
         property: "og:description",
         content:
-          "SOC monitoring, hardened deployments, technical SEO audits, and secure custom AI agent development.",
+          "Four security-first disciplines: SOC monitoring & detection engineering, hardened web deployments, technical SEO audits, and custom AI agent development.",
+      },
+      { property: "og:image", content: "https://techvrs.com/hero-main.png" },
+      { property: "og:image:alt", content: "techvrs — Four disciplines, one security-first standard" },
+      // ── Twitter / X ──────────────────────────────────────────────────────
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Services — techvrs | SOC, Hardened Deployments, SEO & AI" },
+      {
+        name: "twitter:description",
+        content:
+          "Four security-first disciplines: SOC monitoring & detection engineering, hardened web deployments, technical SEO audits, and custom AI agent development.",
+      },
+      { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
+      { name: "twitter:image:alt", content: "techvrs — Four disciplines, one security-first standard" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Services — techvrs",
+          url: "https://techvrs.com/services",
+          description:
+            "Four security-first disciplines: SOC monitoring & detection engineering, hardened web deployments, technical SEO audits, and custom AI agent development.",
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
+              { "@type": "ListItem", position: 2, name: "Services", item: "https://techvrs.com/services" },
+            ],
+          },
+        }),
       },
     ],
   }),

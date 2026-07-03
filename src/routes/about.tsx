@@ -15,17 +15,53 @@ import {
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — techvrs | SOC Analyst & Security-First Engineer" },
+      { title: "Operator Profile — techvrs | Tarek, SOC Analyst" },
       {
         name: "description",
         content:
-          "Operator profile: how a SOC analyst mindset shapes every deployment, audit, and AI agent I build.",
+          "How a SOC analyst mindset shapes every deployment, audit, and AI build. 60+ detection rules authored, CompTIA Security+ & CySA+ certified, TryHackMe Top 1%.",
       },
-      { property: "og:title", content: "About — techvrs" },
+      // ── Open Graph ───────────────────────────────────────────────────────
+      { property: "og:site_name", content: "techvrs" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://techvrs.com/about" },
+      { property: "og:title", content: "Operator Profile — techvrs | SOC Analyst & Security Engineer" },
       {
         property: "og:description",
         content:
-          "Operator profile: SOC-first thinking applied to detection, hardened infrastructure, and secure automation.",
+          "How a SOC analyst mindset shapes every deployment, audit, and AI build. 60+ detection rules authored, CompTIA Security+ & CySA+ certified, TryHackMe Top 1%.",
+      },
+      { property: "og:image", content: "https://techvrs.com/hero-main.png" },
+      { property: "og:image:alt", content: "techvrs — Operator Profile" },
+      // ── Twitter / X ──────────────────────────────────────────────────────
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Operator Profile — techvrs | SOC Analyst & Security Engineer" },
+      {
+        name: "twitter:description",
+        content:
+          "How a SOC analyst mindset shapes every deployment, audit, and AI build. 60+ detection rules authored, CompTIA Security+ & CySA+ certified, TryHackMe Top 1%.",
+      },
+      { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
+      { name: "twitter:image:alt", content: "techvrs — Operator Profile" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Operator Profile — techvrs",
+          url: "https://techvrs.com/about",
+          description:
+            "How a SOC analyst mindset shapes every deployment, audit, and AI build.",
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
+              { "@type": "ListItem", position: 2, name: "About", item: "https://techvrs.com/about" },
+            ],
+          },
+        }),
       },
     ],
   }),

@@ -6,16 +6,53 @@ import { caseStudies, type CaseStudy } from "@/content/site-data";
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Work — techvrs | Field Reports & Case Studies" },
+      { title: "Field Reports — techvrs | Case Studies & Proof of Work" },
       {
         name: "description",
         content:
-          "Detection engineering, secure deployments, technical SEO, and AI agent case studies — documented like incident reports.",
+          "Case studies documented like incident reports — detection rule deployments, hardened infrastructure, SEO recoveries, and secure AI agent builds. Proof, not promises.",
       },
-      { property: "og:title", content: "Work — techvrs" },
+      // ── Open Graph ───────────────────────────────────────────────────────
+      { property: "og:site_name", content: "techvrs" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://techvrs.com/work" },
+      { property: "og:title", content: "Field Reports — techvrs | Case Studies & Proof of Work" },
       {
         property: "og:description",
-        content: "Field reports across SOC, secure web, SEO, and AI agent engagements.",
+        content:
+          "Case studies documented like incident reports — detection rule deployments, hardened infrastructure, SEO recoveries, and secure AI agent builds.",
+      },
+      { property: "og:image", content: "https://techvrs.com/hero-main.png" },
+      { property: "og:image:alt", content: "techvrs — Field Reports & Case Studies" },
+      // ── Twitter / X ──────────────────────────────────────────────────────
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Field Reports — techvrs | Case Studies & Proof of Work" },
+      {
+        name: "twitter:description",
+        content:
+          "Case studies documented like incident reports — detection rule deployments, hardened infrastructure, SEO recoveries, and secure AI agent builds.",
+      },
+      { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
+      { name: "twitter:image:alt", content: "techvrs — Field Reports & Case Studies" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Field Reports — techvrs",
+          url: "https://techvrs.com/work",
+          description:
+            "Case studies documented like incident reports — detection rule deployments, hardened infrastructure, SEO recoveries, and secure AI agent builds.",
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
+              { "@type": "ListItem", position: 2, name: "Work", item: "https://techvrs.com/work" },
+            ],
+          },
+        }),
       },
     ],
   }),
