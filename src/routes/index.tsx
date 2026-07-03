@@ -1228,7 +1228,7 @@ function Testimonials() {
               <div className="flex items-center justify-between gap-4">
                 <span className="mono text-[10px] uppercase tracking-widest text-signal border border-signal/40 px-2 py-1 inline-flex items-center gap-2">
                   <span className="live-dot" aria-hidden />
-                  VERIFIED ENGAGEMENT
+                  CLIENT ENGAGEMENT · ANONYMIZED
                 </span>
                 <div className="text-right">
                   <div className="mono text-signal text-xl font-bold leading-none">{t.metric}</div>
@@ -1247,6 +1247,11 @@ function Testimonials() {
             </Panel>
           ))}
         </div>
+        <p className="mt-6 mono text-[10px] uppercase tracking-widest text-muted-foreground leading-relaxed max-w-2xl">
+          Client identities are anonymized pending publication approval. Quotes are
+          representative summaries of documented engagement results — verifiable
+          references available on request.
+        </p>
       </div>
     </section>
   );

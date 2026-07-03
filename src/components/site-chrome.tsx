@@ -287,6 +287,19 @@ export function SiteFooter() {
             SOC analyst and security-first engineer. Detection, hardened deployments,
             technical SEO, and secure AI automation — built to last under attack.
           </p>
+          <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
+            techvrs is a personal branding project — my full resume and portfolio live
+            at{" "}
+            <a
+              href="https://tareksec.dev"
+              target="_blank"
+              rel="noreferrer"
+              className="text-signal hover:underline"
+            >
+              tareksec.dev ↗
+            </a>
+            .
+          </p>
           <StatusPulse />
 
           {/* Mini CTA */}
