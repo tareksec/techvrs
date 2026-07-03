@@ -895,7 +895,7 @@ function FeaturedWork() {
               <span className={`mono text-[10px] uppercase tracking-widest border px-2 py-1 ${CATEGORY_COLORS[c.category] ?? "text-signal border-signal/40"}`}>
                 {c.category}
               </span>
-              <span className="mono text-xs text-muted-foreground">{c.index}</span>
+              <span className="mono text-xs text-muted-foreground">/ {c.index}</span>
             </div>
             <h3 className="text-lg font-display font-semibold leading-snug">{c.title}</h3>
             <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">{c.outcome}</p>
