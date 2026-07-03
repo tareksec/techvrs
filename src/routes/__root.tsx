@@ -14,6 +14,11 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteFooter } from "../components/site-chrome";
 import { FloatingNav } from "../components/floating-nav";
 import { AiAssistant } from "../components/AiAssistant";
+import {
+  CursorGlow,
+  PageTransition,
+  ScrollRevealManager,
+} from "../components/micro-interactions";
 import { ThemeProvider } from "../lib/theme";
 
 function NotFoundComponent() {
@@ -172,10 +177,14 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <div className="min-h-screen flex flex-col">
+          <ScrollRevealManager />
+          <CursorGlow />
           <FloatingNav />
           {/* Top padding offsets the fixed floating dock */}
           <main className="flex-1 pt-24 md:pt-28">
-            <Outlet />
+            <PageTransition>
+              <Outlet />
+            </PageTransition>
           </main>
           <SiteFooter />
           <AiAssistant />

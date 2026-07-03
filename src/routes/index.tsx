@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
 import { Panel, SectionLabel, StatusPulse } from "@/components/site-chrome";
+import { AnimatedCounter, Magnetic } from "@/components/micro-interactions";
 import { useTheme } from "@/lib/theme";
 import { ParticleBackground } from "@/components/particle-background";
 import {
@@ -86,20 +87,24 @@ function Hero() {
           </p>
 
           <div className="reveal mt-9 flex flex-wrap gap-4">
-            <Link
-              to="/work"
-              className="group mono text-[11px] uppercase tracking-widest inline-flex items-center gap-3 bg-signal text-signal-foreground px-6 py-4 font-semibold hover:shadow-[0_0_40px_-2px_rgba(0,217,255,0.6)] transition-shadow"
-            >
-              View my SOC portfolio
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-            <Link
-              to="/contact"
-              className="group mono text-[11px] uppercase tracking-widest inline-flex items-center gap-3 border border-signal/60 text-signal px-6 py-4 hover:bg-signal/10 hover:shadow-[0_0_28px_-4px_rgba(0,217,255,0.45)] transition-all"
-            >
-              Hire me for a project
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
+            <Magnetic>
+              <Link
+                to="/work"
+                className="group mono text-[11px] uppercase tracking-widest inline-flex items-center gap-3 bg-signal text-signal-foreground px-6 py-4 font-semibold hover:shadow-[0_0_40px_-2px_rgba(0,217,255,0.6)] transition-shadow"
+              >
+                View my SOC portfolio
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                to="/contact"
+                className="group mono text-[11px] uppercase tracking-widest inline-flex items-center gap-3 border border-signal/60 text-signal px-6 py-4 hover:bg-signal/10 hover:shadow-[0_0_28px_-4px_rgba(0,217,255,0.45)] transition-all"
+              >
+                Hire me for a project
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </Magnetic>
           </div>
 
           <Link
@@ -178,7 +183,7 @@ function StatsBar() {
               className="font-display text-4xl md:text-5xl font-bold text-signal leading-none mb-2 count-glow"
               style={{ animationDelay: `${i * 0.6}s` }}
             >
-              {s.value}
+              <AnimatedCounter value={s.value} />
             </div>
             <div className="mono text-[10px] uppercase tracking-widest text-muted-foreground">
               {s.label}
@@ -1106,18 +1111,22 @@ function CtaBand() {
           </div>
 
           <div className="flex flex-col gap-4 shrink-0">
-            <Link
-              to="/contact"
-              className="cf-pill mono text-[11px] uppercase tracking-widest inline-flex items-center justify-center gap-3 bg-signal text-signal-foreground px-8 py-5 font-semibold hover:shadow-[0_0_50px_-5px_var(--signal)] transition-all whitespace-nowrap"
-            >
-              Send a transmission →
-            </Link>
-            <Link
-              to="/services"
-              className="cf-pill mono text-[11px] uppercase tracking-widest inline-flex items-center justify-center gap-3 border border-hairline text-muted-foreground px-8 py-4 hover:border-signal/60 hover:text-signal transition-all whitespace-nowrap"
-            >
-              View all services →
-            </Link>
+            <Magnetic>
+              <Link
+                to="/contact"
+                className="cf-pill mono text-[11px] uppercase tracking-widest inline-flex items-center justify-center gap-3 bg-signal text-signal-foreground px-8 py-5 font-semibold hover:shadow-[0_0_50px_-5px_var(--signal)] transition-all whitespace-nowrap"
+              >
+                Send a transmission →
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                to="/services"
+                className="cf-pill mono text-[11px] uppercase tracking-widest inline-flex items-center justify-center gap-3 border border-hairline text-muted-foreground px-8 py-4 hover:border-signal/60 hover:text-signal transition-all whitespace-nowrap"
+              >
+                View all services →
+              </Link>
+            </Magnetic>
             <Link
               to="/contact"
               className="mono text-[10px] uppercase tracking-widest inline-flex items-center justify-center gap-2 text-muted-foreground hover:text-signal transition-colors whitespace-nowrap"
