@@ -204,9 +204,13 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en" className="light" suppressHydrationWarning>
       <head>
         <HeadContent />
-        {/* JSON-LD structured data — rendered directly here rather than via
-            head() scripts[] to avoid TanStack Start's Script component
-            producing a server/client mismatch that crashes React 19. */}
+      </head>
+      <body>
+        {children}
+        {/* JSON-LD structured data — placed in <body> rather than <head> to
+            avoid Replit devtools injecting a <script> into <head> client-side
+            only, which shifts DOM node order and causes React 19 hydration crash.
+            Google Search fully supports JSON-LD in <body>. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: SCHEMA_WEBSITE }}
@@ -215,9 +219,6 @@ function RootShell({ children }: { children: ReactNode }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: SCHEMA_PROFILE }}
         />
-      </head>
-      <body>
-        {children}
         <Scripts />
       </body>
     </html>
