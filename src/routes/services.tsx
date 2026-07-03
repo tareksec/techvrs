@@ -577,22 +577,29 @@ function ServicesPage() {
             <span className="b-tr" />
             <span className="b-bl" />
             {/* SOC checklist illustration — top-right decorative */}
-            <img
-              src="/soc-checklist.png"
-              alt=""
-              aria-hidden
-              style={{
-                position: "absolute",
-                bottom: -10,
-                right: -10,
-                width: 130,
-                height: 130,
-                objectFit: "contain",
-                opacity: 0.22,
-                pointerEvents: "none",
-                filter: "drop-shadow(0 4px 16px rgba(2,132,199,0.2))",
-              }}
-            />
+            <picture>
+              <source srcSet="/soc-checklist.webp" type="image/webp" />
+              <img
+                src="/soc-checklist.png"
+                alt=""
+                aria-hidden
+                width={130}
+                height={130}
+                loading="lazy"
+                decoding="async"
+                style={{
+                  position: "absolute",
+                  bottom: -10,
+                  right: -10,
+                  width: 130,
+                  height: 130,
+                  objectFit: "contain",
+                  opacity: 0.22,
+                  pointerEvents: "none",
+                  filter: "drop-shadow(0 4px 16px rgba(2,132,199,0.2))",
+                }}
+              />
+            </picture>
             <div className="relative z-10">
               <div className="mono text-[10px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
                 <span className="live-dot" aria-hidden />

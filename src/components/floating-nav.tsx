@@ -101,7 +101,7 @@ export function FloatingNav() {
             className="group flex shrink-0 items-center gap-2.5"
           >
             <img
-              src={theme === "dark" ? "/logo-dark.png" : "/logo-light.png"}
+              src={theme === "dark" ? "/logo-dark.webp" : "/logo-light.webp"}
               alt="techvrs shield logo"
               width={34}
               height={34}

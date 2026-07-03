@@ -19,5 +19,39 @@ export default defineConfig({
       strictPort: true,
       allowedHosts: true,
     },
+    build: {
+      // Modern target — smaller output, no legacy polyfills
+      target: "esnext",
+      // Split CSS per chunk so non-critical CSS loads lazily
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          // Vendor chunk splitting — stable hashes for long-term caching
+          manualChunks(id) {
+            if (!id.includes("node_modules")) return;
+            // React runtime — tiny, always needed, cache forever
+            if (id.includes("/react/") || id.includes("/react-dom/") || id.includes("/scheduler/")) {
+              return "vendor-react";
+            }
+            // Recharts + D3 — only used on pages that render charts
+            if (id.includes("recharts") || id.includes("/d3-") || id.includes("d3/")) {
+              return "vendor-charts";
+            }
+            // Lucide icon tree — large but tree-shakeable; separate chunk avoids re-parsing
+            if (id.includes("lucide-react")) {
+              return "vendor-icons";
+            }
+            // TanStack core libraries
+            if (id.includes("@tanstack/")) {
+              return "vendor-tanstack";
+            }
+            // Radix UI primitives
+            if (id.includes("@radix-ui/")) {
+              return "vendor-radix";
+            }
+          },
+        },
+      },
+    },
   },
 });

@@ -170,10 +170,12 @@ export function SiteNav() {
         {/* Logo */}
         <Link to="/" className="group flex items-center gap-3 shrink-0">
           <img
-            src={theme === "dark" ? "/logo-dark.png" : "/logo-light.png"}
+            src={theme === "dark" ? "/logo-dark.webp" : "/logo-light.webp"}
             alt="techvrs shield logo"
+            width={48}
+            height={48}
             className="shrink-0 transition-all group-hover:scale-110"
-            style={{ width: 48, height: 48, objectFit: "contain" }}
+            style={{ objectFit: "contain" }}
           />
           <div className="flex flex-col leading-tight">
             <span className="font-display font-bold text-sm tracking-tight">techvrs</span>{" "}
@@ -274,7 +276,7 @@ export function SiteFooter() {
         <div className="md:col-span-2 flex flex-col gap-5">
           <Link to="/" className="group flex items-center gap-3 w-fit">
             <img
-              src={theme === "dark" ? "/logo-dark.png" : "/logo-light.png"}
+              src={theme === "dark" ? "/logo-dark.webp" : "/logo-light.webp"}
               alt="techvrs shield logo"
               width={34}
               height={34}

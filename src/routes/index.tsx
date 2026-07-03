@@ -31,6 +31,12 @@ import {
 } from "@/components/service-illustrations";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    // Preload the LCP hero image before the browser parses the img element
+    links: [
+      { rel: "preload", as: "image", href: "/hero-bg.avif", type: "image/avif" },
+    ],
+  }),
   component: Home,
 });
 
@@ -142,12 +148,20 @@ function Hero() {
           <div className="relative w-[460px] h-[460px] float-y">
             <div className="absolute inset-[-50px] bg-signal/18 blur-[110px] rounded-full" aria-hidden />
             <div className="absolute inset-[-25px] bg-primary/10 blur-[70px] rounded-full" aria-hidden />
-            <img
-              src="/hero-bg.png"
-              alt="3D security engineer on cloud with shield"
-              className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_70px_rgba(0,160,255,0.45)]"
-              loading="eager"
-            />
+            <picture>
+              <source srcSet="/hero-bg.avif" type="image/avif" />
+              <source srcSet="/hero-bg.webp" type="image/webp" />
+              <img
+                src="/hero-bg.png"
+                alt="3D security engineer on cloud with shield"
+                width={500}
+                height={500}
+                className="relative z-10 w-full h-full object-contain drop-shadow-[0_8px_70px_rgba(0,160,255,0.45)]"
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
+              />
+            </picture>
             <div className="absolute top-8 -left-6 z-20 mono text-[9px] uppercase tracking-widest text-signal bg-background/85 backdrop-blur-sm border border-signal/35 px-3 py-2 shadow-xl">
               ◉ NODE.01 — ONLINE
             </div>
