@@ -1,8 +1,8 @@
-﻿/* Custom SVG illustration icons ΓÇö cybersecurity themed, stroke-based */
+/* Custom SVG illustration icons — cybersecurity themed, stroke-based */
 
 type IconProps = { className?: string; size?: number };
 
-/* ΓöÇΓöÇ Radar / Threat Detection ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Radar / Threat Detection ─────────────────────────────────────── */
 export function IconRadar({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -20,7 +20,7 @@ export function IconRadar({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ΓöÇΓöÇ Shield Lock / Hardened Infrastructure ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Shield Lock / Hardened Infrastructure ────────────────────────── */
 export function IconShieldLock({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -43,7 +43,7 @@ export function IconShieldLock({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ΓöÇΓöÇ Circuit Brain / Secure AI ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Circuit Brain / Secure AI ────────────────────────────────────── */
 export function IconAISecure({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -73,7 +73,7 @@ export function IconAISecure({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ΓöÇΓöÇ Eye / SOC Monitoring ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Eye / SOC Monitoring ────────────────────────────────────────── */
 export function IconEye({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -94,7 +94,7 @@ export function IconEye({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ΓöÇΓöÇ Globe / Secure Web ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Globe / Secure Web ──────────────────────────────────────────── */
 export function IconSecureGlobe({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -112,7 +112,7 @@ export function IconSecureGlobe({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ΓöÇΓöÇ Antenna / SEO & Signal ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Antenna / SEO & Signal ────────────────────────────────────────── */
 export function IconSignal({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -132,7 +132,7 @@ export function IconSignal({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ΓöÇΓöÇ Terminal / Certifications generic ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Terminal / Certifications generic ───────────────────────────── */
 export function IconTerminal({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -148,7 +148,7 @@ export function IconTerminal({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ΓöÇΓöÇ Trophy / TryHackMe ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Trophy / TryHackMe ──────────────────────────────────────────── */
 export function IconTrophy({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -167,7 +167,7 @@ export function IconTrophy({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ΓöÇΓöÇ Cloud / AWS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Cloud / AWS ───────────────────────────────────────────────── */
 export function IconCloud({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -176,14 +176,14 @@ export function IconCloud({ className = "", size = 40 }: IconProps) {
         d="M30 26 H12 C8.7 26 6 23.3 6 20 C6 17 8.2 14.5 11.2 14 C11.6 10 15 7 19 7 C22.4 7 25.3 9 26.7 11.9 C28 11.3 29.5 11 31 11.5 C33.8 12.4 36 15 36 18 C36 22.4 33.5 26 30 26 Z"
         stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"
       />
-      {/* Download arrows ΓÇö cloud deploy */}
+      {/* Download arrows — cloud deploy */}
       <line x1="20" y1="30" x2="20" y2="22" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
       <path d="M16 26 L20 30 L24 26" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
     </svg>
   );
 }
 
-/* ΓöÇΓöÇ Search Magnifier / CySA+ ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Search Magnifier / CySA+ ─────────────────────────────────────── */
 export function IconSearch({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
