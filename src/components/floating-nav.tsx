@@ -152,6 +152,7 @@ export function FloatingNav() {
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
               aria-expanded={open}
+              aria-controls="floating-nav-mobile-menu"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-foreground transition-colors hover:border-signal/60 md:hidden"
             >
               <svg

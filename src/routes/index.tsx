@@ -759,25 +759,22 @@ function ServicesOverview() {
                     {svc.description}
                   </p>
 
-                  {/* bullets — stagger in one by one */}
-                  <ul style={{
-                    display: "flex", flexDirection: "column", gap: "0.65rem",
-                    listStyle: "none", margin: 0, padding: 0,
-                  }}>
+                  {/* bullets — semantic list; the em-dash marker is CSS-generated
+                      (styles.css .svc-bullet-list), not typed into the text content */}
+                  <ul
+                    role="list"
+                    className="svc-bullet-list"
+                    style={{ "--bullet-accent": ct.accent } as React.CSSProperties}
+                  >
                     {svc.bullets.map((b, bi) => (
                       <li key={b} style={{
-                        display: "flex", alignItems: "flex-start", gap: "0.75rem",
-                        fontSize: "0.85rem",
+                        color: dk ? DARK_BULLET : ct.bullet,
                         animation: isVis
                           ? `bullet-in 0.45s ${0.3 + bi * 0.1}s cubic-bezier(0.16,1,0.3,1) both`
                           : "none",
                         opacity: isVis ? undefined : 0,
                       }}>
-                        <span aria-hidden style={{
-                          color: ct.accent, fontWeight: 700, lineHeight: 1.4,
-                          flexShrink: 0, fontFamily: "var(--font-mono)",
-                        }}>—</span>
-                        <span style={{ color: dk ? DARK_BULLET : ct.bullet }}>{b}</span>
+                        {b}
                       </li>
                     ))}
                   </ul>

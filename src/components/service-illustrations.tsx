@@ -30,7 +30,7 @@ export function IllustrationSOC({ className = "", style }: SceneProps) {
     >
       <img
         src="/1.png"
-        alt="SOC & Cybersecurity — security analyst and shield"
+        alt="SOC & Cyber Security — security analyst and shield"
         style={imgStyle}
         loading="lazy"
       />
