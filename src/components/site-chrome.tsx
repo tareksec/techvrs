@@ -2,8 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "@/lib/theme";
 
-const LAST_AUDIT = "2026.06.28";
-
 export function StatusPulse({ compact = false }: { compact?: boolean }) {
   return (
     <div className="mono flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-widest text-muted-foreground">
@@ -19,7 +17,7 @@ export function StatusPulse({ compact = false }: { compact?: boolean }) {
       {!compact && (
         <>
           <span className="text-hairline">|</span>
-          <span>LAST AUDIT: {LAST_AUDIT}</span>
+          <span>STATUS: OPERATIONAL</span>
         </>
       )}
     </div>

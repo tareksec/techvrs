@@ -79,10 +79,10 @@ function Hero() {
           </h1>
 
           <p className="reveal mt-7 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed flip-text">
-            Practical threat detection, hardened infrastructure, and intelligent
-            automation — engineered with the same discipline used to defend
-            production environments. I don't just build systems; I build systems
-            that hold under pressure.
+            SOC analyst candidate with production-level security engineering
+            skills — practical threat detection, hardened infrastructure, and
+            secure automation, engineered with the same discipline used to
+            defend production environments.
           </p>
 
           <div className="reveal mt-9 flex flex-wrap gap-4">

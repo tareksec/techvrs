@@ -203,8 +203,10 @@ function AboutPage() {
             </div>
             {[
               { label: "hello@techvrs.com", href: "mailto:hello@techvrs.com" },
+              { label: "Portfolio — tareksec.dev", href: "https://tareksec.dev" },
+              { label: "LinkedIn — @mdtarek404", href: "https://www.linkedin.com/in/mdtarek404/" },
+              { label: "GitHub — @tareksec", href: "https://github.com/tareksec" },
               { label: "Medium — @mdtareksec", href: "https://medium.com/@mdtareksec" },
-              { label: "GitHub — @techvrs", href: "https://github.com" },
             ].map((l) => (
               <a
                 key={l.label}

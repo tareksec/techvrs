@@ -73,12 +73,20 @@ function ContactPage() {
                 Download resume ↓
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/mdtarek404/"
                 target="_blank"
                 rel="noreferrer"
                 className="mono text-[11px] uppercase tracking-widest border border-signal/60 text-signal px-4 py-3 hover:bg-signal/10 transition-colors"
               >
                 LinkedIn ↗
+              </a>
+              <a
+                href="https://tareksec.dev"
+                target="_blank"
+                rel="noreferrer"
+                className="mono text-[11px] uppercase tracking-widest border border-signal/60 text-signal px-4 py-3 hover:bg-signal/10 transition-colors"
+              >
+                Full portfolio ↗
               </a>
             </div>
           </div>

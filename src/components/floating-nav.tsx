@@ -130,6 +130,16 @@ export function FloatingNav() {
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                href="https://tareksec.dev"
+                target="_blank"
+                rel="noreferrer"
+                className="mono block rounded-full px-3 py-1.5 text-[11px] uppercase tracking-widest text-signal transition-all duration-300 ease-out hover:bg-signal/10"
+              >
+                Portfolio ↗
+              </a>
+            </li>
           </ul>
 
           {/* ── Right cluster: status pulse, theme toggle, mobile burger ── */}

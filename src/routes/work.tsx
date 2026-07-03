@@ -113,12 +113,12 @@ function WorkPage() {
               </div>
 
               {/* Title */}
-              <h3
+              <h2
                 className="text-lg font-display font-semibold leading-snug transition-colors"
                 style={{ color: "var(--foreground)" }}
               >
                 {c.title}
-              </h3>
+              </h2>
 
               {/* Challenge excerpt */}
               <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed flex-1">
