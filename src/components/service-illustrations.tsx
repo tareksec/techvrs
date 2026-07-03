@@ -13,7 +13,7 @@ const imgStyle: React.CSSProperties = {
   display: "block",
 };
 
-/* ── 01: SOC & Cyber Security ───────────────────────────────────────── */
+/* ── 01: SOC & Cybersecurity ────────────────────────────────────────── */
 export function IllustrationSOC({ className = "", style }: SceneProps) {
   return (
     <div
@@ -30,7 +30,7 @@ export function IllustrationSOC({ className = "", style }: SceneProps) {
     >
       <img
         src="/1.png"
-        alt="SOC & Cyber Security — security analyst and shield"
+        alt="SOC & Cybersecurity — security analyst and shield"
         style={imgStyle}
         loading="lazy"
       />
@@ -38,7 +38,7 @@ export function IllustrationSOC({ className = "", style }: SceneProps) {
   );
 }
 
-/* ── 02: Secure Web Deployment ──────────────────────────────────────── */
+/* ── 02: Secure Web Deployment ────────────────────────────────────── */
 export function IllustrationWebDeploy({ className = "", style }: SceneProps) {
   return (
     <div
@@ -88,7 +88,7 @@ export function IllustrationSEO({ className = "", style }: SceneProps) {
   );
 }
 
-/* ── 04: Secure AI Agents ──────────────────────────────────────────── */
+/* ── 04: Secure AI Agents ────────────────────────────────────────── */
 export function IllustrationAI({ className = "", style }: SceneProps) {
   return (
     <div

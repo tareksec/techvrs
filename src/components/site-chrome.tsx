@@ -176,7 +176,7 @@ export function SiteNav() {
             style={{ width: 48, height: 48, objectFit: "contain" }}
           />
           <div className="flex flex-col leading-tight">
-            <span className="font-display font-bold text-sm tracking-tight">techvrs</span>
+            <span className="font-display font-bold text-sm tracking-tight">techvrs</span>{" "}
             <span className="mono text-[9px] uppercase tracking-widest text-muted-foreground">
               secure by design
             </span>

@@ -109,7 +109,7 @@ export function FloatingNav() {
               style={{ objectFit: "contain" }}
             />
             <div className="flex flex-col leading-tight">
-              <span className="font-display text-sm font-bold tracking-tight">techvrs</span>
+              <span className="font-display text-sm font-bold tracking-tight">techvrs</span>{" "}
               <span className="mono text-[8px] uppercase tracking-widest text-muted-foreground">
                 secure by design
               </span>
