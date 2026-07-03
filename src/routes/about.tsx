@@ -10,6 +10,7 @@ import {
   IconRadar,
   IconAISecure,
   IconSecureGlobe,
+  IconEye,
 } from "@/components/icons";
 
 export const Route = createFileRoute("/about")({
@@ -115,21 +116,46 @@ function AboutPage() {
 
       {/* ── Main bio ── */}
       <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_340px]">
-        <div className="flex flex-col gap-6 text-foreground/85 leading-relaxed text-[1.05rem]">
-          <p className="flip-text">
-            I approach security the way an analyst approaches a live incident:
-            methodically, skeptically, and with a bias toward evidence over assumption.
-            My background is built on hands-on detection work — correlating logs,
-            triaging alerts, and tracing anomalies back to root cause — combined with
-            the technical range to architect and harden the systems those alerts protect.
+        <div className="flex flex-col gap-5 text-foreground/85 leading-relaxed">
+          <p className="flip-text text-[1.05rem]">
+            I approach security the way an analyst approaches a live incident —
+            methodically, skeptically, with a bias toward evidence over assumption.
+            Hands-on detection work: correlating logs, triaging alerts, tracing
+            anomalies to root cause.
           </p>
-          <p className="flip-text">
-            That dual perspective, defender and builder, is the foundation of everything
-            I ship. A website isn't finished when it looks good; it's finished when it
-            has been stress-tested against the same techniques an attacker would use.
-            An AI agent isn't "smart" until its data handling and API integrations have
-            been locked down. Security isn't a final checklist item here — it's the
-            design constraint everything else is built around.
+
+          {/* DEFENDER // BUILDER visual split */}
+          <div className="grid grid-cols-2 gap-3 my-1">
+            <div className="panel brackets p-4 flex flex-col gap-2" style={{ position: "relative" }}>
+              <span className="b-tr" /><span className="b-bl" />
+              <div className="flex items-center gap-2">
+                <span className="text-signal"><IconEye size={15} /></span>
+                <span className="mono text-[9px] uppercase tracking-widest text-signal">Defender</span>
+              </div>
+              <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground">
+                <li>SIEM correlation &amp; alert triage</li>
+                <li>IDS/IPS tuning &amp; threat hunting</li>
+                <li>Incident response &amp; root-cause</li>
+              </ul>
+            </div>
+            <div className="panel brackets p-4 flex flex-col gap-2" style={{ position: "relative" }}>
+              <span className="b-tr" /><span className="b-bl" />
+              <div className="flex items-center gap-2">
+                <span className="text-signal"><IconShieldLock size={15} /></span>
+                <span className="mono text-[9px] uppercase tracking-widest text-signal">Builder</span>
+              </div>
+              <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground">
+                <li>Zero-trust &amp; TLS 1.3 enforcement</li>
+                <li>Hardened deployments &amp; audits</li>
+                <li>Secure AI agents &amp; automation</li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="flip-text text-[1.05rem]">
+            Security isn't a final checklist item — it's the design constraint
+            everything else is built around. Nothing ships until it's been
+            stress-tested through an attacker's lens.
           </p>
 
           <blockquote

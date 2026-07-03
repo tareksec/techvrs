@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, useEffect } from "react";
 import { SectionLabel } from "@/components/site-chrome";
 import { caseStudies, type CaseStudy } from "@/content/site-data";
+import { IconSearch, IconRadar, IconShieldLock } from "@/components/icons";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -262,24 +263,19 @@ function CaseModal({ study, onClose }: { study: CaseStudy; onClose: () => void }
 
         {/* Sections */}
         {[
-          { label: "CHALLENGE", body: study.challenge },
-          { label: "APPROACH",  body: study.approach  },
-          { label: "OUTCOME",   body: study.outcome   },
-        ].map((s) => (
-          <div key={s.label} className="mt-8">
+          { label: "CHALLENGE", body: study.challenge, Icon: IconSearch     },
+          { label: "APPROACH",  body: study.approach,  Icon: IconRadar      },
+          { label: "OUTCOME",   body: study.outcome,   Icon: IconShieldLock },
+        ].map(({ label, body, Icon }) => (
+          <div key={label} className="mt-8">
             <div
-              className="mono text-[10px] uppercase tracking-widest mb-2 flex items-center gap-2"
+              className="mono text-[10px] uppercase tracking-widest mb-3 flex items-center gap-2"
               style={{ color: meta?.color ?? "var(--signal)" }}
             >
-              <span
-                style={{
-                  display: "inline-block", width: 18, height: 1,
-                  background: meta?.color ?? "var(--signal)",
-                }}
-              />
-              {s.label}
+              <Icon size={14} />
+              {label}
             </div>
-            <p className="text-foreground/85 leading-relaxed">{s.body}</p>
+            <p className="text-sm text-foreground/85 leading-relaxed">{body}</p>
           </div>
         ))}
 

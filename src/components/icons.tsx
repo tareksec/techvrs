@@ -183,6 +183,28 @@ export function IconCloud({ className = "", size = 40 }: IconProps) {
   );
 }
 
+/* ── Check / Outcome confirmed ────────────────────────────────────── */
+export function IconCheck({ className = "", size = 40 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
+      <circle cx="20" cy="20" r="15" stroke="currentColor" strokeWidth="1.5" opacity="0.35" />
+      <path d="M13 20.5 L18 26 L27 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/* ── Briefcase / Hiring ────────────────────────────────────────────── */
+export function IconBriefcase({ className = "", size = 40 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
+      <rect x="6" y="16" width="28" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M14 16 V12 C14 10.3 15.3 9 17 9 H23 C24.7 9 26 10.3 26 12 V16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="6" y1="24" x2="34" y2="24" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+      <line x1="20" y1="21" x2="20" y2="27" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 /* ── Search Magnifier / CySA+ ─────────────────────────────────────── */
 export function IconSearch({ className = "", size = 40 }: IconProps) {
   return (

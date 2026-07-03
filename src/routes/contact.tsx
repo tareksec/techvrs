@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SectionLabel } from "@/components/site-chrome";
+import { IconBriefcase, IconShieldLock } from "@/components/icons";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -120,15 +121,23 @@ function ContactPage() {
           {/* Hiring managers */}
           <div className="glass-card brackets p-6" style={{ position: "relative" }}>
             <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
-              <span className="live-dot" aria-hidden />
+            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-4 flex items-center gap-2">
+              <IconBriefcase size={14} />
               FOR HIRING MANAGERS
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-              I'm actively seeking entry-level SOC Analyst opportunities where I can
-              apply hands-on detection and response skills in a live environment. My
-              resume, certifications, and lab write-ups are one click away.
-            </p>
+            <ul className="flex flex-col gap-2.5 mb-5">
+              {[
+                "Seeking entry-level SOC Analyst roles",
+                "Hands-on detection & response — lab + production",
+                "CompTIA Security+ & CySA+ certified",
+                "Resume, certs & write-ups one click away",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                  <span className="shrink-0 text-signal/70 mt-0.5 mono text-[10px]">◈</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
             <div className="flex flex-wrap gap-3">
               <a
                 href="/resume.pdf"
@@ -158,14 +167,25 @@ function ContactPage() {
           {/* Prospective clients */}
           <div className="glass-card brackets p-6" style={{ position: "relative" }}>
             <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
-              <span className="live-dot" aria-hidden />
+            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-4 flex items-center gap-2">
+              <IconShieldLock size={14} />
               FOR PROSPECTIVE CLIENTS
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Have a security gap, a deployment that needs hardening, an SEO audit, or a
-              workflow you'd like automated with a custom AI agent? Tell me what you're
-              working with — I'll respond with next steps, not a sales pitch.
+            <ul className="flex flex-col gap-2.5 mb-4">
+              {[
+                "Security gap assessment & remediation",
+                "Deployment hardening & infrastructure audit",
+                "Technical SEO audit & performance",
+                "Custom AI agent — scoped, private, secure",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                  <span className="shrink-0 text-signal/70 mt-0.5 mono text-[10px]">◈</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="text-xs text-muted-foreground">
+              Tell me what you're working with — I'll respond with next steps, not a sales pitch.
             </p>
           </div>
 

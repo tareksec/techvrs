@@ -85,14 +85,28 @@ function Hero() {
             What Others Miss.
           </h1>
 
-          <p className="reveal mt-7 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed flip-text">
-            SOC analyst candidate with production-level security engineering
-            skills — practical threat detection, hardened infrastructure, and
-            secure automation, engineered with the same discipline used to
-            defend production environments.
+          <p className="reveal mt-7 max-w-lg text-base text-muted-foreground leading-relaxed flip-text">
+            SOC analyst candidate with production-level security engineering —
+            built to detect threats, harden infrastructure, and automate securely.
           </p>
 
-          <div className="reveal mt-9 flex flex-wrap gap-4">
+          <div className="reveal mt-4 flex flex-wrap gap-2">
+            {[
+              { Icon: IconRadar,      label: "Threat Detection" },
+              { Icon: IconShieldLock, label: "Hardened Infra"   },
+              { Icon: IconAISecure,   label: "Secure AI"        },
+            ].map(({ Icon, label }) => (
+              <span
+                key={label}
+                className="inline-flex items-center gap-1.5 mono text-[10px] uppercase tracking-widest text-signal/80 border border-signal/25 bg-signal/5 px-3 py-1.5"
+              >
+                <Icon size={12} />
+                {label}
+              </span>
+            ))}
+          </div>
+
+          <div className="reveal mt-6 flex flex-wrap gap-4">
             <Magnetic>
               <Link
                 to="/work"
@@ -263,17 +277,23 @@ function AboutSnapshot() {
             Security isn't a feature.<br />
             <span className="text-signal">It's the architecture.</span>
           </h2>
-          <p className="flip-text text-muted-foreground text-lg leading-relaxed mb-4">
-            I'm a SOC analyst and security-first engineer who builds detection
-            environments, hardens production infrastructure, and designs AI
-            agents that don't leak. Every system I ship is evaluated through
-            an attacker's lens before it reaches a client.
+          <p className="flip-text text-muted-foreground text-base leading-relaxed mb-5">
+            SOC analyst and security-first engineer — detection environments,
+            hardened infrastructure, AI agents that don't leak. Every system is
+            stress-tested through an attacker's lens before it ships.
           </p>
-          <p className="text-muted-foreground leading-relaxed mb-8">
-            My work spans threat monitoring, secure deployments, technical SEO
-            audits, and custom automation — unified by one standard: if it can
-            be exploited, it hasn't shipped yet.
-          </p>
+          <ul className="flex flex-col gap-3 mb-8">
+            {[
+              { Icon: IconRadar,      text: "Threat monitoring & SIEM correlation"          },
+              { Icon: IconShieldLock, text: "Secure deployments & infrastructure hardening"  },
+              { Icon: IconSignal,     text: "Technical SEO audits & secure AI automation"    },
+            ].map(({ Icon, text }) => (
+              <li key={text} className="flex items-start gap-3 text-sm text-muted-foreground">
+                <span className="shrink-0 text-signal mt-0.5"><Icon size={15} /></span>
+                {text}
+              </li>
+            ))}
+          </ul>
           <Link
             to="/about"
             className="group mono text-[11px] uppercase tracking-widest inline-flex items-center gap-3 border border-signal/60 text-signal px-5 py-3 hover:bg-signal/10 transition-all"

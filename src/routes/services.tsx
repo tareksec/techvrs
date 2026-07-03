@@ -7,6 +7,7 @@ import {
   IllustrationSEO,
   IllustrationAI,
 } from "@/components/service-illustrations";
+import { IconCheck } from "@/components/icons";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -399,7 +400,8 @@ function ServicesPage() {
                     >
                       <span className="b-tr" />
                       <span className="b-bl" />
-                      <div className="mono text-[10px] uppercase tracking-widest text-signal">
+                      <div className="mono text-[10px] uppercase tracking-widest text-signal flex items-center gap-2">
+                        <IconCheck size={13} />
                         THE OUTCOME
                       </div>
                       <p className="text-sm leading-relaxed text-foreground/90">{s.outcome}</p>
