@@ -390,6 +390,9 @@ export function SiteFooter() {
               <span className="live-dot" aria-hidden style={{ width: 6, height: 6 }} />
               System: Operational
             </span>
+            <span className="text-hairline" aria-hidden>
+              |
+            </span>
             <span>v1.0.0</span>
           </div>
         </div>

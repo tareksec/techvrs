@@ -13,7 +13,7 @@ const imgStyle: React.CSSProperties = {
   display: "block",
 };
 
-/* ── 01: SOC & Cybersecurity ────────────────────────────────────────── */
+/* ── 01: SOC & Cyber Security ───────────────────────────────────────── */
 export function IllustrationSOC({ className = "", style }: SceneProps) {
   return (
     <div
@@ -30,7 +30,7 @@ export function IllustrationSOC({ className = "", style }: SceneProps) {
     >
       <img
         src="/1.png"
-        alt="SOC & Cybersecurity — security analyst and shield"
+        alt="SOC & Cyber Security — security analyst and shield"
         style={imgStyle}
         loading="lazy"
       />

@@ -426,7 +426,7 @@ function ServicesPage() {
                             >
                               {c.category}
                             </span>
-                            <span className="mono text-xs text-muted-foreground">{c.index}</span>
+                            <span className="mono text-xs text-muted-foreground">/ {c.index}</span>
                           </div>
                           <h3 className="font-display font-semibold leading-snug group-hover:text-signal transition-colors">
                             {c.title}

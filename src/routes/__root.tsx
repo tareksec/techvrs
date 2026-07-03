@@ -123,6 +123,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fira+Code:wght@400;500;600&display=swap",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          url: "https://techvrs.com/",
+          mainEntity: {
+            "@type": "Person",
+            name: "Tarek",
+            jobTitle: "SOC Analyst & Security-First Engineer",
+            url: "https://techvrs.com/",
+            sameAs: [
+              "https://github.com/tareksec",
+              "https://www.linkedin.com/in/mdtarek404/",
+              "https://medium.com/@mdtareksec",
+            ],
+          },
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
