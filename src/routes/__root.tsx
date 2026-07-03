@@ -142,62 +142,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Outfit:wght@400;500;600;700;800;900&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap",
       },
     ],
-    scripts: [
-      // ── WebSite schema ──────────────────────────────────────────────────────
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "techvrs",
-          url: "https://techvrs.com/",
-          description:
-            "SOC analyst and security-first engineer portfolio — threat detection, hardened deployments, secure AI automation, and technical SEO.",
-        }),
-      },
-      // ── ProfilePage + Person schema ─────────────────────────────────────────
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfilePage",
-          url: "https://techvrs.com/",
-          breadcrumb: {
-            "@type": "BreadcrumbList",
-            itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" }],
-          },
-          mainEntity: {
-            "@type": "Person",
-            name: "Tarek",
-            jobTitle: "SOC Analyst & Security Engineer",
-            description:
-              "SOC analyst candidate with production-level security engineering skills — practical threat detection, hardened infrastructure, and secure AI automation.",
-            url: "https://techvrs.com/",
-            image: "https://techvrs.com/logo.png",
-            knowsAbout: [
-              "SOC Analysis",
-              "Threat Detection",
-              "Detection Engineering",
-              "SIEM",
-              "MITRE ATT&CK",
-              "Cybersecurity",
-              "Secure Web Deployment",
-              "Technical SEO",
-              "AI Agent Development",
-            ],
-            hasCredential: [
-              { "@type": "EducationalOccupationalCredential", name: "CompTIA Security+" },
-              { "@type": "EducationalOccupationalCredential", name: "CompTIA CySA+" },
-            ],
-            sameAs: [
-              "https://github.com/tareksec",
-              "https://www.linkedin.com/in/mdtarek404/",
-              "https://medium.com/@mdtareksec",
-            ],
-          },
-        }),
-      },
-    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -205,11 +149,72 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+// Stable JSON-LD strings — defined outside the component so the reference never
+// changes between server and client renders, preventing any hydration mismatch.
+const SCHEMA_WEBSITE = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "techvrs",
+  url: "https://techvrs.com/",
+  description:
+    "SOC analyst and security-first engineer portfolio — threat detection, hardened deployments, secure AI automation, and technical SEO.",
+});
+
+const SCHEMA_PROFILE = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: "https://techvrs.com/",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" }],
+  },
+  mainEntity: {
+    "@type": "Person",
+    name: "Tarek",
+    jobTitle: "SOC Analyst & Security Engineer",
+    description:
+      "SOC analyst candidate with production-level security engineering skills — practical threat detection, hardened infrastructure, and secure AI automation.",
+    url: "https://techvrs.com/",
+    image: "https://techvrs.com/logo.png",
+    knowsAbout: [
+      "SOC Analysis",
+      "Threat Detection",
+      "Detection Engineering",
+      "SIEM",
+      "MITRE ATT&CK",
+      "Cybersecurity",
+      "Secure Web Deployment",
+      "Technical SEO",
+      "AI Agent Development",
+    ],
+    hasCredential: [
+      { "@type": "EducationalOccupationalCredential", name: "CompTIA Security+" },
+      { "@type": "EducationalOccupationalCredential", name: "CompTIA CySA+" },
+    ],
+    sameAs: [
+      "https://github.com/tareksec",
+      "https://www.linkedin.com/in/mdtarek404/",
+      "https://medium.com/@mdtareksec",
+    ],
+  },
+});
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="light" suppressHydrationWarning>
       <head>
         <HeadContent />
+        {/* JSON-LD structured data — rendered directly here rather than via
+            head() scripts[] to avoid TanStack Start's Script component
+            producing a server/client mismatch that crashes React 19. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: SCHEMA_WEBSITE }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: SCHEMA_PROFILE }}
+        />
       </head>
       <body>
         {children}
