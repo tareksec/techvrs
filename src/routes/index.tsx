@@ -389,6 +389,7 @@ const SVC_THEMES = [
     gridColor: "rgba(0,168,204,0.08)",
     Illustration: IllustrationSEO,
     SmallIcon: IconSignal,
+    chipLabel: "VISIBILITY: LIVE",
   },
   {
     cardBg: "linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%)",
@@ -399,6 +400,7 @@ const SVC_THEMES = [
     gridColor: "rgba(2,132,199,0.08)",
     Illustration: IllustrationAI,
     SmallIcon: IconAISecure,
+    chipLabel: "AGENT: RUNNING",
   },
 ];
 

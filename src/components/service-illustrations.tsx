@@ -13,7 +13,7 @@ const imgStyle: React.CSSProperties = {
   display: "block",
 };
 
-/* ── 01: SOC & Cybersecurity ────────────────────────────────────────── */
+/* ── 01: SOC & Cyber Security ───────────────────────────────────────── */
 export function IllustrationSOC({ className = "", style }: SceneProps) {
   return (
     <div

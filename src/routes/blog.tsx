@@ -205,9 +205,8 @@ function BlogPage() {
                 >
                   <span className="b-tr" /><span className="b-bl" />
 
-                  <div className="flex items-center justify-between mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    <span>{fmtDate(item.pubDate)}</span>
-                    <span>{readTime(item.description)}</span>
+                  <div className="mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                    {fmtDate(item.pubDate)} · {readTime(item.description)}
                   </div>
 
                   <h3 className="font-display text-[1.05rem] font-semibold leading-snug group-hover:text-signal transition-colors flex-1">

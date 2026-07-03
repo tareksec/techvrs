@@ -257,7 +257,7 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       { label: "Triage volume reduced", value: "68%" },
       { label: "Mean triage time", value: "1.2s" },
-      { label: "False positives", value: "-41%" },
+      { label: "Fewer false positives", value: "41%" },
     ],
     stack: ["Python", "OpenAI API", "Redis", "Docker", "OWASP LLM Top 10"],
   },

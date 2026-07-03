@@ -176,8 +176,12 @@ export function FloatingNav() {
         {/* ── Mobile dropdown: expands the capsule itself (grid-rows trick),
               inherits the theme-aware glass instead of a hardcoded color ── */}
         <div
+          id="floating-nav-mobile-menu"
+          aria-hidden={!open}
           className={`grid transition-all duration-300 ease-out md:hidden ${
-            open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            open
+              ? "visible grid-rows-[1fr] opacity-100"
+              : "invisible grid-rows-[0fr] opacity-0"
           }`}
         >
           <div className="min-h-0 overflow-hidden">
