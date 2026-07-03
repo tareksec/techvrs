@@ -29,9 +29,56 @@ const AUDIENCE_META: Record<Audience, { color: string; bg: string }> = {
   "Other":             { color: "#16a34a", bg: "rgba(22,163,74,0.10)"  },
 };
 
+/* Serverless form relay — delivers submissions to the techvrs inbox
+   without exposing credentials in the client bundle. */
+const CONTACT_ENDPOINT = "https://formsubmit.co/ajax/hello@techvrs.com";
+
 function ContactPage() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [audience, setAudience] = useState<Audience>("Hiring Manager");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    setError(null);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    /* Honeypot — bots fill hidden fields; silently drop those submissions */
+    if (String(data.get("_honey") ?? "") !== "") {
+      setSending(false);
+      setSent(true);
+      return;
+    }
+
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: String(data.get("name") ?? ""),
+          email: String(data.get("email") ?? ""),
+          audience,
+          message: String(data.get("message") ?? ""),
+          _subject: `techvrs contact — ${audience}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+      if (!res.ok) throw new Error(`Relay responded ${res.status}`);
+      form.reset();
+      setSent(true);
+    } catch (err) {
+      console.error("[contact] send failed:", err);
+      setError("The relay could not be reached — your message was NOT sent.");
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
@@ -189,19 +236,28 @@ function ContactPage() {
                   </button>
                 </div>
               ) : (
-                <form
-                  onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-                  className="flex flex-col gap-6"
-                >
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                   <div className="mono text-[10px] uppercase tracking-widest text-signal flex items-center gap-2">
                     <span className="pulse-dot" aria-hidden />
                     NEW TRANSMISSION // COMPOSE
                   </div>
 
+                  {/* Honeypot — hidden from humans, catches naive bots */}
+                  <input
+                    type="text"
+                    name="_honey"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden
+                    style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+                  />
+
                   <div className="grid gap-6 md:grid-cols-2">
                     <Field label="Name">
                       <input
                         required
+                        name="name"
+                        autoComplete="name"
                         className="w-full px-4 py-3 outline-none transition-all text-foreground placeholder:text-muted-foreground/60"
                         style={{
                           background: "rgba(255,255,255,0.5)",
@@ -218,6 +274,8 @@ function ContactPage() {
                       <input
                         required
                         type="email"
+                        name="email"
+                        autoComplete="email"
                         className="w-full px-4 py-3 outline-none transition-all text-foreground placeholder:text-muted-foreground/60"
                         style={{
                           background: "rgba(255,255,255,0.5)",
@@ -242,6 +300,7 @@ function ContactPage() {
                             type="button"
                             key={a}
                             onClick={() => setAudience(a)}
+                            aria-pressed={active}
                             className="mono text-[10px] uppercase tracking-widest px-3 py-3 border transition-all"
                             style={{
                               borderColor: active ? m.color : "var(--hairline)",
@@ -261,6 +320,7 @@ function ContactPage() {
                   <Field label="Message">
                     <textarea
                       required
+                      name="message"
                       rows={6}
                       className="w-full px-4 py-3 outline-none transition-all resize-none text-foreground placeholder:text-muted-foreground/60"
                       style={{
@@ -275,11 +335,33 @@ function ContactPage() {
                     />
                   </Field>
 
+                  {error && (
+                    <div
+                      role="alert"
+                      className="p-4 border flex flex-col gap-2"
+                      style={{
+                        borderColor: "rgba(220,38,38,0.4)",
+                        background: "rgba(220,38,38,0.06)",
+                      }}
+                    >
+                      <div className="mono text-[10px] uppercase tracking-widest text-critical">
+                        SEND_FAILED // {error}
+                      </div>
+                      <a
+                        href="mailto:hello@techvrs.com?subject=techvrs%20contact"
+                        className="mono text-[10px] uppercase tracking-widest text-signal hover:underline underline-offset-2 w-fit"
+                      >
+                        Email hello@techvrs.com directly →
+                      </a>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground px-8 py-4 hover:shadow-[0_0_40px_-5px_var(--signal)] transition-all self-start"
+                    disabled={sending}
+                    className="mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground px-8 py-4 hover:shadow-[0_0_40px_-5px_var(--signal)] transition-all self-start disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Send transmission →
+                    {sending ? "Transmitting…" : "Send transmission →"}
                   </button>
                 </form>
               )}
