@@ -40,26 +40,6 @@ export const Route = createFileRoute("/services")({
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
       { name: "twitter:image:alt", content: "techvrs — Four disciplines, one security-first standard" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Services — techvrs",
-          url: "https://techvrs.com/services",
-          description:
-            "Four security-first disciplines: SOC monitoring & detection engineering, hardened web deployments, technical SEO audits, and custom AI agent development.",
-          breadcrumb: {
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
-              { "@type": "ListItem", position: 2, name: "Services", item: "https://techvrs.com/services" },
-            ],
-          },
-        }),
-      },
-    ],
   }),
   component: ServicesPage,
 });

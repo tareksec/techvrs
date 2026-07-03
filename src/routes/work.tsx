@@ -35,26 +35,6 @@ export const Route = createFileRoute("/work")({
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
       { name: "twitter:image:alt", content: "techvrs — Field Reports & Case Studies" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "Field Reports — techvrs",
-          url: "https://techvrs.com/work",
-          description:
-            "Case studies documented like incident reports — detection rule deployments, hardened infrastructure, SEO recoveries, and secure AI agent builds.",
-          breadcrumb: {
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
-              { "@type": "ListItem", position: 2, name: "Work", item: "https://techvrs.com/work" },
-            ],
-          },
-        }),
-      },
-    ],
   }),
   component: WorkPage,
 });

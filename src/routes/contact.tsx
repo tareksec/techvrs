@@ -34,26 +34,6 @@ export const Route = createFileRoute("/contact")({
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
       { name: "twitter:image:alt", content: "techvrs — Open a Secure Channel" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ContactPage",
-          name: "Contact — techvrs",
-          url: "https://techvrs.com/contact",
-          description:
-            "Reach out for SOC analyst roles, security engagements, hardening audits, or custom AI agent projects.",
-          breadcrumb: {
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
-              { "@type": "ListItem", position: 2, name: "Contact", item: "https://techvrs.com/contact" },
-            ],
-          },
-        }),
-      },
-    ],
   }),
   component: ContactPage,
 });

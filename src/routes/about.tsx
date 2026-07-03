@@ -44,26 +44,6 @@ export const Route = createFileRoute("/about")({
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
       { name: "twitter:image:alt", content: "techvrs — Operator Profile" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Operator Profile — techvrs",
-          url: "https://techvrs.com/about",
-          description:
-            "How a SOC analyst mindset shapes every deployment, audit, and AI build.",
-          breadcrumb: {
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
-              { "@type": "ListItem", position: 2, name: "About", item: "https://techvrs.com/about" },
-            ],
-          },
-        }),
-      },
-    ],
   }),
   component: AboutPage,
 });

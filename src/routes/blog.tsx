@@ -78,32 +78,6 @@ export const Route = createFileRoute("/blog")({
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
       { name: "twitter:image:alt", content: "techvrs Field Notes — Notes from the console" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Blog",
-          name: "Field Notes — techvrs",
-          url: "https://techvrs.com/blog",
-          description:
-            "Detection walkthroughs, hardening guides, and lessons from building secure systems.",
-          author: {
-            "@type": "Person",
-            name: "Tarek",
-            url: "https://techvrs.com/",
-            sameAs: ["https://medium.com/@mdtareksec"],
-          },
-          breadcrumb: {
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" },
-              { "@type": "ListItem", position: 2, name: "Blog", item: "https://techvrs.com/blog" },
-            ],
-          },
-        }),
-      },
-    ],
   }),
   component: BlogPage,
 });
