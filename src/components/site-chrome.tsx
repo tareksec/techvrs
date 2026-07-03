@@ -325,10 +325,11 @@ export function SiteFooter() {
           </div>
           <ul className="flex flex-col gap-2.5 text-sm">
             {[
-              { label: "Email",    href: "mailto:hello@techvrs.com"              },
-              { label: "LinkedIn", href: "https://linkedin.com"                  },
-              { label: "GitHub",   href: "https://github.com"                    },
-              { label: "Medium",   href: "https://medium.com/@mdtareksec"        },
+              { label: "Portfolio — tareksec.dev", href: "https://tareksec.dev"                    },
+              { label: "Email",                    href: "mailto:hello@techvrs.com"                },
+              { label: "LinkedIn",                 href: "https://www.linkedin.com/in/mdtarek404/" },
+              { label: "GitHub",                   href: "https://github.com/tareksec"             },
+              { label: "Medium",                   href: "https://medium.com/@mdtareksec"          },
             ].map((l) => (
               <li key={l.label}>
                 <a

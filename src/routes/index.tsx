@@ -103,12 +103,22 @@ function Hero() {
           </div>
 
           <Link
-            to="/services"
+            to="/contact"
             className="reveal mt-5 inline-flex items-center gap-2 mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-signal transition-colors"
           >
             <span className="live-dot" aria-hidden />
-            Free resource — Secure Web Deployment Checklist →
+            Free resource — request the Secure Web Deployment Checklist →
           </Link>
+
+          <a
+            href="https://tareksec.dev"
+            target="_blank"
+            rel="noreferrer"
+            className="reveal mt-3 flex w-fit items-center gap-2 mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-signal transition-colors"
+          >
+            <span className="text-signal">↗</span>
+            This site is a branding project — full resume &amp; portfolio at tareksec.dev
+          </a>
 
           <div className="reveal mt-10 border-t border-hairline pt-5 flex flex-wrap items-center gap-6">
             <StatusPulse />
