@@ -49,7 +49,7 @@ const AUDIENCE_META: Record<Audience, { color: string; bg: string }> = {
 
 /* Serverless form relay — delivers submissions to the techvrs inbox
    without exposing credentials in the client bundle. */
-const CONTACT_ENDPOINT = "https://formsubmit.co/ajax/hello@techvrs.com";
+const CONTACT_ENDPOINT = "https://formsubmit.co/ajax/mdtarekcom376@gmail.com";
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
