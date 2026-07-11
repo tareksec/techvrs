@@ -140,6 +140,14 @@ export function FloatingNav() {
                 Portfolio ↗
               </a>
             </li>
+            <li>
+              <a
+                href="https://artx.techvrs.com"
+                className="mono block whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] uppercase tracking-widest text-muted-foreground transition-all duration-300 ease-out hover:bg-signal/10 hover:text-foreground"
+              >
+                ArtX Studio ↗
+              </a>
+            </li>
           </ul>
 
           {/* ── Right cluster: status pulse, theme toggle, mobile burger ── */}
@@ -200,6 +208,14 @@ export function FloatingNav() {
                   <span className="opacity-40">→</span>
                 </Link>
               ))}
+              <a
+                href="https://artx.techvrs.com"
+                onClick={() => setOpen(false)}
+                className="mono flex items-center justify-between border-b border-hairline/40 py-3 text-[12px] uppercase tracking-widest text-muted-foreground transition-colors last:border-b-0 hover:text-signal"
+              >
+                ArtX Studio
+                <span className="opacity-40">↗</span>
+              </a>
               <div className="pb-1 pt-4">
                 <StatusPulse compact />
               </div>

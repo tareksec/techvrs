@@ -202,6 +202,12 @@ export function SiteNav() {
               {item.label}
             </Link>
           ))}
+          <a
+            href="https://artx.techvrs.com"
+            className="nav-pill-hover mono text-[11px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all relative"
+          >
+            ArtX Studio ↗
+          </a>
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
@@ -245,6 +251,14 @@ export function SiteNav() {
                 <span className="opacity-40">→</span>
               </Link>
             ))}
+            <a
+              href="https://artx.techvrs.com"
+              onClick={() => setOpen(false)}
+              className="mono text-[12px] uppercase tracking-widest py-3 border-b border-hairline/50 text-muted-foreground hover:text-signal transition-colors flex items-center justify-between"
+            >
+              ArtX Studio
+              <span className="opacity-40">↗</span>
+            </a>
             <div className="pt-4">
               <StatusPulse compact />
             </div>
@@ -345,11 +359,12 @@ export function SiteFooter() {
               { label: "LinkedIn",                 href: "https://www.linkedin.com/in/mdtarek404/" },
               { label: "GitHub",                   href: "https://github.com/tareksec"             },
               { label: "Medium",                   href: "https://medium.com/@mdtareksec"          },
+              { label: "ArtX Studio — design, dev & SEO", href: "https://artx.techvrs.com"         },
             ].map((l) => (
               <li key={l.label}>
                 <a
                   href={l.href}
-                  target={l.href.startsWith("http") ? "_blank" : undefined}
+                  target={l.href.startsWith("http") && !l.href.includes("artx.techvrs.com") ? "_blank" : undefined}
                   rel="noreferrer"
                   className="text-muted-foreground hover:text-signal transition-colors flex items-center gap-2 group"
                 >

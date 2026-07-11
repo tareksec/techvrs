@@ -8,6 +8,7 @@ import {
   IllustrationAI,
 } from "@/components/service-illustrations";
 import { IconCheck } from "@/components/icons";
+import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -180,6 +181,17 @@ function ServicesPage() {
                     </div>
                     <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{s.title}</h2>
                     <p className="max-w-2xl text-muted-foreground leading-relaxed">{s.intro}</p>
+                    {s.slug === "secure-web-deployment" && (
+                      <a href="https://artx.techvrs.com" className="mt-4 inline-block">
+                        <Badge
+                          variant="outline"
+                          className="mono text-[9px] uppercase tracking-widest"
+                          style={{ borderColor: `${cfg.accent}55`, color: cfg.accent }}
+                        >
+                          Design &amp; build work → via ArtX Studio ↗
+                        </Badge>
+                      </a>
+                    )}
                   </div>
 
                   {/* ── Illustration glass frame ── */}

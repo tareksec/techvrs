@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
 import { Panel, SectionLabel, StatusPulse } from "@/components/site-chrome";
+import { Badge } from "@/components/ui/badge";
 import { AnimatedCounter, Magnetic } from "@/components/micro-interactions";
 import { useTheme } from "@/lib/theme";
 import { ParticleBackground } from "@/components/particle-background";
@@ -143,6 +144,14 @@ function Hero() {
           >
             <span className="text-signal">↗</span>
             This site is a branding project — full resume &amp; portfolio at tareksec.dev
+          </a>
+
+          <a
+            href="https://artx.techvrs.com"
+            className="reveal mt-2 flex w-fit items-center gap-2 mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-signal transition-colors"
+          >
+            <span className="text-signal">↗</span>
+            Need a full website built, not just secured? See ArtX Studio
           </a>
 
           <div className="reveal mt-10 border-t border-hairline pt-5 flex flex-wrap items-center gap-6">
@@ -845,6 +854,24 @@ function ServicesOverview() {
                       {svc.index} / 04
                     </span>
                   </div>
+
+                  {/* ArtX cross-reference — Secure Web Deployment implies design/build work */}
+                  {svc.slug === "secure-web-deployment" && (
+                    <a
+                      href="https://artx.techvrs.com"
+                      style={{
+                        animation: isVis ? `svc-enter 0.5s 0.58s cubic-bezier(0.16,1,0.3,1) both` : "none",
+                      }}
+                    >
+                      <Badge
+                        variant="outline"
+                        className="mono text-[9px] uppercase tracking-widest w-fit"
+                        style={{ borderColor: `${ct.accent}55`, color: dk ? DARK_BULLET : ct.bullet }}
+                      >
+                        Design &amp; build work → via ArtX Studio ↗
+                      </Badge>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

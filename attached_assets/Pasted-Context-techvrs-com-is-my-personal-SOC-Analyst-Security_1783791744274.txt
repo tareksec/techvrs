@@ -1,0 +1,62 @@
+Context: techvrs.com is my personal SOC Analyst / Security Engineer 
+branding site (dark theme, #0D1117 background, security-terminal 
+aesthetic). I also run a separate creative studio, ArtX, hosted at 
+artx.techvrs.com (Next.js, light theme, #FAF9F6/#FF4500/#1A1A1A). 
+I want to cross-link the two properly without breaking either site's 
+distinct identity.
+
+Apply these skills where relevant:
+- design-taste-frontend + frontend-design: for judging how the new 
+  cross-links visually integrate without clashing with the existing 
+  terminal aesthetic
+- vercel-react-best-practices: for clean Next.js link/routing 
+  implementation
+- shadcn-ui-mcp-server: if any new badge/link component needs a 
+  primitive, source it from shadcn rather than hand-rolling
+- motion-framer: for any subtle hover/entrance animation on the new 
+  link elements, matching existing motion patterns
+
+Implement the following on techvrs.com:
+
+1. NAVBAR / HEADER LINK
+   - Add an external link in the main nav (alongside About, Services, 
+     Work, Blog, Contact) labeled "ArtX Studio ↗" pointing to 
+     https://artx.techvrs.com, styled the same way the existing 
+     "Portfolio ↗" (tareksec.dev) external link is styled.
+
+2. SERVICES SECTION CROSS-REFERENCE
+   - In the "Four Disciplines" section, the existing service card 
+     "Secure Web Deployment" already implies design/build work. 
+     Add a small inline note or badge on that card: 
+     "Design & build work → via ArtX Studio ↗" linking to 
+     https://artx.techvrs.com.
+   - Use a shadcn Badge primitive for this if one isn't already used 
+     elsewhere in the section, so it matches component conventions.
+
+3. FOOTER — ADD A "VENTURES" OR "CHANNELS" ENTRY
+   - In the Channels list (currently Portfolio, Email, LinkedIn, 
+     GitHub, Medium), add: "↗ ArtX Studio — design, dev & SEO" 
+     linking to https://artx.techvrs.com.
+
+4. HOMEPAGE INTRO LINE (subtle)
+   - Near the existing line "techvrs is a personal branding project — 
+     full resume & portfolio at tareksec.dev", add a second line: 
+     "Need a full website built, not just secured? See ArtX Studio ↗" 
+     linking to artx.techvrs.com. Keep it understated, matching the 
+     existing muted-link styling — should not compete visually with 
+     the primary SOC-analyst positioning.
+
+Constraints:
+- Do NOT change techvrs.com's color scheme, theme, or terminal/security 
+  aesthetic — ArtX links should look like external references, not 
+  reskin any section.
+- All new links open the same tab (internal subdomain, not new tab) 
+  since it's the same root domain.
+- Do not modify site structure or existing content — additive changes 
+  only.
+- Follow vercel-react-best-practices for any new component/link 
+  implementation (proper Link usage, no unnecessary client components).
+
+Also: on the ArtX side, verify the reciprocal link — the "04 Web 
+Security via techvrs.com" service card should correctly link to 
+https://techvrs.com (not a broken or placeholder URL).
