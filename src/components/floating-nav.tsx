@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "@/lib/theme";
 import { StatusPulse, ThemeToggle } from "@/components/site-chrome";
 
@@ -12,6 +12,100 @@ const NAV_ITEMS = [
   { to: "/blog",     label: "Blog"     },
   { to: "/contact",  label: "Contact"  },
 ] as const;
+
+/* ── External properties surfaced in the "Elsewhere" overflow menu ── */
+const ELSEWHERE_LINKS = [
+  {
+    label: "Portfolio — tareksec.dev",
+    href: "https://tareksec.dev",
+    external: true, // different domain -> new tab
+  },
+  {
+    label: "ArtX Studio — design & dev",
+    href: "https://artx.techvrs.com",
+    external: false, // same root domain -> same tab
+  },
+] as const;
+
+/* ── Desktop overflow dropdown for external properties ──
+   Sharp-cornered, dark terminal panel — click-toggled with
+   outside-click / Escape dismissal for reliable a11y (not
+   hover-only). */
+function ElsewhereMenu() {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDocClick = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <li ref={rootRef} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        className={`mono flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] uppercase tracking-widest transition-all duration-300 ease-out hover:bg-signal/10 ${
+          open ? "text-signal bg-signal/10" : "text-muted-foreground hover:text-foreground"
+        }`}
+      >
+        Elsewhere
+        <span
+          className={`transition-transform duration-200 ${open ? "-rotate-180" : ""}`}
+          aria-hidden
+        >
+          ↓
+        </span>
+      </button>
+
+      {/* Dropdown panel — dark terminal card, sharp corners */}
+      <div
+        role="menu"
+        className={`absolute right-0 top-[calc(100%+0.5rem)] w-64 origin-top-right border border-[#1f2a3a] bg-[#0D1117] shadow-2xl shadow-black/50 transition-all duration-150 ease-out ${
+          open
+            ? "visible translate-y-0 opacity-100"
+            : "invisible -translate-y-1 opacity-0"
+        }`}
+      >
+        <div className="mono px-3 py-2 text-[9px] uppercase tracking-[0.2em] text-[#5b6b82] border-b border-[#1f2a3a]">
+          External // Elsewhere
+        </div>
+        <ul className="py-1">
+          {ELSEWHERE_LINKS.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noreferrer" : undefined}
+                role="menuitem"
+                onClick={() => setOpen(false)}
+                className="mono flex items-center justify-between gap-3 px-3 py-2.5 text-[11px] uppercase tracking-widest text-[#9fb0c3] transition-colors hover:bg-[#131b28] hover:text-signal"
+              >
+                {l.label}
+                <span className="opacity-60">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  );
+}
 
 /* ── Scroll progress — thin signal strip along the capsule's bottom edge ── */
 function DockScrollProgress() {
@@ -87,7 +181,7 @@ export function FloatingNav() {
         /* The glass capsule. transform-gpu avoids Safari blur flicker;
            overflow-hidden clips the progress strip + mobile dropdown
            to the rounded corners. */
-        className={`pointer-events-auto relative w-full max-w-5xl transform-gpu overflow-hidden rounded-2xl border backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ease-out ${
+        className={`pointer-events-auto relative w-full max-w-5xl transform-gpu overflow-visible rounded-2xl border backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ease-out ${
           scrolled
             ? "mt-2.5 border-hairline bg-background/80 shadow-xl shadow-black/10 dark:shadow-black/40"
             : "mt-4 border-hairline/70 bg-background/60 shadow-lg shadow-black/5 dark:shadow-black/25"
@@ -130,24 +224,7 @@ export function FloatingNav() {
                 </Link>
               </li>
             ))}
-            <li>
-              <a
-                href="https://tareksec.dev"
-                target="_blank"
-                rel="noreferrer"
-                className="mono block rounded-full px-3 py-1.5 text-[11px] uppercase tracking-widest text-signal transition-all duration-300 ease-out hover:bg-signal/10"
-              >
-                Portfolio ↗
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://artx.techvrs.com"
-                className="mono block whitespace-nowrap rounded-full px-3 py-1.5 text-[11px] uppercase tracking-widest text-muted-foreground transition-all duration-300 ease-out hover:bg-signal/10 hover:text-foreground"
-              >
-                ArtX Studio ↗
-              </a>
-            </li>
+            <ElsewhereMenu />
           </ul>
 
           {/* ── Right cluster: status pulse, theme toggle, mobile burger ── */}
@@ -208,14 +285,22 @@ export function FloatingNav() {
                   <span className="opacity-40">→</span>
                 </Link>
               ))}
-              <a
-                href="https://artx.techvrs.com"
-                onClick={() => setOpen(false)}
-                className="mono flex items-center justify-between border-b border-hairline/40 py-3 text-[12px] uppercase tracking-widest text-muted-foreground transition-colors last:border-b-0 hover:text-signal"
-              >
-                ArtX Studio
-                <span className="opacity-40">↗</span>
-              </a>
+              <div className="mono mt-1 pt-3 pb-1 text-[9px] uppercase tracking-[0.2em] text-muted-foreground/70 border-t border-hairline/40">
+                Elsewhere
+              </div>
+              {ELSEWHERE_LINKS.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target={l.external ? "_blank" : undefined}
+                  rel={l.external ? "noreferrer" : undefined}
+                  onClick={() => setOpen(false)}
+                  className="mono flex items-center justify-between border-b border-hairline/40 py-3 text-[12px] uppercase tracking-widest text-muted-foreground transition-colors last:border-b-0 hover:text-signal"
+                >
+                  {l.label}
+                  <span className="opacity-40">↗</span>
+                </a>
+              ))}
               <div className="pb-1 pt-4">
                 <StatusPulse compact />
               </div>
