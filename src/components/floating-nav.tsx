@@ -6,9 +6,10 @@ import { StatusPulse, ThemeToggle } from "@/components/site-chrome";
 /* ── Route map for the dock ── */
 const NAV_ITEMS = [
   { to: "/",         label: "Home"     },
-  { to: "/about",    label: "About"    },
   { to: "/services", label: "Services" },
   { to: "/work",     label: "Work"     },
+  { to: "/demos",    label: "Demos"    },
+  { to: "/about",    label: "About"    },
   { to: "/blog",     label: "Blog"     },
   { to: "/contact",  label: "Contact"  },
 ] as const;
@@ -16,14 +17,14 @@ const NAV_ITEMS = [
 /* ── External properties surfaced in the "Elsewhere" overflow menu ── */
 const ELSEWHERE_LINKS = [
   {
-    label: "Portfolio — tareksec.dev",
-    href: "https://tareksec.dev",
-    external: true, // different domain -> new tab
+    label: "GitHub — Open Source",
+    href: "https://github.com/tareksec",
+    external: true,
   },
   {
-    label: "ArtX Studio — design & dev",
+    label: "ArtX Studio — Design & Build",
     href: "https://artx.techvrs.com",
-    external: false, // same root domain -> same tab
+    external: false,
   },
 ] as const;
 

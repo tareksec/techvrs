@@ -1,61 +1,60 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SectionLabel } from "@/components/site-chrome";
-import { IconBriefcase, IconShieldLock } from "@/components/icons";
+import { IconShieldLock, IconSecureGlobe } from "@/components/icons";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — techvrs | Open a Secure Channel" },
+      { title: "Contact Us — TechVRS | Start Your Project" },
       {
         name: "description",
         content:
-          "Reach out for SOC analyst roles, security engagements, hardening audits, or custom AI agent projects. Hiring managers and prospective clients welcome. Response within 24 hours.",
+          "Reach out to TechVRS for web development, UI/UX design, technical SEO audits, or custom secure AI automation projects. We respond within 24 hours with a scoped technical plan.",
       },
       // ── Open Graph ───────────────────────────────────────────────────────
-      { property: "og:site_name", content: "techvrs" },
+      { property: "og:site_name", content: "TechVRS" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://techvrs.com/contact" },
-      { property: "og:title", content: "Contact — techvrs | Open a Secure Channel" },
+      { property: "og:title", content: "Contact Us — TechVRS | Start Your Project" },
       {
         property: "og:description",
         content:
-          "Reach out for SOC analyst roles, security engagements, hardening audits, or custom AI agent projects. Response within 24 hours.",
+          "Reach out to TechVRS for web development, UI/UX design, technical SEO audits, or custom secure AI automation projects. We respond within 24 hours with a scoped technical plan.",
       },
       { property: "og:image", content: "https://techvrs.com/hero-main.png" },
-      { property: "og:image:alt", content: "techvrs — Open a Secure Channel" },
+      { property: "og:image:alt", content: "TechVRS — Start Your Project" },
       // ── Twitter / X ──────────────────────────────────────────────────────
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Contact — techvrs | Open a Secure Channel" },
+      { name: "twitter:title", content: "Contact Us — TechVRS | Start Your Project" },
       {
         name: "twitter:description",
         content:
-          "Reach out for SOC analyst roles, security engagements, hardening audits, or custom AI agent projects. Response within 24 hours.",
+          "Reach out to TechVRS for web development, UI/UX design, technical SEO audits, or custom secure AI automation projects. We respond within 24 hours with a scoped technical plan.",
       },
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
-      { name: "twitter:image:alt", content: "techvrs — Open a Secure Channel" },
+      { name: "twitter:image:alt", content: "TechVRS — Start Your Project" },
     ],
   }),
   component: ContactPage,
 });
 
-type Audience = "Hiring Manager" | "Prospective Client" | "Other";
+type Audience = "Start a Project" | "Technical SEO Audit" | "AI Consultation" | "General Inquiry";
 
 const AUDIENCE_META: Record<Audience, { color: string; bg: string }> = {
-  "Hiring Manager":    { color: "#0284c7", bg: "rgba(2,132,199,0.10)"  },
-  "Prospective Client":{ color: "#7c3aed", bg: "rgba(124,58,237,0.10)" },
-  "Other":             { color: "#16a34a", bg: "rgba(22,163,74,0.10)"  },
+  "Start a Project":     { color: "#0891b2", bg: "rgba(8,145,178,0.10)" },
+  "Technical SEO Audit": { color: "#16a34a", bg: "rgba(22,163,74,0.10)" },
+  "AI Consultation":     { color: "#7c3aed", bg: "rgba(124,58,237,0.10)" },
+  "General Inquiry":     { color: "#d97706", bg: "rgba(217,119,6,0.10)" },
 };
 
-/* Serverless form relay — delivers submissions to the techvrs inbox
-   without exposing credentials in the client bundle. */
 const CONTACT_ENDPOINT = "https://formsubmit.co/ajax/hello@techvrs.com";
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [audience, setAudience] = useState<Audience>("Hiring Manager");
+  const [audience, setAudience] = useState<Audience>("Start a Project");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -80,9 +79,9 @@ function ContactPage() {
         body: JSON.stringify({
           name: String(data.get("name") ?? ""),
           email: String(data.get("email") ?? ""),
-          audience,
+          inquiryType: audience,
           message: String(data.get("message") ?? ""),
-          _subject: `techvrs contact — ${audience}`,
+          _subject: `TechVRS Inquiry — ${audience}`,
           _template: "table",
           _captcha: "false",
         }),
@@ -92,7 +91,7 @@ function ContactPage() {
       setSent(true);
     } catch (err) {
       console.error("[contact] send failed:", err);
-      setError("The relay could not be reached — your message was NOT sent.");
+      setError("The message relay could not be reached. Please email us directly at hello@techvrs.com.");
     } finally {
       setSending(false);
     }
@@ -102,14 +101,14 @@ function ContactPage() {
     <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
 
       {/* ── Header ── */}
-      <SectionLabel>OPEN CHANNEL</SectionLabel>
+      <SectionLabel>START A PROJECT</SectionLabel>
       <h1 className="flip-fade-text font-display text-5xl md:text-6xl font-bold max-w-3xl">
-        Let's start{" "}
-        <span className="accent-shift">a conversation.</span>
+        Let's build something{" "}
+        <span className="accent-shift">exceptional.</span>
       </h1>
       <p className="flip-text mt-5 max-w-xl text-lg text-muted-foreground leading-relaxed">
-        Whether you need a SOC analyst, a hardened deployment, or a custom AI agent —
-        I'll respond with a scoped plan, not a sales pitch.
+        Whether you need a high-performance web build, a conversion-focused redesign, a technical
+        SEO overhaul, or secure AI automation — we'll respond within 24 hours with a scoped roadmap.
       </p>
 
       {/* ── Two-column layout ── */}
@@ -118,65 +117,19 @@ function ContactPage() {
         {/* Sidebar */}
         <div className="lg:col-span-2 flex flex-col gap-5">
 
-          {/* Hiring managers */}
+          {/* What to expect */}
           <div className="glass-card brackets p-6" style={{ position: "relative" }}>
             <span className="b-tr" /><span className="b-bl" />
             <div className="mono text-[10px] uppercase tracking-widest text-signal mb-4 flex items-center gap-2">
-              <IconBriefcase size={14} />
-              FOR HIRING MANAGERS
+              <IconSecureGlobe size={14} />
+              WHAT TO EXPECT
             </div>
-            <ul className="flex flex-col gap-2.5 mb-5">
+            <ul className="flex flex-col gap-3 mb-4">
               {[
-                "Seeking entry-level SOC Analyst roles",
-                "Hands-on detection & response — lab + production",
-                "CompTIA Security+ & CySA+ certified",
-                "Resume, certs & write-ups one click away",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <span className="shrink-0 text-signal/70 mt-0.5 mono text-[10px]">◈</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="/resume.pdf"
-                className="mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground px-4 py-3 hover:shadow-[0_0_30px_-5px_var(--signal)] transition-shadow inline-flex items-center gap-2"
-              >
-                Download resume ↓
-              </a>
-              <a
-                href="https://www.linkedin.com/in/mdtarek404/"
-                target="_blank"
-                rel="noreferrer"
-                className="mono text-[11px] uppercase tracking-widest border border-signal/60 text-signal px-4 py-3 hover:bg-signal/10 transition-colors"
-              >
-                LinkedIn ↗
-              </a>
-              <a
-                href="https://tareksec.dev"
-                target="_blank"
-                rel="noreferrer"
-                className="mono text-[11px] uppercase tracking-widest border border-signal/60 text-signal px-4 py-3 hover:bg-signal/10 transition-colors"
-              >
-                Full portfolio ↗
-              </a>
-            </div>
-          </div>
-
-          {/* Prospective clients */}
-          <div className="glass-card brackets p-6" style={{ position: "relative" }}>
-            <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-4 flex items-center gap-2">
-              <IconShieldLock size={14} />
-              FOR PROSPECTIVE CLIENTS
-            </div>
-            <ul className="flex flex-col gap-2.5 mb-4">
-              {[
-                "Security gap assessment & remediation",
-                "Deployment hardening & infrastructure audit",
-                "Technical SEO audit & performance",
-                "Custom AI agent — scoped, private, secure",
+                "Direct collaboration with senior engineers & designers",
+                "Clear architectural plan, milestones, and timelines",
+                "Performance benchmarks & Core Web Vitals targets",
+                "Security by design embedded across all deliverables",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
                   <span className="shrink-0 text-signal/70 mt-0.5 mono text-[10px]">◈</span>
@@ -185,8 +138,31 @@ function ContactPage() {
               ))}
             </ul>
             <p className="text-xs text-muted-foreground">
-              Tell me what you're working with — I'll respond with next steps, not a sales pitch.
+              No generic sales pitches. We evaluate your goals and provide concrete technical recommendations.
             </p>
+          </div>
+
+          {/* Core capabilities list */}
+          <div className="glass-card brackets p-6" style={{ position: "relative" }}>
+            <span className="b-tr" /><span className="b-bl" />
+            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-4 flex items-center gap-2">
+              <IconShieldLock size={14} />
+              SERVICES WE DELIVER
+            </div>
+            <ul className="flex flex-col gap-2.5 mb-2">
+              {[
+                "Modern Web Development (React / Next.js)",
+                "Conversion UI/UX & Design Systems",
+                "Technical & Secure SEO Audits",
+                "On-Page & Off-Page SEO Growth",
+                "AI Security & Custom Business Agents",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                  <span className="shrink-0 text-signal/70 mt-0.5 mono text-[10px]">◈</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Direct channels */}
@@ -196,11 +172,10 @@ function ContactPage() {
               DIRECT CHANNELS
             </div>
             {[
-              { label: "hello@techvrs.com",        href: "mailto:hello@techvrs.com"                },
-              { label: "Portfolio — tareksec.dev", href: "https://tareksec.dev"                    },
-              { label: "LinkedIn — @mdtarek404",   href: "https://www.linkedin.com/in/mdtarek404/" },
-              { label: "GitHub — @tareksec",       href: "https://github.com/tareksec"             },
-              { label: "Medium — @mdtareksec",     href: "https://medium.com/@mdtareksec"          },
+              { label: "hello@techvrs.com",      href: "mailto:hello@techvrs.com"                },
+              { label: "LinkedIn Company",       href: "https://www.linkedin.com/in/mdtarek404/" },
+              { label: "GitHub Open Source",     href: "https://github.com/tareksec"             },
+              { label: "Medium Insights",        href: "https://medium.com/@mdtareksec"          },
             ].map((l) => (
               <a
                 key={l.label}
@@ -224,8 +199,8 @@ function ContactPage() {
             <span className="live-dot mt-1 shrink-0" aria-hidden />
             <p className="mono text-[10px] uppercase tracking-widest text-muted-foreground leading-relaxed">
               Free resource — request the{" "}
-              <span className="text-signal">Secure Web Deployment Checklist</span>{" "}
-              in your message and I'll include it with my reply.
+              <span className="text-signal">27-Point Web &amp; Security Launch Checklist</span>{" "}
+              in your message and we'll include it with our reply.
             </p>
           </div>
         </div>
@@ -237,9 +212,7 @@ function ContactPage() {
             style={{ position: "relative" }}
           >
             <span className="b-tr" /><span className="b-bl" />
-            {/* Grid overlay */}
             <div className="absolute inset-0 bg-grid opacity-[0.07]" aria-hidden />
-            {/* Corner glow */}
             <div
               aria-hidden
               className="absolute -top-20 -right-20 w-56 h-56 blur-[80px] pointer-events-none"
@@ -260,26 +233,26 @@ function ContactPage() {
                     ✓
                   </div>
                   <div className="mono text-[11px] uppercase tracking-widest text-signal">
-                    MESSAGE RECEIVED
+                    INQUIRY RECEIVED
                   </div>
                   <p className="text-foreground/85 max-w-xs text-center leading-relaxed">
-                    Transmission logged. I'll respond within 24–48 hours.
+                    Thank you! Our technical team will review your project requirements and respond within 24 hours.
                   </p>
                   <button
                     onClick={() => setSent(false)}
                     className="mt-2 mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-signal transition-colors"
                   >
-                    Send another →
+                    Submit another inquiry →
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                   <div className="mono text-[10px] uppercase tracking-widest text-signal flex items-center gap-2">
                     <span className="pulse-dot" aria-hidden />
-                    NEW TRANSMISSION // COMPOSE
+                    PROJECT INQUIRY // COMPOSE
                   </div>
 
-                  {/* Honeypot — hidden from humans, catches naive bots */}
+                  {/* Honeypot */}
                   <input
                     type="text"
                     name="_honey"
@@ -290,7 +263,7 @@ function ContactPage() {
                   />
 
                   <div className="grid gap-6 md:grid-cols-2">
-                    <Field label="Name">
+                    <Field label="Your Name">
                       <input
                         required
                         name="name"
@@ -304,10 +277,10 @@ function ContactPage() {
                         }}
                         onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(2,132,199,0.6)")}
                         onBlur={(e) => (e.currentTarget.style.borderColor = "var(--hairline)")}
-                        placeholder="Your name"
+                        placeholder="e.g. Alex Morgan"
                       />
                     </Field>
-                    <Field label="Email">
+                    <Field label="Work Email">
                       <input
                         required
                         type="email"
@@ -322,14 +295,14 @@ function ContactPage() {
                         }}
                         onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(2,132,199,0.6)")}
                         onBlur={(e) => (e.currentTarget.style.borderColor = "var(--hairline)")}
-                        placeholder="you@company.com"
+                        placeholder="alex@company.com"
                       />
                     </Field>
                   </div>
 
-                  <Field label="I am a…">
-                    <div className="grid grid-cols-3 gap-2">
-                      {(["Hiring Manager", "Prospective Client", "Other"] as Audience[]).map((a) => {
+                  <Field label="How can we help?">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                      {(["Start a Project", "Technical SEO Audit", "AI Consultation", "General Inquiry"] as Audience[]).map((a) => {
                         const m = AUDIENCE_META[a];
                         const active = audience === a;
                         return (
@@ -338,7 +311,7 @@ function ContactPage() {
                             key={a}
                             onClick={() => setAudience(a)}
                             aria-pressed={active}
-                            className="mono text-[10px] uppercase tracking-widest px-3 py-3 border transition-all"
+                            className="mono text-[10px] uppercase tracking-widest px-2 py-3 border transition-all text-center leading-tight"
                             style={{
                               borderColor: active ? m.color : "var(--hairline)",
                               color: active ? m.color : "var(--muted-foreground)",
@@ -354,12 +327,12 @@ function ContactPage() {
                     </div>
                   </Field>
 
-                  <Field label="Message">
+                  <Field label="Project Scope &amp; Goals">
                     <textarea
                       required
                       name="message"
-                      rows={6}
-                      className="w-full px-4 py-3 outline-none transition-all resize-none text-foreground placeholder:text-muted-foreground/60"
+                      rows={5}
+                      className="w-full px-4 py-3 outline-none transition-all text-foreground placeholder:text-muted-foreground/60 resize-none"
                       style={{
                         background: "rgba(255,255,255,0.5)",
                         backdropFilter: "blur(8px)",
@@ -368,37 +341,22 @@ function ContactPage() {
                       }}
                       onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(2,132,199,0.6)")}
                       onBlur={(e) => (e.currentTarget.style.borderColor = "var(--hairline)")}
-                      placeholder="Tell me what you're working with..."
+                      placeholder="Tell us about your project goals, current challenges, timeline, or key technical requirements…"
                     />
                   </Field>
 
                   {error && (
-                    <div
-                      role="alert"
-                      className="p-4 border flex flex-col gap-2"
-                      style={{
-                        borderColor: "rgba(220,38,38,0.4)",
-                        background: "rgba(220,38,38,0.06)",
-                      }}
-                    >
-                      <div className="mono text-[10px] uppercase tracking-widest text-critical">
-                        SEND_FAILED // {error}
-                      </div>
-                      <a
-                        href="mailto:hello@techvrs.com?subject=techvrs%20contact"
-                        className="mono text-[10px] uppercase tracking-widest text-signal hover:underline underline-offset-2 w-fit"
-                      >
-                        Email hello@techvrs.com directly →
-                      </a>
+                    <div className="mono text-xs text-critical p-3 border border-critical/40 bg-critical/10">
+                      {error}
                     </div>
                   )}
 
                   <button
                     type="submit"
                     disabled={sending}
-                    className="mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground px-8 py-4 hover:shadow-[0_0_40px_-5px_var(--signal)] transition-all self-start disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full py-4 mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground font-semibold hover:shadow-[0_0_36px_-4px_var(--signal)] transition-shadow disabled:opacity-50"
                   >
-                    {sending ? "Transmitting…" : "Send transmission →"}
+                    {sending ? "Sending inquiry…" : "Submit Project Inquiry →"}
                   </button>
                 </form>
               )}
@@ -412,11 +370,11 @@ function ContactPage() {
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <label className="flex flex-col gap-2">
-      <span className="mono text-[10px] uppercase tracking-widest text-muted-foreground">
+    <div className="flex flex-col gap-2">
+      <label className="mono text-[10px] uppercase tracking-widest text-muted-foreground">
         {label}
-      </span>
+      </label>
       {children}
-    </label>
+    </div>
   );
 }

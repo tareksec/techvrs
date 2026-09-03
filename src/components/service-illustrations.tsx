@@ -22,35 +22,15 @@ const imgStyle: React.CSSProperties = {
   display: "block",
 };
 
-/* ── 01: SOC & Cybersecurity ────────────────────────────────────────── */
-export function IllustrationSOC({ className = "", style }: SceneProps) {
-  return (
-    <div className={className} style={{ ...containerStyle, ...style }}>
-      <picture>
-        <source srcSet="/1.webp" type="image/webp" />
-        <img
-          src="/1.png"
-          alt="SOC & Cybersecurity — security analyst and shield"
-          width={480}
-          height={480}
-          style={imgStyle}
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
-    </div>
-  );
-}
-
-/* ── 02: Secure Web Deployment ────────────────────────────────────── */
-export function IllustrationWebDeploy({ className = "", style }: SceneProps) {
+/* ── 01: Web Development ────────────────────────────────────────── */
+export function IllustrationWebDev({ className = "", style }: SceneProps) {
   return (
     <div className={className} style={{ ...containerStyle, ...style }}>
       <picture>
         <source srcSet="/2.webp" type="image/webp" />
         <img
           src="/2.png"
-          alt="Secure Web Deployment — shield with lock and team"
+          alt="Web Development — modern web application architecture and engineering"
           width={480}
           height={480}
           style={imgStyle}
@@ -62,7 +42,47 @@ export function IllustrationWebDeploy({ className = "", style }: SceneProps) {
   );
 }
 
-/* ── 03: Technical SEO / Monitoring ─────────────────────────────────── */
+/* ── 02: Web Design & UI/UX ────────────────────────────────────── */
+export function IllustrationWebDesign({ className = "", style }: SceneProps) {
+  return (
+    <div className={className} style={{ ...containerStyle, ...style }}>
+      <picture>
+        <source srcSet="/1.webp" type="image/webp" />
+        <img
+          src="/1.png"
+          alt="Web Design — modern UI/UX design systems and conversion layouts"
+          width={480}
+          height={480}
+          style={imgStyle}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </div>
+  );
+}
+
+/* ── 03: Secure SEO ─────────────────────────────────────────── */
+export function IllustrationSecureSEO({ className = "", style }: SceneProps) {
+  return (
+    <div className={className} style={{ ...containerStyle, ...style }}>
+      <picture>
+        <source srcSet="/3.webp" type="image/webp" />
+        <img
+          src="/3.png"
+          alt="Secure SEO — technical audits and Core Web Vitals monitoring"
+          width={480}
+          height={480}
+          style={imgStyle}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    </div>
+  );
+}
+
+/* ── 04: On-Page & Off-Page SEO ─────────────────────────────────── */
 export function IllustrationSEO({ className = "", style }: SceneProps) {
   return (
     <div className={className} style={{ ...containerStyle, ...style }}>
@@ -70,7 +90,7 @@ export function IllustrationSEO({ className = "", style }: SceneProps) {
         <source srcSet="/3.webp" type="image/webp" />
         <img
           src="/3.png"
-          alt="Technical SEO — developer monitoring performance dashboard"
+          alt="On-Page & Off-Page SEO — search growth and authority building"
           width={480}
           height={480}
           style={imgStyle}
@@ -82,7 +102,7 @@ export function IllustrationSEO({ className = "", style }: SceneProps) {
   );
 }
 
-/* ── 04: Secure AI Agents ────────────────────────────────────────── */
+/* ── 05: AI Security & AI Solutions ──────────────────────────────── */
 export function IllustrationAI({ className = "", style }: SceneProps) {
   return (
     <div className={className} style={{ ...containerStyle, ...style }}>
@@ -90,7 +110,7 @@ export function IllustrationAI({ className = "", style }: SceneProps) {
         <source srcSet="/4.webp" type="image/webp" />
         <img
           src="/4.png"
-          alt="Secure AI Agents — developers building an AI robot"
+          alt="AI Security & AI Solutions — intelligent business automation with guardrails"
           width={480}
           height={480}
           style={imgStyle}
@@ -101,3 +121,7 @@ export function IllustrationAI({ className = "", style }: SceneProps) {
     </div>
   );
 }
+
+/* Aliases for backwards compatibility */
+export const IllustrationSOC = IllustrationWebDev;
+export const IllustrationWebDeploy = IllustrationWebDesign;

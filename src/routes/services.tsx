@@ -2,55 +2,55 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SectionLabel } from "@/components/site-chrome";
 import { services, caseStudies, toolRoles } from "@/content/site-data";
 import {
-  IllustrationSOC,
-  IllustrationWebDeploy,
+  IllustrationWebDev,
+  IllustrationWebDesign,
+  IllustrationSecureSEO,
   IllustrationSEO,
   IllustrationAI,
 } from "@/components/service-illustrations";
 import { IconCheck } from "@/components/icons";
-import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — techvrs | SOC, Hardened Deployments, SEO & AI" },
+      { title: "Services — TechVRS | Web Development, Design, SEO & AI Solutions" },
       {
         name: "description",
         content:
-          "Four security-first disciplines: SOC monitoring & detection engineering, hardened web deployments, technical SEO audits, and custom AI agent development.",
+          "Explore TechVRS core services: modern web development, conversion-focused UI/UX design, secure technical SEO, organic search growth, and secure enterprise AI solutions.",
       },
       // ── Open Graph ───────────────────────────────────────────────────────
-      { property: "og:site_name", content: "techvrs" },
+      { property: "og:site_name", content: "TechVRS" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://techvrs.com/services" },
-      { property: "og:title", content: "Services — techvrs | SOC, Hardened Deployments, SEO & AI" },
+      { property: "og:title", content: "Services — TechVRS | Web Development, Design, SEO & AI Solutions" },
       {
         property: "og:description",
         content:
-          "Four security-first disciplines: SOC monitoring & detection engineering, hardened web deployments, technical SEO audits, and custom AI agent development.",
+          "Explore TechVRS core services: modern web development, conversion-focused UI/UX design, secure technical SEO, organic search growth, and secure enterprise AI solutions.",
       },
       { property: "og:image", content: "https://techvrs.com/hero-main.png" },
-      { property: "og:image:alt", content: "techvrs — Four disciplines, one security-first standard" },
+      { property: "og:image:alt", content: "TechVRS — Core Services & Digital Solutions" },
       // ── Twitter / X ──────────────────────────────────────────────────────
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Services — techvrs | SOC, Hardened Deployments, SEO & AI" },
+      { name: "twitter:title", content: "Services — TechVRS | Web Development, Design, SEO & AI Solutions" },
       {
         name: "twitter:description",
         content:
-          "Four security-first disciplines: SOC monitoring & detection engineering, hardened web deployments, technical SEO audits, and custom AI agent development.",
+          "Explore TechVRS core services: modern web development, conversion-focused UI/UX design, secure technical SEO, organic search growth, and secure enterprise AI solutions.",
       },
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
-      { name: "twitter:image:alt", content: "techvrs — Four disciplines, one security-first standard" },
+      { name: "twitter:image:alt", content: "TechVRS — Core Services & Digital Solutions" },
     ],
   }),
   component: ServicesPage,
 });
 
 const CATEGORY_COLORS: Record<string, string> = {
-  SOC: "text-signal border-signal/40",
-  Web: "text-amber border-amber/40",
+  Web: "text-signal border-signal/40",
+  Design: "text-sky-400 border-sky-400/40",
   SEO: "text-green-400 border-green-400/40",
-  "AI Agents": "text-violet-400 border-violet-400/40",
+  "AI Solutions": "text-violet-400 border-violet-400/40",
 };
 
 /* Per-service config */
@@ -65,40 +65,49 @@ type SvcCfg = {
 };
 
 const SVC_CONFIG: Record<string, SvcCfg> = {
-  "soc-cybersecurity": {
-    ambientClass: "svc-ambient-soc",
+  "web-development": {
+    ambientClass: "svc-ambient-web-dev",
     accentColor: "rgba(2,132,199,0.12)",
     glowColor: "rgba(2,132,199,0.25)",
     tagColor: "text-signal border-signal/40",
     accent: "#0891b2",
-    chipLabel: "MONITORING: ACTIVE",
-    Illustration: IllustrationSOC,
+    chipLabel: "STATUS: HIGH-PERFORMANCE",
+    Illustration: IllustrationWebDev,
   },
-  "secure-web-deployment": {
-    ambientClass: "svc-ambient-web",
+  "web-design": {
+    ambientClass: "svc-ambient-web-design",
     accentColor: "rgba(217,119,6,0.10)",
     glowColor: "rgba(217,119,6,0.22)",
     tagColor: "text-amber border-amber/40",
     accent: "#d97706",
-    chipLabel: "INTEGRITY: 100%",
-    Illustration: IllustrationWebDeploy,
+    chipLabel: "UI/UX: CONVERSION-FOCUSED",
+    Illustration: IllustrationWebDesign,
   },
-  "technical-secure-seo": {
+  "secure-seo": {
+    ambientClass: "svc-ambient-secure-seo",
+    accentColor: "rgba(14,165,233,0.10)",
+    glowColor: "rgba(14,165,233,0.22)",
+    tagColor: "text-sky-400 border-sky-400/40",
+    accent: "#0ea5e9",
+    chipLabel: "CORE WEB VITALS: 95+",
+    Illustration: IllustrationSecureSEO,
+  },
+  seo: {
     ambientClass: "svc-ambient-seo",
     accentColor: "rgba(22,163,74,0.10)",
     glowColor: "rgba(22,163,74,0.22)",
     tagColor: "text-green-400 border-green-400/40",
     accent: "#16a34a",
-    chipLabel: "VISIBILITY: LIVE",
+    chipLabel: "ORGANIC GROWTH: ACTIVE",
     Illustration: IllustrationSEO,
   },
-  "ai-agent-development": {
+  "ai-security": {
     ambientClass: "svc-ambient-ai",
     accentColor: "rgba(124,58,237,0.10)",
     glowColor: "rgba(124,58,237,0.22)",
     tagColor: "text-violet-400 border-violet-400/40",
     accent: "#7c3aed",
-    chipLabel: "AGENT: RUNNING",
+    chipLabel: "GUARDRAILS: ENFORCED",
     Illustration: IllustrationAI,
   },
 };
@@ -107,15 +116,14 @@ function ServicesPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
       {/* ── Header ── */}
-      <SectionLabel>CAPABILITIES</SectionLabel>
+      <SectionLabel>AGENCY SERVICES</SectionLabel>
       <h1 className="flip-fade-text font-display text-5xl md:text-6xl font-bold max-w-4xl">
-        Four disciplines. {" "}
-        <span className="accent-shift">One security-first standard.</span>
+        Five core services. {" "}
+        <span className="accent-shift">One high-performance standard.</span>
       </h1>
       <p className="flip-text mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-        The same four capabilities from my homepage, expanded into full engagements:
-        how each one runs, the tooling behind it, and the outcome you can hold me to.
-        Every service links straight to field work — proof, not promises.
+        From custom web applications and conversion UI/UX to technical secure SEO and privacy-first
+        AI workflows — explore how our services combine engineering rigor, design elegance, and measurable growth.
       </p>
 
       {/* ── Quick anchor nav ── */}
@@ -181,17 +189,6 @@ function ServicesPage() {
                     </div>
                     <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">{s.title}</h2>
                     <p className="max-w-2xl text-muted-foreground leading-relaxed">{s.intro}</p>
-                    {s.slug === "secure-web-deployment" && (
-                      <a href="https://artx.techvrs.com" className="mt-4 inline-block">
-                        <Badge
-                          variant="outline"
-                          className="mono text-[9px] uppercase tracking-widest"
-                          style={{ borderColor: `${cfg.accent}55`, color: cfg.accent }}
-                        >
-                          Design &amp; build work → via ArtX Studio ↗
-                        </Badge>
-                      </a>
-                    )}
                   </div>
 
                   {/* ── Illustration glass frame ── */}
@@ -261,7 +258,7 @@ function ServicesPage() {
                             display: "inline-block",
                           }}
                         />
-                        SYS // ACTIVE
+                        TECHVRS // VERIFIED
                       </div>
 
                       {/* Illustration */}
@@ -299,202 +296,90 @@ function ServicesPage() {
                         }}
                       >
                         <span
-                          className="pulse-dot"
-                          style={{ width: 5, height: 5, background: cfg.accent }}
+                          style={{
+                            width: 5,
+                            height: 5,
+                            borderRadius: "50%",
+                            background: cfg.accent,
+                            display: "inline-block",
+                          }}
                         />
                         {cfg.chipLabel}
                       </div>
-
-                      {/* Corner brackets */}
-                      <span
-                        aria-hidden
-                        style={{
-                          position: "absolute",
-                          top: 10,
-                          left: 10,
-                          width: 14,
-                          height: 14,
-                          borderTop: `1px solid ${cfg.accent}66`,
-                          borderLeft: `1px solid ${cfg.accent}66`,
-                        }}
-                      />
-                      <span
-                        aria-hidden
-                        style={{
-                          position: "absolute",
-                          bottom: 10,
-                          right: 10,
-                          width: 14,
-                          height: 14,
-                          borderBottom: `1px solid ${cfg.accent}66`,
-                          borderRight: `1px solid ${cfg.accent}66`,
-                        }}
-                      />
                     </div>
                   </div>
                 </div>
 
-                {/* ── Workflow + Toolchain/Outcome grid ── */}
-                <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-                  {/* Workflow — glass card */}
-                  <div
-                    className="glass-card brackets flex flex-col gap-6 p-6"
-                    style={{ position: "relative" }}
-                  >
-                    <span className="b-tr" />
-                    <span className="b-bl" />
-                    <div className="mono text-[10px] uppercase tracking-widest text-signal flex items-center gap-2">
-                      <span className="live-dot" aria-hidden />
-                      WORKFLOW // {String(s.workflow.length).padStart(2, "0")} PHASES
+                {/* ── Key offerings list ── */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+                  {s.bullets.map((bullet) => (
+                    <div
+                      key={bullet}
+                      className="glass-card brackets p-4 flex items-start gap-3"
+                      style={{ position: "relative" }}
+                    >
+                      <span className="b-tr" />
+                      <span className="b-bl" />
+                      <span className="text-signal mt-0.5 shrink-0">
+                        <IconCheck size={14} />
+                      </span>
+                      <span className="text-sm text-foreground/90 font-medium leading-snug">
+                        {bullet}
+                      </span>
                     </div>
-                    <ol className="flex flex-col gap-5">
-                      {s.workflow.map((step, i) => (
-                        <li key={step.phase} className="flex gap-4 items-start">
-                          <span
-                            className="mono text-[10px] text-signal border border-signal/50 w-7 h-7 flex items-center justify-center shrink-0 font-bold"
-                            style={{ background: cfg.accentColor }}
-                          >
-                            {String(i + 1).padStart(2, "0")}
+                  ))}
+                </div>
+
+                {/* ── 4-Phase Workflow ── */}
+                <div className="glass-card brackets p-8 mb-10" style={{ position: "relative" }}>
+                  <span className="b-tr" />
+                  <span className="b-bl" />
+                  <div className="mono text-[10px] uppercase tracking-widest text-signal mb-6 flex items-center gap-2">
+                    <span className="live-dot" aria-hidden />
+                    DELIVERY ROADMAP // 04 PHASES
+                  </div>
+                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    {s.workflow.map((step, idx) => (
+                      <div key={step.phase} className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className="mono text-xs font-bold text-signal">
+                            {String(idx + 1).padStart(2, "0")}
                           </span>
-                          <div>
-                            <div className="mono text-sm font-semibold tracking-widest uppercase mb-1">
-                              {step.phase}
-                            </div>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                              {step.detail}
-                            </p>
-                          </div>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-
-                  {/* Right column: Toolchain + Outcome */}
-                  <div className="flex flex-col gap-6">
-                    {/* Toolchain — glass card */}
-                    <div
-                      className="glass-card brackets flex flex-col gap-4 p-6"
-                      style={{ position: "relative" }}
-                    >
-                      <span className="b-tr" />
-                      <span className="b-bl" />
-                      <div className="mono text-[10px] uppercase tracking-widest text-signal">
-                        TOOLCHAIN
+                          <h4 className="font-display font-semibold text-sm">{step.phase}</h4>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          {step.detail}
+                        </p>
                       </div>
-                      <ul className="flex flex-wrap gap-2">
-                        {s.tools.map((t) => (
-                          <li
-                            key={t}
-                            tabIndex={0}
-                            data-tip={
-                              toolRoles[t] ??
-                              "Deployed in real engagements and lab environments."
-                            }
-                            className="tip mono text-[11px] px-2.5 py-1.5 border border-hairline text-foreground/80 hover:border-signal/60 hover:text-signal transition-all cursor-default"
-                            style={{
-                              background: "rgba(255,255,255,0.55)",
-                              backdropFilter: "blur(6px)",
-                            }}
-                          >
-                            {t}
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="text-xs text-muted-foreground">
-                        Hover any tool to see its role in this workflow.
-                      </p>
-                    </div>
-
-                    {/* Outcome — glass card */}
-                    <div
-                      className="glass-card brackets flex flex-col gap-3 flex-1 p-6"
-                      style={{ position: "relative" }}
-                    >
-                      <span className="b-tr" />
-                      <span className="b-bl" />
-                      <div className="mono text-[10px] uppercase tracking-widest text-signal flex items-center gap-2">
-                        <IconCheck size={13} />
-                        THE OUTCOME
-                      </div>
-                      <p className="text-sm leading-relaxed text-foreground/90">{s.outcome}</p>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* ── Field proof — linked case studies ── */}
-                {proof.length > 0 && (
-                  <div className="mt-8">
-                    <div className="mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4 flex items-center gap-2">
+                {/* ── Tools & Expected Outcome ── */}
+                <div className="grid md:grid-cols-[1fr_auto] gap-8 items-center pt-6 border-t border-hairline">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="mono text-[10px] uppercase tracking-widest text-muted-foreground mr-2">
+                      Toolchain:
+                    </span>
+                    {s.tools.map((tool) => (
                       <span
-                        style={{
-                          display: "inline-block",
-                          width: 6,
-                          height: 6,
-                          borderRadius: "50%",
-                          background: "currentColor",
-                          opacity: 0.5,
-                        }}
-                      />
-                      FIELD PROOF // {String(proof.length).padStart(2, "0")}{" "}
-                      {proof.length === 1 ? "CASE STUDY" : "CASE STUDIES"}
-                    </div>
-                    <div className="grid gap-4 md:grid-cols-2">
-                      {proof.map((c) => (
-                        <Link
-                          key={c.slug}
-                          to="/work"
-                          className="glass-card brackets hover-lift p-5 flex flex-col gap-3 group"
-                          style={{ position: "relative" }}
-                        >
-                          <span className="b-tr" />
-                          <span className="b-bl" />
-                          <div className="flex items-center justify-between">
-                            <span
-                              className={`mono text-[10px] uppercase tracking-widest border px-2 py-1 ${
-                                CATEGORY_COLORS[c.category] ?? "text-signal border-signal/40"
-                              }`}
-                            >
-                              {c.category}
-                            </span>
-                            <span className="mono text-xs text-muted-foreground">/ {c.index}</span>
-                          </div>
-                          <h3 className="font-display font-semibold leading-snug group-hover:text-signal transition-colors">
-                            {c.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            {c.outcome}
-                          </p>
-                          <div className="mt-auto pt-3 border-t border-hairline flex items-center justify-between">
-                            <div className="flex gap-4">
-                              {c.metrics.slice(0, 2).map((m) => (
-                                <div key={m.label}>
-                                  <div className="mono text-signal text-base font-bold leading-none mb-1">
-                                    {m.value}
-                                  </div>
-                                  <div className="mono text-[8px] uppercase tracking-widest text-muted-foreground">
-                                    {m.label}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                            <span className="mono text-[10px] uppercase tracking-widest text-signal group-hover:translate-x-0.5 transition-transform">
-                              Open →
-                            </span>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
+                        key={tool}
+                        title={toolRoles[tool] ?? tool}
+                        className="mono text-[11px] px-2.5 py-1 border border-hairline text-foreground/75 bg-background/40 hover:border-signal/50 hover:text-signal transition-colors cursor-default"
+                      >
+                        {tool}
+                      </span>
+                    ))}
                   </div>
-                )}
-              </div>
 
-              {/* Bottom divider */}
-              <div
-                className="mt-16 h-px"
-                style={{
-                  background: `linear-gradient(to right, transparent, ${cfg.glowColor}, transparent)`,
-                }}
-              />
+                  <Link
+                    to="/contact"
+                    className="mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground px-5 py-3 font-semibold hover:shadow-[0_0_30px_-5px_var(--signal)] transition-shadow whitespace-nowrap inline-flex items-center gap-2"
+                  >
+                    Start a project in {s.title} →
+                  </Link>
+                </div>
+              </div>
             </section>
           );
         })}
@@ -504,16 +389,16 @@ function ServicesPage() {
       <div className="mt-24 grid gap-6 md:grid-cols-3">
         {[
           {
-            title: "Freelance project",
-            desc: "Fixed-scope engagement with defined deliverables and hardening acceptance criteria.",
+            title: "Custom Project",
+            desc: "Fixed-scope engagement with defined milestones, clear deliverables, and rigorous QA criteria.",
           },
           {
-            title: "Retainer",
-            desc: "Ongoing monitoring, response, and iterative hardening on your infrastructure.",
+            title: "Agency Retainer",
+            desc: "Dedicated monthly development, design sprints, technical SEO optimization, and proactive support.",
           },
           {
-            title: "Consultation",
-            desc: "Focused review sessions — architecture, audits, or a second set of eyes.",
+            title: "Technical Consultation",
+            desc: "High-impact audits and strategic roadmaps — performance profiling, architecture reviews, and AI scoping.",
           },
         ].map((m) => (
           <div
@@ -557,28 +442,28 @@ function ServicesPage() {
           <div>
             <div className="mono text-[11px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
               <span className="live-dot" aria-hidden />
-              NEXT STEP // ACCEPTING ENGAGEMENTS
+              START A PROJECT // ACCEPTING NEW CLIENTS
             </div>
             <h2 className="text-2xl md:text-3xl font-display font-bold">
-              Have a security gap you want mapped?
+              Ready to elevate your digital presence?
             </h2>
             <p className="mt-3 text-muted-foreground leading-relaxed">
-              Open a channel and I'll respond with a scoped plan — deliverables, timeline,
-              and acceptance criteria — not a sales pitch.
+              Reach out with your goals and project requirements. We'll respond with a clear technical roadmap,
+              architecture recommendations, and transparent timelines.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link
                 to="/contact"
                 className="mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground px-6 py-4 hover:shadow-[0_0_40px_-5px_var(--signal)] transition-shadow inline-flex items-center gap-2"
               >
-                Open a channel →
+                Start a project →
               </Link>
               <Link
                 to="/contact"
                 className="mono text-[10px] uppercase tracking-widest inline-flex items-center gap-2 text-muted-foreground hover:text-signal transition-colors"
               >
                 <span className="live-dot" aria-hidden />
-                Request a free Technical SEO Audit →
+                Request a Free Technical SEO &amp; Security Audit →
               </Link>
             </div>
           </div>
@@ -590,42 +475,17 @@ function ServicesPage() {
           >
             <span className="b-tr" />
             <span className="b-bl" />
-            {/* SOC checklist illustration — top-right decorative */}
-            <picture>
-              <source srcSet="/soc-checklist.webp" type="image/webp" />
-              <img
-                src="/soc-checklist.png"
-                alt=""
-                aria-hidden
-                width={130}
-                height={130}
-                loading="lazy"
-                decoding="async"
-                style={{
-                  position: "absolute",
-                  bottom: -10,
-                  right: -10,
-                  width: 130,
-                  height: 130,
-                  objectFit: "contain",
-                  opacity: 0.22,
-                  pointerEvents: "none",
-                  filter: "drop-shadow(0 4px 16px rgba(2,132,199,0.2))",
-                }}
-              />
-            </picture>
             <div className="relative z-10">
               <div className="mono text-[10px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
                 <span className="live-dot" aria-hidden />
-                FREE RESOURCE // NO STRINGS
+                FREE AGENCY RESOURCE
               </div>
               <h3 className="text-xl font-display font-semibold mb-2">
-                Secure Web Deployment Checklist
+                Modern Web &amp; Security Launch Checklist
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                The exact 27-point checklist I run before any client site goes live — TLS,
-                headers, DNS, access control, and edge protection. Request it and I'll send
-                it over, along with one free observation about your current setup.
+                The comprehensive 27-point checklist we run before any production client site goes live — Core Web Vitals,
+                structured data, SSL/TLS, edge caching, and attack surface defense.
               </p>
               <Link
                 to="/contact"

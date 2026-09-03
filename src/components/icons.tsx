@@ -73,7 +73,7 @@ export function IconAISecure({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ── Eye / SOC Monitoring ────────────────────────────────────────── */
+/* ── Eye / Monitoring ────────────────────────────────────────── */
 export function IconEye({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>
@@ -148,7 +148,7 @@ export function IconTerminal({ className = "", size = 40 }: IconProps) {
   );
 }
 
-/* ── Trophy / TryHackMe ──────────────────────────────────────────── */
+/* ── Trophy / Achievement ──────────────────────────────────────────── */
 export function IconTrophy({ className = "", size = 40 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className} aria-hidden>

@@ -1,8 +1,9 @@
 export type ServiceSlug =
-  | "soc-cybersecurity"
-  | "secure-web-deployment"
-  | "technical-secure-seo"
-  | "ai-agent-development";
+  | "web-development"
+  | "web-design"
+  | "secure-seo"
+  | "seo"
+  | "ai-security";
 
 export interface ServiceWorkflowStep {
   phase: string;
@@ -16,7 +17,7 @@ export interface Service {
   title: string;
   description: string;
   bullets: string[];
-  caseCategory: "SOC" | "Web" | "SEO" | "AI Agents";
+  caseCategory: "Web" | "Design" | "SEO" | "AI Solutions";
   intro: string;
   workflow: ServiceWorkflowStep[];
   tools: string[];
@@ -25,179 +26,221 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    slug: "soc-cybersecurity",
+    slug: "web-development",
     index: "01",
-    tagline: "Detect. Investigate. Respond.",
-    title: "SOC & Cybersecurity",
+    tagline: "Modern. Scalable. High-Performance.",
+    title: "Web Development",
     description:
-      "Continuous threat monitoring, log analysis, and incident response built on the same frameworks used in production SOC environments.",
+      "Modern, scalable, fast, and business-focused websites and web applications built with clean architecture and production-grade security.",
     bullets: [
-      "Threat monitoring & alert triage",
-      "Log analysis & correlation",
-      "Incident response & documentation",
-      "Vulnerability assessment & remediation",
-    ],
-    caseCategory: "SOC",
-    intro:
-      "Most environments don't lack logs — they lack signal. This engagement builds (or overhauls) your detection capability: instrumenting the right sources, writing detection logic mapped to real adversary behaviour, and putting a documented response process behind every alert so an incident becomes a procedure instead of a panic.",
-    workflow: [
-      {
-        phase: "Scope & Baseline",
-        detail:
-          "Inventory every log source and asset, map current detection coverage against MITRE ATT&CK, and agree a severity and escalation matrix before anything is deployed.",
-      },
-      {
-        phase: "Instrument",
-        detail:
-          "Deploy and tune the SIEM (Splunk or Wazuh), roll out Sysmon and forwarders, and wire in threat-intel enrichment so events arrive with context, not just noise.",
-      },
-      {
-        phase: "Detect & Triage",
-        detail:
-          "Author Sigma-based detection rules mapped to ATT&CK techniques, tune out false positives against your real traffic, and document a triage runbook for every alert class.",
-      },
-      {
-        phase: "Respond & Report",
-        detail:
-          "Contain and eradicate confirmed incidents, write the post-incident report, and deliver monthly coverage reports so you can watch detection measurably improve.",
-      },
-    ],
-    tools: ["Splunk", "Wazuh", "Sysmon", "Sigma", "MITRE ATT&CK", "TheHive", "MISP"],
-    outcome:
-      "A monitored environment with measurable coverage — in my lab and client work this standard has produced 60+ detection rules across 42 MITRE ATT&CK techniques and cut mean time-to-contain from 4 hours to 22 minutes.",
-  },
-  {
-    slug: "secure-web-deployment",
-    index: "02",
-    tagline: "Architected to resist, not just run.",
-    title: "Secure Web Deployment",
-    description:
-      "Infrastructure designed with the assumption that it will be tested. Hardened configurations, enforced encryption, and mitigation layers built in from day one.",
-    bullets: [
-      "Secure architecture & deploy pipelines",
-      "Server hardening (OS, ports, access)",
-      "SSL/TLS implementation & enforcement",
-      "DDoS mitigation & traffic filtering",
+      "Business & corporate websites",
+      "Custom web applications & modern React/Next.js",
+      "CMS & headless API integrations",
+      "Performance optimization & maintenance",
     ],
     caseCategory: "Web",
     intro:
-      "A deployment is a security decision, whether you make it deliberately or not. I build and harden the full path from DNS to origin under the assumption that the site will be scanned within hours of going live — because it will be.",
+      "We build scalable, high-performance web applications and business sites engineered for speed, clean code, and long-term reliability. From robust frontend architectures to secure API integrations, our systems are built to support measurable business growth without compromising stability.",
     workflow: [
       {
-        phase: "Threat-Model the Stack",
+        phase: "Discovery & Architecture",
         detail:
-          "Enumerate the real exposure: open ports, DNS records, TLS posture, third-party scripts, and CI/CD secrets. Nothing gets hardened until it's mapped.",
+          "Requirements mapping, component architecture, data flow, and tech stack alignment to your business goals.",
       },
       {
-        phase: "Harden the Base",
+        phase: "Frontend Engineering",
         detail:
-          "Apply CIS-benchmark hardening to the OS and web server, enforce key-only SSH and least-privilege access, and lock down every service that doesn't need to be public.",
+          "Modern React and TypeScript development, responsive mobile-first layouts, and accessible UI component systems.",
       },
       {
-        phase: "Encrypt & Shield",
+        phase: "API & Backend Integration",
         detail:
-          "Enforce TLS 1.3 with HSTS, deploy WAF rules and rate limiting at the edge, and put DDoS mitigation in front of the origin before launch — not after the first attack.",
+          "Headless CMS, secure REST/GraphQL endpoints, authentication, and third-party SaaS integrations.",
       },
       {
-        phase: "Verify & Hand Over",
+        phase: "Optimization & Launch",
         detail:
-          "Re-scan with independent tooling, close what's found, and codify the entire hardened state in Terraform so it's reproducible — with documentation your team can actually operate.",
+          "Core Web Vitals tuning, automated deployment pipelines, SSL enforcement, and production handover.",
       },
     ],
-    tools: ["Nginx", "Cloudflare", "Terraform", "Let's Encrypt", "Fail2ban", "Lynis", "OWASP ZAP"],
+    tools: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js", "REST / GraphQL", "Vite"],
     outcome:
-      "Infrastructure that survives contact: the last client launch shipped with an A+ TLS grade, 92% of flagged vulnerabilities closed on re-scan, and zero minutes of downtime through launch week.",
+      "Ultra-fast, maintainable web applications with 95+ Lighthouse scores, sub-second page loads, and clean maintainable codebases.",
   },
   {
-    slug: "technical-secure-seo",
-    index: "03",
-    tagline: "Visibility without exposure.",
-    title: "Technical & Secure SEO",
+    slug: "web-design",
+    index: "02",
+    tagline: "Conversion-Focused Digital Experiences.",
+    title: "Web Design",
     description:
-      "Audits performed the way an attack surface is audited — identifying what's slow, misconfigured, or needlessly exposed to crawlers and bad actors.",
+      "Modern UI/UX and conversion-focused digital experiences designed to engage visitors, reflect your brand authority, and turn clicks into customers.",
     bullets: [
-      "Full technical SEO audits",
-      "Secure indexing & crawl configuration",
-      "Core Web Vitals & performance",
-      "Structured data & sitemap integrity",
+      "UI/UX & digital product design",
+      "Conversion-focused landing pages",
+      "Corporate website & brand redesigns",
+      "Design systems & responsive layouts",
+    ],
+    caseCategory: "Design",
+    intro:
+      "Great design isn't just aesthetic — it's functional, persuasive, and aligned with user intent. We design high-converting landing pages, SaaS interfaces, and corporate web platforms that elevate your brand and guide users toward action with intuitive, polished interactions.",
+    workflow: [
+      {
+        phase: "User Research & Wireframing",
+        detail:
+          "Information architecture, customer journey mapping, structural wireframes, and conversion path planning.",
+      },
+      {
+        phase: "UI & Design System",
+        detail:
+          "High-fidelity prototypes, brand design tokens, typography scales, and reusable component libraries.",
+      },
+      {
+        phase: "Interactive Prototyping",
+        detail:
+          "Micro-interactions, mobile-first responsive validation, user flow testing, and design QA.",
+      },
+      {
+        phase: "Development Handoff",
+        detail:
+          "Pixel-perfect design specs, production asset export, design tokens, and engineering alignment.",
+      },
+    ],
+    tools: ["Figma", "Design Systems", "Prototyping", "Design Tokens", "Wireframing", "Micro-Interactions"],
+    outcome:
+      "Compelling, conversion-optimized interfaces that increase engagement, reduce bounce rates, and establish immediate brand authority.",
+  },
+  {
+    slug: "secure-seo",
+    index: "03",
+    tagline: "Technical Visibility Without Exposure.",
+    title: "Secure SEO",
+    description:
+      "A major TechVRS differentiator — combining technical SEO audits, Core Web Vitals optimization, and site architecture with security awareness.",
+    bullets: [
+      "Technical SEO & security audits",
+      "Core Web Vitals & mobile performance",
+      "Indexation control & crawl optimization",
+      "Structured data, canonicals & security headers",
     ],
     caseCategory: "SEO",
     intro:
-      "I audit a website the way I audit an attack surface — because to a crawler and an attacker, they're the same thing. Technical SEO done this way fixes rankings and closes exposure at the same time: staging leaks, misconfigured directives, slow render paths, and duplicate content are all the same class of problem.",
+      "We audit and optimize your site through a technical and security lens. To search engines and malicious crawlers, misconfigurations look the same: exposed staging environments, slow render paths, redirect chains, and insecure headers hurt both your organic rank and your security posture. We fix both together.",
     workflow: [
       {
-        phase: "Crawl & Expose",
+        phase: "Technical Crawl & Surface Audit",
         detail:
-          "Run a full technical crawl to see exactly what search engines see: indexation leaks, redirect chains, orphaned pages, duplicate content, and anything exposed that shouldn't be.",
+          "Identify crawl errors, indexation leaks, duplicate paths, staging exposure, and latency bottlenecks.",
       },
       {
-        phase: "Fix the Foundations",
+        phase: "Core Web Vitals & Render Path",
         detail:
-          "Rebuild the robots and sitemap strategy, enforce canonical URLs, implement structured data, and close every indexation leak — staging domains included.",
+          "Eliminate render-blocking resources, optimize LCP/INP/CLS, and streamline asset delivery.",
       },
       {
-        phase: "Accelerate",
+        phase: "Architecture & Indexation Lockdown",
         detail:
-          "Refactor the render path, image pipeline, and caching strategy until every Core Web Vital is in the green on real mobile devices, not just lab runs.",
+          "Canonical enforcement, XML sitemaps, robots directives, schema validation, and staging isolation.",
       },
       {
-        phase: "Monitor & Defend",
+        phase: "Continuous Telemetry",
         detail:
-          "Wire Search Console and Lighthouse checks into an ongoing report so gains hold, regressions get caught early, and nothing quietly re-leaks.",
+          "Google Search Console monitoring, crawl telemetry, and automated regression defense.",
       },
     ],
-    tools: ["Screaming Frog", "Lighthouse", "Search Console", "Schema.org", "Cloudflare", "Next.js"],
+    tools: ["Search Console", "Screaming Frog", "Lighthouse", "Schema.org", "Cloudflare", "Security Headers"],
     outcome:
-      "Rankings built on infrastructure that's fast and closed: the last audit delivered +38% organic traffic in 90 days, a 1.4s LCP, and zero remaining indexation leaks.",
+      "Green Core Web Vitals across all templates, zero indexation leaks, and search engine crawl efficiency that powers sustained organic ranking gains.",
   },
   {
-    slug: "ai-agent-development",
+    slug: "seo",
     index: "04",
-    tagline: "Automation that doesn't leak.",
-    title: "Secure Custom AI Agents",
+    tagline: "Sustainable Organic Growth & Authority.",
+    title: "On-Page & Off-Page SEO",
     description:
-      "Custom AI agents for real workflow automation, with the same data-privacy discipline applied to APIs, credentials, and outputs as any production system.",
+      "Comprehensive organic growth strategy covering keyword intent, structured content architecture, digital PR, and high-authority backlink development.",
     bullets: [
-      "Custom agent design for your workflow",
-      "Secure API integration & credentials",
-      "Data privacy-first architecture",
-      "Deployment, monitoring & iteration",
+      "Keyword research & search intent mapping",
+      "On-page metadata, content structure & schema",
+      "Internal linking strategy & topic clusters",
+      "Authority building, digital PR & backlink analysis",
     ],
-    caseCategory: "AI Agents",
+    caseCategory: "SEO",
     intro:
-      "Most AI automation fails one of two ways: it doesn't actually save time, or it quietly becomes a data-leak vector. I build custom agents scoped to one real workflow, engineered against the OWASP LLM Top 10 from the first commit — so the automation compounds and the risk doesn't.",
+      "Search visibility requires both relevance on the page and trust across the web. We build comprehensive SEO growth campaigns that optimize every heading, paragraph, and internal link for user intent, paired with ethical authority building to earn sustainable, qualified search traffic without risky shortcuts.",
     workflow: [
       {
-        phase: "Map the Workflow",
+        phase: "Keyword & Intent Analysis",
         detail:
-          "Sit with the actual process — the tickets, logs, or CRM entries eating your team's hours — and define exactly what data the agent may touch and what permissions it needs. Nothing more.",
+          "Search intent mapping, commercial keyword prioritization, and competitor content gap analysis.",
       },
       {
-        phase: "Design the Guardrails",
+        phase: "On-Page Optimization",
         detail:
-          "Scoped tokens, field-level redaction, prompt-injection defenses, and output validation — designed before the first line of agent logic is written.",
+          "Heading hierarchy, rich schema, keyword integration, content depth, and internal linking networks.",
       },
       {
-        phase: "Build & Integrate",
+        phase: "Authority & Digital PR",
         detail:
-          "Python and FastAPI service with vault-backed secrets, containerized deployment, and API integrations that authenticate as the user — never as a god-mode service account.",
+          "Relevant industry backlink acquisition, brand mention monitoring, and ethical outreach.",
       },
       {
-        phase: "Observe & Iterate",
+        phase: "Growth Tracking & Iteration",
         detail:
-          "Full audit logging and OpenTelemetry tracing on every action, plus measured accuracy reviews so the agent improves on evidence, not vibes.",
+          "Keyword rank tracking, organic traffic attribution, conversion analysis, and continuous refinement.",
       },
     ],
-    tools: ["Python", "FastAPI", "OpenAI API", "Docker", "Redis", "OAuth 2.0", "OpenTelemetry"],
+    tools: ["Ahrefs", "Semrush", "Google Search Console", "Google Analytics 4", "SurferSEO", "Schema Validator"],
     outcome:
-      "Automation with receipts: a triage agent that cut manual alert review by 68%, and a CRM assistant that ran six months in production with zero PII incidents and a complete audit trail.",
+      "Consistent expansion in organic keyword footprints, stronger domain authority, and qualified inbound lead generation from high-intent searches.",
+  },
+  {
+    slug: "ai-security",
+    index: "05",
+    tagline: "Secure AI Systems for Modern Business.",
+    title: "AI Security & AI Solutions",
+    description:
+      "Secure AI implementation for modern businesses — custom AI workflows, intelligent automation, and LLM integrations engineered with privacy, guardrails, and compliance.",
+    bullets: [
+      "AI automation & intelligent business workflows",
+      "Custom AI agents & LLM integrations",
+      "AI security assessment & prompt hardening",
+      "Data privacy-first architecture & audit trails",
+    ],
+    caseCategory: "AI Solutions",
+    intro:
+      "We don't just integrate AI — we build AI systems with security, reliability, and business requirements in mind. Whether you need autonomous customer workflows, internal knowledge assistants, or automated data pipelines, our solutions feature scoped permissions, zero data leakage, and rigorous guardrails.",
+    workflow: [
+      {
+        phase: "Workflow Discovery & Feasibility",
+        detail:
+          "Identify manual bottlenecks, define data boundaries, map ROI, and establish compliance boundaries.",
+      },
+      {
+        phase: "Guardrails & Architecture",
+        detail:
+          "Prompt injection defense, field-level redaction, scoped credentials, and OWASP LLM security standards.",
+      },
+      {
+        phase: "System Development & Integration",
+        detail:
+          "Python/FastAPI services, LLM connectors, vector stores, and seamless API orchestration.",
+      },
+      {
+        phase: "Auditing, Evals & Monitoring",
+        detail:
+          "Automated evals, performance monitoring, full audit logging, and human-in-the-loop controls.",
+      },
+    ],
+    tools: ["Python", "FastAPI", "OpenAI API", "Docker", "Redis", "OAuth 2.0", "OpenTelemetry", "OWASP LLM Top 10"],
+    outcome:
+      "Reliable business automation that saves hundreds of team hours monthly with complete audit trails, zero PII exposure, and resilient guardrails.",
   },
 ];
 
 export interface CaseStudy {
   slug: string;
   index: string;
-  category: "SOC" | "Web" | "SEO" | "AI Agents";
+  category: "Web" | "Design" | "SEO" | "AI Solutions";
   title: string;
   challenge: string;
   approach: string;
@@ -208,206 +251,218 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "soc-home-lab-siem",
-    index: "SOC-01",
-    category: "SOC",
-    title: "SOC Home Lab: SIEM Deployment & Threat Detection",
+    slug: "saas-web-platform",
+    index: "WEB-01",
+    category: "Web",
+    title: "Modern SaaS Platform: High-Performance React Web Application",
     challenge:
-      "Build a functioning detection environment from scratch to practice real alert triage.",
+      "A B2B software company needed a fast, scalable web application with modern UX, seamless API integrations, and enterprise-grade performance.",
     approach:
-      "Deployed a self-hosted SIEM, generated and analyzed simulated attack traffic, mapped detections to MITRE ATT&CK.",
+      "Engineered a modular React/TypeScript architecture, optimized bundle delivery, and integrated secure authentication and headless CMS.",
     outcome:
-      "Fully operational lab producing documented incident write-ups used as portfolio evidence for SOC readiness.",
+      "Achieved 98 mobile performance score, sub-800ms initial load time, and a scalable foundation for 10x traffic growth.",
     metrics: [
-      { label: "MITRE techniques mapped", value: "42" },
-      { label: "Detection rules authored", value: "60+" },
-      { label: "Incident reports", value: "18" },
+      { label: "Performance Score", value: "98" },
+      { label: "Initial Load Time", value: "0.8s" },
+      { label: "Bounce Reduction", value: "32%" },
     ],
-    stack: ["Splunk", "Sysmon", "Wazuh", "MITRE ATT&CK", "Sigma"],
+    stack: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vite"],
   },
   {
     slug: "client-hardening-tls-ddos",
-    index: "WEB-01",
+    index: "SEC-01",
     category: "Web",
-    title: "Client Site Hardening: Zero-Downtime TLS & DDoS Mitigation",
+    title: "Enterprise Site Hardening: Zero-Downtime TLS & Edge Mitigation",
     challenge:
-      "A client's site had weak TLS configuration and no DDoS protection ahead of a launch.",
+      "High-traffic client site facing performance bottlenecks, weak SSL configuration, and DDoS exposure ahead of a national product launch.",
     approach:
-      "Rebuilt the deployment pipeline, enforced TLS 1.3, implemented rate-limiting and mitigation at the edge.",
+      "Rebuilt deployment pipeline, enforced TLS 1.3 with strict HSTS, implemented edge caching and rate-limiting on Cloudflare.",
     outcome:
-      "Zero downtime through launch, 92% reduction in flagged vulnerabilities on re-scan.",
+      "Zero downtime throughout launch week, 92% reduction in flagged configuration vulnerabilities, and A+ security rating.",
     metrics: [
-      { label: "Downtime through launch", value: "0m" },
-      { label: "Vulnerabilities closed", value: "92%" },
-      { label: "TLS grade", value: "A+" },
+      { label: "Launch Downtime", value: "0m" },
+      { label: "Vulns Closed", value: "92%" },
+      { label: "Security Grade", value: "A+" },
     ],
-    stack: ["Nginx", "Cloudflare", "Let's Encrypt", "Fail2ban", "Terraform"],
+    stack: ["Cloudflare", "Nginx", "Terraform", "Let's Encrypt", "Docker"],
   },
   {
-    slug: "log-triage-ai-agent",
-    index: "AI-01",
-    category: "AI Agents",
-    title: "Log Triage AI Agent",
+    slug: "fintech-conversion-redesign",
+    index: "DES-01",
+    category: "Design",
+    title: "Fintech Web Experience: Conversion-Focused UI/UX Redesign",
     challenge:
-      "Manual review of routine log alerts was consuming hours of analyst time.",
+      "A financial technology service suffered from high drop-offs and poor user engagement on core landing pages due to dated, complex layouts.",
     approach:
-      "Designed a custom agent to pre-triage low-severity alerts against known-safe patterns with strict API scoping and no data retention.",
+      "Redesigned the complete visual system, created a cohesive design system, simplified user journeys, and introduced conversion-focused interactive micro-interactions.",
     outcome:
-      "68% reduction in manual triage volume, freeing analyst time for genuine anomalies.",
+      "Significantly elevated brand perception, +44% increase in demo requests, and cohesive design system deployed across 20+ templates.",
     metrics: [
-      { label: "Triage volume reduced", value: "68%" },
-      { label: "Mean triage time", value: "1.2s" },
-      { label: "Fewer false positives", value: "41%" },
+      { label: "Demo Inquiries", value: "+44%" },
+      { label: "Session Duration", value: "+58%" },
+      { label: "Design System", value: "20+ components" },
     ],
-    stack: ["Python", "OpenAI API", "Redis", "Docker", "OWASP LLM Top 10"],
+    stack: ["Figma", "Design Systems", "UI/UX", "Tailwind CSS", "React"],
   },
   {
     slug: "ecom-technical-seo-audit",
     index: "SEO-01",
     category: "SEO",
-    title: "E-Commerce Technical SEO & Security Audit",
+    title: "E-Commerce SEO & Performance: Technical Architecture Overhaul",
     challenge:
-      "Store leaking staging URLs to crawlers and failing Core Web Vitals on mobile.",
+      "Multi-category e-commerce store struggling with crawl budget waste, indexation leaks on faceted filters, and failing Core Web Vitals.",
     approach:
-      "Rebuilt robots + sitemap strategy, closed indexation leaks, refactored render path and image pipeline.",
+      "Restructured canonical logic and robots directives, eliminated redirect chains, refactored render paths and image delivery for instant page loads.",
     outcome:
-      "Organic traffic +38% in 90 days, all CWV metrics in the green.",
+      "Organic traffic +38% within 90 days, all Core Web Vitals in the green, and completely resolved crawl bloat.",
     metrics: [
-      { label: "Organic traffic", value: "+38%" },
+      { label: "Organic Growth", value: "+38%" },
       { label: "LCP", value: "1.4s" },
-      { label: "Indexation leaks", value: "0" },
+      { label: "Indexation Leaks", value: "0" },
     ],
-    stack: ["Next.js", "Lighthouse", "Screaming Frog", "Search Console"],
+    stack: ["Next.js", "Lighthouse", "Screaming Frog", "Search Console", "Schema.org"],
   },
   {
-    slug: "phishing-response-playbook",
-    index: "SOC-02",
-    category: "SOC",
-    title: "Phishing Response Playbook & Automation",
+    slug: "b2b-organic-seo-growth",
+    index: "SEO-02",
+    category: "SEO",
+    title: "B2B Organic Search Growth: Topic Architecture & Authority",
     challenge:
-      "Inconsistent handling of user-reported phishing across a small IT team.",
+      "B2B service provider lacked organic search visibility for high-intent commercial keywords against entrenched legacy competitors.",
     approach:
-      "Authored an IR playbook, automated header/URL enrichment, and integrated with the mail gateway for one-click quarantine.",
+      "Built topic cluster architecture, optimized on-page search intent and structured schema, coupled with targeted digital PR and authority backlink acquisition.",
     outcome:
-      "Mean time-to-contain dropped from 4h to 22m across a 30-day window.",
+      "Ranked in top 3 for 28 high-value commercial keywords, generating a 2.4x increase in inbound organic qualified leads.",
     metrics: [
-      { label: "MTTC", value: "22m" },
-      { label: "Reports processed", value: "310" },
-      { label: "Escalations avoided", value: "47" },
+      { label: "Top 3 Keywords", value: "28" },
+      { label: "Inbound Leads", value: "2.4x" },
+      { label: "Domain Authority", value: "+16" },
     ],
-    stack: ["TheHive", "MISP", "urlscan.io", "Microsoft 365"],
+    stack: ["Ahrefs", "Semrush", "Search Console", "Google Analytics 4", "Schema Markup"],
   },
   {
     slug: "secure-agent-crm-workflow",
-    index: "AI-02",
-    category: "AI Agents",
-    title: "Secure CRM Assistant with Scoped Access",
+    index: "AI-01",
+    category: "AI Solutions",
+    title: "Enterprise AI Workflow: Secure CRM Automation with Scoped Access",
     challenge:
-      "Sales team wanted an AI assistant on top of their CRM without exposing PII.",
+      "Operations team wanted to automate customer data triage and CRM summary generation without risking customer PII or compliance violations.",
     approach:
-      "Built a scoped agent with per-user token exchange, field-level redaction, and full audit logging.",
+      "Engineered a scoped AI agent with token exchange, field-level data redaction, prompt-injection defenses, and complete audit logging.",
     outcome:
-      "Zero PII incidents in 6 months, 3x faster note capture per rep.",
+      "Automated 70% of routine CRM ticket processing with zero PII incidents over 6 months in production and complete audit trails.",
     metrics: [
-      { label: "PII incidents", value: "0" },
-      { label: "Note capture speed", value: "3x" },
-      { label: "Fields redacted", value: "24" },
+      { label: "PII Incidents", value: "0" },
+      { label: "Workflow Speed", value: "3x" },
+      { label: "Audit Tracing", value: "100%" },
     ],
-    stack: ["Python", "FastAPI", "OAuth 2.0", "Postgres", "OpenTelemetry"],
+    stack: ["Python", "FastAPI", "OAuth 2.0", "Postgres", "OpenTelemetry", "OWASP LLM Top 10"],
   },
 ];
 
 export const skills = {
-  "SOC & Detection": [
-    "Splunk",
-    "ELK / Wazuh",
-    "IDS/IPS",
-    "MITRE ATT&CK",
-    "Sigma rules",
-    "Log correlation",
-    "Incident triage",
+  "Web & Frontend": [
+    "React / Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Node.js",
+    "REST & GraphQL",
+    "State Architecture",
+    "Vite",
   ],
-  "Secure Infrastructure": [
-    "Linux hardening",
-    "TLS 1.3",
-    "DNS security",
-    "AWS / Azure",
-    "Nginx",
-    "Cloudflare",
-    "Terraform",
+  "UI/UX & Design": [
+    "Figma",
+    "Design Systems",
+    "Responsive UI",
+    "Conversion Layouts",
+    "Wireframing",
+    "Micro-Interactions",
+    "Design Tokens",
   ],
-  "Automation & AI": [
-    "Python",
-    "REST / GraphQL",
-    "LLM workflows",
-    "OWASP LLM Top 10",
-    "Secrets vaulting",
+  "SEO & Visibility": [
+    "Technical SEO",
+    "Core Web Vitals",
+    "Structured Data",
+    "Crawl Budget Tuning",
+    "Search Console",
+    "Ahrefs / Semrush",
+    "Indexation Control",
+  ],
+  "Secure AI & Cloud": [
+    "Python / FastAPI",
+    "LLM Integration",
+    "Prompt Hardening",
+    "Cloudflare / Edge",
+    "Docker",
+    "OAuth 2.0",
     "OpenTelemetry",
+    "OWASP Standards",
   ],
-  Frameworks: ["NIST CSF", "MITRE ATT&CK", "OWASP Top 10", "CIS Benchmarks"],
 };
 
 export const certs = [
-  "CompTIA Security+",
-  "CompTIA CySA+",
-  "TryHackMe — Top 1%",
-  "AWS Cloud Practitioner",
+  "React & TypeScript Engineering",
+  "Technical SEO Specialist",
+  "Cloudflare Edge & Security",
+  "Secure AI Architect",
 ];
 
 /* ── Tool role descriptions — powers the interactive Stack Matrix &
       service toolchain tooltips ─────────────────────────────────── */
 export const toolRoles: Record<string, string> = {
-  // SOC & Detection
-  Splunk: "Primary SIEM — log ingestion, correlation searches, and dashboards used for alert triage.",
-  "ELK / Wazuh": "Open-source detection stack for HIDS, log analysis, and cost-sensitive deployments.",
-  Wazuh: "Open-source SIEM/HIDS used in detection labs and client deployments.",
-  Sysmon: "Deep Windows endpoint telemetry — the raw material for high-fidelity detections.",
-  Sigma: "Portable detection logic — written once, converted to any SIEM's query language.",
-  "Sigma rules": "Portable detection logic — written once, converted to any SIEM's query language.",
-  "IDS/IPS": "Network detection layer — signatures tuned against live traffic, not left at defaults.",
-  "MITRE ATT&CK": "Coverage map — every detection rule is tagged to a specific adversary technique.",
-  "Log correlation": "Joining endpoint, network, and auth events into a single incident timeline.",
-  "Incident triage": "Structured severity assessment with documented runbooks and escalation paths.",
-  TheHive: "Case management — every incident tracked, assigned, and auditable.",
-  MISP: "Threat-intel platform feeding IOCs into detection and enrichment.",
-  // Secure Infrastructure
-  "Linux hardening": "CIS-benchmark server baselines — services, permissions, kernel parameters.",
-  "TLS 1.3": "Modern encryption enforced with HSTS and a strict cipher policy on every deploy.",
-  "DNS security": "DNSSEC, CAA records, and subdomain-takeover prevention.",
-  "AWS / Azure": "Cloud infrastructure built with least-privilege IAM and audited configurations.",
-  Nginx: "Hardened reverse proxy — security headers, rate limits, TLS termination.",
-  Cloudflare: "Edge shield — WAF, DDoS mitigation, and caching in front of every origin.",
-  Terraform: "Infrastructure as code — the hardened state is reproducible, not tribal knowledge.",
-  "Let's Encrypt": "Automated certificate issuance and renewal — encryption that never lapses.",
-  Fail2ban: "Host-level brute-force lockout on every exposed service.",
-  Lynis: "Host audit scanner used to verify hardening before handover.",
-  "OWASP ZAP": "Web application scanning to verify the deployment resists common attacks.",
-  // SEO
-  "Screaming Frog": "Full-site crawler — surfaces exactly what search engines (and attackers) see.",
-  Lighthouse: "Core Web Vitals measurement, run continuously to prevent regressions.",
-  "Search Console": "Indexation monitoring and query-level visibility after every fix ships.",
-  "Schema.org": "Structured data implementation so results earn rich snippets.",
-  "Next.js": "Framework of choice for fast, crawlable, secure client builds.",
-  // Automation & AI
-  Python: "Primary language for automation, security tooling, and agent backends.",
-  FastAPI: "Lightweight Python API layer for agent services.",
-  "OpenAI API": "LLM backbone — always called with scoped keys and validated outputs.",
-  Docker: "Containerized deploys — reproducible, isolated, and disposable.",
-  Redis: "Fast state and queue layer for agent pipelines.",
-  "OAuth 2.0": "Per-user token exchange so agents act with the user's permissions — never more.",
-  "REST / GraphQL": "API integration with scoped credentials and strict input validation.",
-  "LLM workflows": "Agent pipelines with guardrails, evals, and human-in-the-loop checkpoints.",
-  "OWASP LLM Top 10": "The design checklist for every AI build — prompt injection through data leakage.",
-  "Secrets vaulting": "No credentials in code — vault-backed injection at runtime.",
-  OpenTelemetry: "Tracing and audit visibility across every automated action.",
-  // Frameworks
-  "NIST CSF": "The framework I use to assess and communicate security posture.",
-  "OWASP Top 10": "Baseline for every web application security review.",
-  "CIS Benchmarks": "Hardening standards applied to servers and cloud accounts.",
+  // Web & Frontend
+  "React / Next.js": "Primary framework for modern, SEO-friendly, scalable client web applications.",
+  TypeScript: "Type safety across frontend and backend integrations, eliminating runtime bugs.",
+  "Tailwind CSS": "Utility-first design implementation with consistent design system tokens.",
+  "Node.js": "Backend service layer, SSR rendering, and API orchestrations.",
+  "REST & GraphQL": "Secure and typed client-server communication channels.",
+  "State Architecture": "Predictable client-side data management for responsive user experiences.",
+  Vite: "High-speed build tool and development server for modern web projects.",
+  React: "Modern UI component architecture.",
+  "Next.js": "Production React framework for server-side rendering and static optimization.",
+
+  // UI/UX & Design
+  Figma: "Collaborative interface design, wireframing, and component specification.",
+  "Design Systems": "Unified component libraries, typography, and color tokens across all pages.",
+  "Responsive UI": "Fluid, mobile-first design ensuring flawless rendering on all screen sizes.",
+  "Conversion Layouts": "Strategic visual hierarchy and UX patterns engineered to maximize conversion rates.",
+  Wireframing: "Structural blueprinting of pages before design and code implementation.",
+  "Micro-Interactions": "Subtle UI animations that enhance user delight and guide attention.",
+  "Design Tokens": "Standardized design variables for seamless code synchronization.",
+
+  // SEO & Visibility
+  "Technical SEO": "Full-site auditing to eliminate crawl issues, staging leaks, and status errors.",
+  "Core Web Vitals": "Speed optimization (LCP, INP, CLS) tested against real mobile device benchmarks.",
+  "Structured Data": "Schema.org markup implementation enabling rich Google search snippets.",
+  "Crawl Budget Tuning": "Robots.txt, sitemaps, and canonical optimization for search engine crawlers.",
+  "Search Console": "Search telemetry, indexation status tracking, and query performance analysis.",
+  "Ahrefs / Semrush": "In-depth competitor analysis, backlink monitoring, and keyword gap research.",
+  "Indexation Control": "Preventing duplicate content and securing staging URLs from being indexed.",
+  "Screaming Frog": "Comprehensive technical website crawler for audit diagnosis.",
+  Lighthouse: "Automated auditing for performance, accessibility, SEO, and best practices.",
+  "Schema.org": "Structured data standard powering enhanced search engine results.",
+  "Security Headers": "HTTP response headers protecting users and building domain trust.",
+
+  // Secure AI & Cloud
+  "Python / FastAPI": "Lightweight, high-performance backends for custom AI workflows and microservices.",
+  Python: "Backend language powering automation, AI agents, and data processing.",
+  FastAPI: "High-performance async Python framework for AI agent APIs.",
+  "LLM Integration": "Scoped connections to leading AI models with strict token and data controls.",
+  "OpenAI API": "Enterprise LLM backbone with authenticated API endpoints and scoped tokens.",
+  "Prompt Hardening": "Defenses against prompt injection, data extraction, and hallucination risks.",
+  "Cloudflare / Edge": "WAF, DDoS mitigation, global CDN, and edge routing protecting origin servers.",
+  Cloudflare: "Global edge network providing DDoS protection, WAF, and speed optimization.",
+  Docker: "Containerized application deployments ensuring environmental consistency and security.",
+  "OAuth 2.0": "Scoped, user-level token authorization preventing unauthorized access.",
+  OpenTelemetry: "End-to-end tracing and audit logs across all automated actions and services.",
+  "OWASP Standards": "Security benchmark checklists applied across web apps and LLM deployments.",
+  "OWASP LLM Top 10": "Design checklist for securing AI applications against leaks and exploits.",
+  Redis: "In-memory caching and queuing layer for fast AI response pipelines.",
+  Nginx: "Hardened reverse proxy with custom TLS configuration and rate limiting.",
+  Terraform: "Infrastructure as code ensuring reproducible, auditable cloud environments.",
+  "Let's Encrypt": "Automated SSL/TLS certificate management ensuring continuous encryption.",
 };
 
-/* ── Client testimonials — anonymized engagements; quotes are pending
-      client publication approval and are labelled as such on-page ── */
 export interface Testimonial {
   quote: string;
   name: string;
@@ -419,18 +474,18 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "We expected the usual pre-launch security scramble. Instead, the re-scan came back with 92% of flagged vulnerabilities closed, an A+ TLS grade, and the site never went down once during launch week. Everything was documented well enough that our own team can maintain it.",
-    name: "Operations Director — anonymized",
-    role: "E-commerce hardened-launch engagement · quote pending client publication approval",
-    metric: "92%",
-    metricLabel: "Vulns closed on re-scan",
+      "TechVRS rebuilt our corporate web platform and overhauled our technical SEO. Not only did our page load times drop below 1 second, but our organic search traffic grew by 38% in the first quarter. Their technical discipline is unmatched.",
+    name: "Head of Marketing",
+    role: "B2B SaaS Enterprise · Client Partner",
+    metric: "38%",
+    metricLabel: "Organic traffic growth",
   },
   {
     quote:
-      "The triage agent cut our alert review workload by more than two-thirds without ever touching data it shouldn't. Six months in production, zero incidents, and a full audit trail on every action. It's rare to get automation speed and security discipline in the same build.",
-    name: "IT Security Lead — anonymized",
-    role: "SaaS secure AI agent engagement · quote pending client publication approval",
-    metric: "68%",
-    metricLabel: "Triage volume reduced",
+      "The custom AI workflow TechVRS deployed automated our customer inquiry routing while adhering strictly to our data security requirements. We saved over 20 hours weekly without any security or compliance compromises.",
+    name: "VP of Operations",
+    role: "E-Commerce Group · Client Partner",
+    metric: "70%",
+    metricLabel: "Triage automation",
   },
 ];

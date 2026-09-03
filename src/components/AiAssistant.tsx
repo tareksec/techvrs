@@ -7,9 +7,9 @@ interface ChatMessage {
 }
 
 const GREETING =
-  "Hi, I'm the techvrs assistant. I can help you with the website or put you in touch with the team. How can I help?";
+  "Hi, I'm the TechVRS agency assistant. I can help you explore our services, understand our technical approach, or connect with our team to start a project. How can I help today?";
 
-const QUICK_REPLIES = ["Website Help", "Contact Support", "Hi/Hello"];
+const QUICK_REPLIES = ["Explore Services", "Start a Project", "Technical SEO Audit", "AI Solutions"];
 
 export function AiAssistant() {
   const [isOpen, setIsOpen] = useState(false);

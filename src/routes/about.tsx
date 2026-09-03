@@ -1,85 +1,81 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SectionLabel } from "@/components/site-chrome";
 import { AnimatedCounter } from "@/components/micro-interactions";
-import { skills, certs } from "@/content/site-data";
+import { skills } from "@/content/site-data";
 import {
-  IconShieldLock,
-  IconSearch,
-  IconTrophy,
-  IconCloud,
-  IconRadar,
-  IconAISecure,
   IconSecureGlobe,
   IconEye,
+  IconSignal,
+  IconAISecure,
+  IconCheck,
 } from "@/components/icons";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Operator Profile — techvrs | Tarek, SOC Analyst" },
+      { title: "About Us — TechVRS | Digital Agency & Technology Partner" },
       {
         name: "description",
         content:
-          "How a SOC analyst mindset shapes every deployment, audit, and AI build. 60+ detection rules authored, CompTIA Security+ & CySA+ certified, TryHackMe Top 1%.",
+          "TechVRS is a modern digital agency helping businesses build high-performance web applications, design conversion-driven digital experiences, grow organic search visibility, and deploy secure AI solutions.",
       },
       // ── Open Graph ───────────────────────────────────────────────────────
-      { property: "og:site_name", content: "techvrs" },
+      { property: "og:site_name", content: "TechVRS" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://techvrs.com/about" },
-      { property: "og:title", content: "Operator Profile — techvrs | SOC Analyst & Security Engineer" },
+      { property: "og:title", content: "About Us — TechVRS | Digital Agency & Technology Partner" },
       {
         property: "og:description",
         content:
-          "How a SOC analyst mindset shapes every deployment, audit, and AI build. 60+ detection rules authored, CompTIA Security+ & CySA+ certified, TryHackMe Top 1%.",
+          "TechVRS is a modern digital agency helping businesses build high-performance web applications, design conversion-driven digital experiences, grow organic search visibility, and deploy secure AI solutions.",
       },
       { property: "og:image", content: "https://techvrs.com/hero-main.png" },
-      { property: "og:image:alt", content: "techvrs — Operator Profile" },
+      { property: "og:image:alt", content: "About TechVRS — Digital Agency" },
       // ── Twitter / X ──────────────────────────────────────────────────────
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Operator Profile — techvrs | SOC Analyst & Security Engineer" },
+      { name: "twitter:title", content: "About Us — TechVRS | Digital Agency & Technology Partner" },
       {
         name: "twitter:description",
         content:
-          "How a SOC analyst mindset shapes every deployment, audit, and AI build. 60+ detection rules authored, CompTIA Security+ & CySA+ certified, TryHackMe Top 1%.",
+          "TechVRS is a modern digital agency helping businesses build high-performance web applications, design conversion-driven digital experiences, grow organic search visibility, and deploy secure AI solutions.",
       },
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
-      { name: "twitter:image:alt", content: "techvrs — Operator Profile" },
+      { name: "twitter:image:alt", content: "About TechVRS — Digital Agency" },
     ],
   }),
   component: AboutPage,
 });
 
 const STATS = [
-  { value: "60+", label: "Detection rules authored" },
-  { value: "42", label: "MITRE techniques mapped" },
-  { value: "92%", label: "Vulns closed on re-scan" },
-  { value: "22m", label: "Mean time to contain" },
+  { value: "99.9%", label: "Uptime standard" },
+  { value: "95+",   label: "Core Web Vitals target" },
+  { value: "100%",  label: "Audit log integrity" },
+  { value: "<1.2s", label: "Mobile LCP threshold" },
 ];
 
-const CERT_META: Record<string, { color: string; Icon: React.FC<{ size?: number }> }> = {
-  "CompTIA Security+": { color: "#0284c7", Icon: IconShieldLock },
-  "CompTIA CySA+": { color: "#d97706", Icon: IconSearch },
-  "TryHackMe — Top 1%": { color: "#16a34a", Icon: IconTrophy },
-  "AWS Cloud Practitioner": { color: "#f97316", Icon: IconCloud },
-};
-
-const DISCIPLINES = [
-  {
-    Icon: IconRadar,
-    title: "Threat Detection & SOC",
-    body: "SIEM correlation, IDS/IPS tuning, alert triage and incident response — built on real lab environments and production-grade frameworks.",
-    accent: "#0284c7",
-  },
+const CORE_CAPABILITIES = [
   {
     Icon: IconSecureGlobe,
-    title: "Secure Infrastructure",
-    body: "Zero-trust architecture, TLS 1.3 enforcement, DDoS mitigation, and CIS-benchmark hardening from OS to edge.",
+    title: "Web Development",
+    body: "Modern React and Next.js applications engineered for speed, clean architecture, and modular scalability.",
+    accent: "#0891b2",
+  },
+  {
+    Icon: IconEye,
+    title: "Web Design & UI/UX",
+    body: "Conversion-optimized landing pages, design systems, and responsive interfaces that establish brand authority.",
     accent: "#d97706",
   },
   {
+    Icon: IconSignal,
+    title: "Secure & Growth SEO",
+    body: "Deep technical audits, crawl budget optimization, Core Web Vitals, and structured data paired with search intent strategy.",
+    accent: "#16a34a",
+  },
+  {
     Icon: IconAISecure,
-    title: "Secure AI Automation",
-    body: "Custom agents built privacy-first — scoped tokens, field-level redaction, prompt-injection defences, and full audit trails.",
+    title: "AI Security & Solutions",
+    body: "Custom AI workflows and autonomous agents engineered with data privacy, scoped permissions, and resilient guardrails.",
     accent: "#7c3aed",
   },
 ];
@@ -89,10 +85,10 @@ function AboutPage() {
     <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
 
       {/* ── Page header ── */}
-      <SectionLabel>OPERATOR PROFILE</SectionLabel>
+      <SectionLabel>ABOUT TECHVRS</SectionLabel>
       <h1 className="flip-fade-text font-display text-5xl md:text-6xl font-bold max-w-4xl leading-tight">
-        Trained to watch{" "}
-        <span className="accent-shift">what others overlook.</span>
+        Digital experiences built to perform,{" "}
+        <span className="accent-shift">rank, and scale.</span>
       </h1>
 
       {/* ── Stats strip ── */}
@@ -114,142 +110,160 @@ function AboutPage() {
         ))}
       </div>
 
-      {/* ── Main bio ── */}
-      <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_340px]">
-        <div className="flex flex-col gap-5 text-foreground/85 leading-relaxed">
-          <p className="flip-text text-[1.05rem]">
-            I approach security the way an analyst approaches a live incident —
-            methodically, skeptically, with a bias toward evidence over assumption.
-            Hands-on detection work: correlating logs, triaging alerts, tracing
-            anomalies to root cause.
-          </p>
+      {/* ── Main overview ── */}
+      <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_360px]">
+        <div className="flex flex-col gap-6 text-foreground/85 leading-relaxed">
+          <div>
+            <h2 className="text-2xl font-display font-bold text-foreground mb-3">
+              What TechVRS Is
+            </h2>
+            <p className="flip-text text-[1.05rem] text-muted-foreground leading-relaxed">
+              TechVRS is a modern digital agency helping businesses build, grow, secure, and optimize
+              their digital presence. We operate at the intersection of creative UI/UX design, modern full-stack
+              engineering, technical SEO, and enterprise AI automation.
+            </p>
+          </div>
 
-          {/* DEFENDER // BUILDER visual split */}
-          <div className="grid grid-cols-2 gap-3 my-1">
-            <div className="panel brackets p-4 flex flex-col gap-2" style={{ position: "relative" }}>
+          <div>
+            <h2 className="text-2xl font-display font-bold text-foreground mb-3">
+              The Problems We Solve
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Most businesses face a fragmented digital ecosystem: marketing sites that are slow and insecure,
+              beautiful designs that fail to convert, SEO strategies disconnected from site architecture, and AI
+              initiatives that risk data privacy. We unify these disciplines into a single delivery system.
+            </p>
+          </div>
+
+          {/* Pillars split */}
+          <div className="grid sm:grid-cols-2 gap-4 my-2">
+            <div className="panel brackets p-5 flex flex-col gap-2.5" style={{ position: "relative" }}>
               <span className="b-tr" /><span className="b-bl" />
               <div className="flex items-center gap-2">
-                <span className="text-signal"><IconEye size={15} /></span>
-                <span className="mono text-[9px] uppercase tracking-widest text-signal">Defender</span>
+                <span className="text-signal"><IconSecureGlobe size={16} /></span>
+                <span className="mono text-[10px] uppercase tracking-widest text-signal font-semibold">
+                  Development &amp; Design
+                </span>
               </div>
               <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground">
-                <li>SIEM correlation &amp; alert triage</li>
-                <li>IDS/IPS tuning &amp; threat hunting</li>
-                <li>Incident response &amp; root-cause</li>
+                <li>• High-performance React &amp; Next.js builds</li>
+                <li>• Design systems &amp; responsive UI/UX</li>
+                <li>• Headless CMS &amp; modern API integrations</li>
               </ul>
             </div>
-            <div className="panel brackets p-4 flex flex-col gap-2" style={{ position: "relative" }}>
+
+            <div className="panel brackets p-5 flex flex-col gap-2.5" style={{ position: "relative" }}>
               <span className="b-tr" /><span className="b-bl" />
               <div className="flex items-center gap-2">
-                <span className="text-signal"><IconShieldLock size={15} /></span>
-                <span className="mono text-[9px] uppercase tracking-widest text-signal">Builder</span>
+                <span className="text-signal"><IconSignal size={16} /></span>
+                <span className="mono text-[10px] uppercase tracking-widest text-signal font-semibold">
+                  SEO &amp; Secure AI
+                </span>
               </div>
               <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground">
-                <li>Zero-trust &amp; TLS 1.3 enforcement</li>
-                <li>Hardened deployments &amp; audits</li>
-                <li>Secure AI agents &amp; automation</li>
+                <li>• Technical SEO &amp; Core Web Vitals optimization</li>
+                <li>• Search intent &amp; authority growth campaigns</li>
+                <li>• Custom AI agents with privacy guardrails</li>
               </ul>
             </div>
           </div>
 
-          <p className="flip-text text-[1.05rem]">
-            Security isn't a final checklist item — it's the design constraint
-            everything else is built around. Nothing ships until it's been
-            stress-tested through an attacker's lens.
-          </p>
+          <div>
+            <h2 className="text-2xl font-display font-bold text-foreground mb-3">
+              Our Agency Philosophy
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              We believe in <strong>"Secure by Design"</strong> and <strong>"Fast by Architecture"</strong>.
+              Security and performance are not final checklists tacked onto a project right before launch — they
+              are the fundamental structural criteria that inform every wireframe, component, and cloud configuration we ship.
+            </p>
+          </div>
 
           <blockquote
-            className="mt-4 pl-6 py-3 mono text-base italic text-foreground/90 relative"
+            className="pl-6 py-4 mono text-base italic text-foreground/90 relative"
             style={{
               borderLeft: "2px solid var(--signal)",
               background: "linear-gradient(90deg, rgba(2,132,199,0.06), transparent)",
               backdropFilter: "blur(4px)",
             }}
           >
-            <span
-              aria-hidden
-              className="absolute left-0 top-0 bottom-0 w-0.5"
-              style={{
-                background: "linear-gradient(to bottom, var(--signal), transparent)",
-              }}
-            />
-            "Secure by Design means the safeguard isn't bolted on after launch — it's
-            the reason the architecture looks the way it does."
+            "From the first pixel to organic search visibility and secure AI workflows, TechVRS builds digital systems designed for real, measurable business growth."
           </blockquote>
 
           <div className="mt-2 flex flex-wrap gap-4">
             <Link
               to="/work"
-              className="mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground px-6 py-3 hover:shadow-[0_0_36px_-5px_var(--signal)] transition-shadow inline-flex items-center gap-2"
+              className="mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground px-6 py-3.5 hover:shadow-[0_0_36px_-5px_var(--signal)] transition-shadow inline-flex items-center gap-2"
             >
-              View field work →
+              Explore our work →
             </Link>
             <Link
               to="/contact"
-              className="mono text-[11px] uppercase tracking-widest border border-signal/60 text-signal px-6 py-3 hover:bg-signal/10 transition-colors inline-flex items-center gap-2"
+              className="mono text-[11px] uppercase tracking-widest border border-signal/60 text-signal px-6 py-3.5 hover:bg-signal/10 transition-colors inline-flex items-center gap-2"
             >
-              Open a channel →
+              Start a project →
             </Link>
           </div>
         </div>
 
         {/* Sidebar */}
-        <div className="flex flex-col gap-4">
-          {/* Certs */}
+        <div className="flex flex-col gap-5">
+          {/* Company identity card */}
           <div className="glass-card brackets p-6" style={{ position: "relative" }}>
             <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-4 flex items-center gap-2">
+            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
               <span className="live-dot" aria-hidden />
-              CERTIFICATIONS
+              AGENCY PROFILE
             </div>
-            <ul className="flex flex-col gap-3">
-              {certs.map((c) => {
-                const meta = CERT_META[c];
-                return (
-                  <li key={c} className="flex items-center gap-3 text-sm group">
-                    <span
-                      className="shrink-0"
-                      style={{ color: meta?.color ?? "var(--signal)" }}
-                    >
-                      {meta ? <meta.Icon size={18} /> : <span>◆</span>}
-                    </span>
-                    <span className="text-foreground/85 group-hover:text-foreground transition-colors">
-                      {c}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
+            <div className="text-sm font-semibold text-foreground mb-1">
+              TechVRS Digital Agency
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+              Providing digital engineering, UI/UX design, technical SEO, and secure AI automation for growing businesses worldwide.
+            </p>
+            <div className="border-t border-hairline pt-3 flex flex-col gap-2 text-xs text-muted-foreground">
+              <div className="flex justify-between">
+                <span>Specialization:</span>
+                <span className="text-foreground">Full-Service Digital</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Stack:</span>
+                <span className="text-foreground">React · Next.js · TypeScript</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Standards:</span>
+                <span className="text-foreground">OWASP · Core Web Vitals</span>
+              </div>
+            </div>
           </div>
 
-          {/* Current role */}
+          {/* Technical founder credibility note (secondary) */}
           <div className="glass-card brackets p-6" style={{ position: "relative" }}>
             <span className="b-tr" /><span className="b-bl" />
             <div className="mono text-[10px] uppercase tracking-widest text-signal mb-2 flex items-center gap-2">
               <span className="pulse-dot" aria-hidden />
-              CURRENT STATUS
+              FOUNDED ON ENGINEERING RIGOR
             </div>
-            <div className="text-sm text-foreground/80 leading-relaxed">
-              Freelance SOC analyst &amp; security engineer. Open to entry-level SOC
-              positions and project engagements.
-            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Founded by technical security and web engineers, TechVRS was built to bring production-grade
+              resilience, speed, and privacy discipline to client websites, search strategies, and modern AI implementations.
+            </p>
           </div>
 
-          {/* Quick links */}
+          {/* Direct channels */}
           <div
             className="glass-card brackets p-6 flex flex-col gap-3"
             style={{ position: "relative" }}
           >
             <span className="b-tr" /><span className="b-bl" />
             <div className="mono text-[10px] uppercase tracking-widest text-signal mb-1">
-              DIRECT CHANNELS
+              CONNECT WITH US
             </div>
             {[
               { label: "hello@techvrs.com", href: "mailto:hello@techvrs.com" },
-              { label: "Portfolio — tareksec.dev", href: "https://tareksec.dev" },
-              { label: "LinkedIn — @mdtarek404", href: "https://www.linkedin.com/in/mdtarek404/" },
-              { label: "GitHub — @tareksec", href: "https://github.com/tareksec" },
-              { label: "Medium — @mdtareksec", href: "https://medium.com/@mdtareksec" },
+              { label: "LinkedIn Company", href: "https://www.linkedin.com/in/mdtarek404/" },
+              { label: "GitHub Open Source", href: "https://github.com/tareksec" },
+              { label: "Medium Field Notes", href: "https://medium.com/@mdtareksec" },
             ].map((l) => (
               <a
                 key={l.label}
@@ -266,14 +280,14 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* ── Three disciplines ── */}
+      {/* ── Four core capabilities ── */}
       <div className="mt-24">
-        <SectionLabel>DISCIPLINES</SectionLabel>
+        <SectionLabel>CORE CAPABILITIES</SectionLabel>
         <h2 className="text-3xl md:text-4xl font-display font-bold mb-10">
-          One standard. <span className="text-signal">Three domains.</span>
+          Four disciplines. <span className="text-signal">One delivery standard.</span>
         </h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          {DISCIPLINES.map((d) => (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {CORE_CAPABILITIES.map((d) => (
             <div
               key={d.title}
               className="glass-card brackets p-7 flex flex-col gap-4 hover-lift"
@@ -293,7 +307,7 @@ function AboutPage() {
                   border: `1px solid ${d.accent}33`,
                 }}
               >
-                <d.Icon size={26} />
+                <d.Icon size={24} />
               </div>
               <h3 className="font-display font-semibold text-lg">{d.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{d.body}</p>
@@ -304,9 +318,9 @@ function AboutPage() {
 
       {/* ── Skills matrix ── */}
       <div className="mt-24">
-        <SectionLabel>STACK MATRIX</SectionLabel>
+        <SectionLabel>TECHNOLOGY ECOSYSTEM</SectionLabel>
         <h2 className="text-3xl md:text-4xl font-display font-bold mb-10">
-          The stack, <span className="text-signal">mapped.</span>
+          The technology stack, <span className="text-signal">curated.</span>
         </h2>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {Object.entries(skills).map(([group, items]) => (

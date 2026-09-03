@@ -7,46 +7,46 @@ import { IconSearch, IconRadar, IconShieldLock } from "@/components/icons";
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Field Reports — techvrs | Case Studies & Proof of Work" },
+      { title: "Selected Work — TechVRS | Case Studies & Digital Solutions" },
       {
         name: "description",
         content:
-          "Case studies documented like incident reports — detection rule deployments, hardened infrastructure, SEO recoveries, and secure AI agent builds. Proof, not promises.",
+          "Explore client case studies and digital systems built by TechVRS — high-performance web applications, conversion UI/UX, technical SEO overhauls, and secure AI workflows.",
       },
       // ── Open Graph ───────────────────────────────────────────────────────
-      { property: "og:site_name", content: "techvrs" },
+      { property: "og:site_name", content: "TechVRS" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://techvrs.com/work" },
-      { property: "og:title", content: "Field Reports — techvrs | Case Studies & Proof of Work" },
+      { property: "og:title", content: "Selected Work — TechVRS | Case Studies & Digital Solutions" },
       {
         property: "og:description",
         content:
-          "Case studies documented like incident reports — detection rule deployments, hardened infrastructure, SEO recoveries, and secure AI agent builds.",
+          "Explore client case studies and digital systems built by TechVRS — high-performance web applications, conversion UI/UX, technical SEO overhauls, and secure AI workflows.",
       },
       { property: "og:image", content: "https://techvrs.com/hero-main.png" },
-      { property: "og:image:alt", content: "techvrs — Field Reports & Case Studies" },
+      { property: "og:image:alt", content: "TechVRS — Selected Work & Case Studies" },
       // ── Twitter / X ──────────────────────────────────────────────────────
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Field Reports — techvrs | Case Studies & Proof of Work" },
+      { name: "twitter:title", content: "Selected Work — TechVRS | Case Studies & Digital Solutions" },
       {
         name: "twitter:description",
         content:
-          "Case studies documented like incident reports — detection rule deployments, hardened infrastructure, SEO recoveries, and secure AI agent builds.",
+          "Explore client case studies and digital systems built by TechVRS — high-performance web applications, conversion UI/UX, technical SEO overhauls, and secure AI workflows.",
       },
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
-      { name: "twitter:image:alt", content: "techvrs — Field Reports & Case Studies" },
+      { name: "twitter:image:alt", content: "TechVRS — Selected Work & Case Studies" },
     ],
   }),
   component: WorkPage,
 });
 
-const FILTERS = ["All", "SOC", "Web", "SEO", "AI Agents"] as const;
+const FILTERS = ["All", "Web", "Design", "SEO", "AI Solutions"] as const;
 
 const CATEGORY_META: Record<string, { color: string; bg: string; dot: string }> = {
-  SOC:          { color: "#0284c7", bg: "rgba(2,132,199,0.10)",   dot: "#0284c7" },
-  Web:          { color: "#d97706", bg: "rgba(217,119,6,0.10)",   dot: "#d97706" },
+  Web:          { color: "#0891b2", bg: "rgba(8,145,178,0.10)",   dot: "#0891b2" },
+  Design:       { color: "#d97706", bg: "rgba(217,119,6,0.10)",   dot: "#d97706" },
   SEO:          { color: "#16a34a", bg: "rgba(22,163,74,0.10)",   dot: "#16a34a" },
-  "AI Agents":  { color: "#7c3aed", bg: "rgba(124,58,237,0.10)", dot: "#7c3aed" },
+  "AI Solutions": { color: "#7c3aed", bg: "rgba(124,58,237,0.10)", dot: "#7c3aed" },
 };
 
 function WorkPage() {
@@ -60,13 +60,13 @@ function WorkPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-      <SectionLabel>FIELD WORK</SectionLabel>
+      <SectionLabel>SELECTED WORK</SectionLabel>
       <h1 className="flip-fade-text font-display text-5xl md:text-6xl font-bold max-w-4xl">
-        Proof, <span className="accent-shift">not promises.</span>
+        Engineered for impact, <span className="accent-shift">built for growth.</span>
       </h1>
       <p className="flip-text mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-        A selection of projects across detection engineering, secure deployment, and
-        applied AI — documented the way an incident report would be.
+        A selection of client engagements across modern web development, conversion UI/UX design,
+        technical SEO growth, and secure enterprise AI workflows.
       </p>
 
       {/* ── Filter strip ── */}
@@ -132,7 +132,7 @@ function WorkPage() {
 
               {/* Title */}
               <h2
-                className="text-lg font-display font-semibold leading-snug transition-colors"
+                className="text-lg font-display font-semibold leading-snug transition-colors group-hover:text-signal"
                 style={{ color: "var(--foreground)" }}
               >
                 {c.title}
@@ -148,55 +148,81 @@ function WorkPage() {
                 className="mt-auto pt-4 border-t flex flex-wrap gap-4"
                 style={{ borderColor: "var(--hairline)" }}
               >
-                {c.metrics.slice(0, 2).map((m) => (
-                  <div key={m.label}>
+                {c.metrics.map((m) => (
+                  <div key={m.label} className="min-w-[64px]">
                     <div
-                      className="font-display text-xl font-bold leading-none mb-0.5"
+                      className="mono text-lg font-bold leading-none mb-1"
                       style={{ color: meta?.color ?? "var(--signal)" }}
                     >
                       {m.value}
                     </div>
-                    <div className="mono text-[9px] uppercase tracking-widest text-muted-foreground">
+                    <div className="mono text-[8px] uppercase tracking-widest text-muted-foreground">
                       {m.label}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div
-                className="mono text-[10px] uppercase tracking-widest transition-colors flex items-center gap-1.5"
-                style={{ color: meta?.color ?? "var(--signal)" }}
-              >
-                View case study
-                <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+              {/* Stack */}
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {c.stack.slice(0, 3).map((t) => (
+                  <span
+                    key={t}
+                    className="mono text-[9px] px-2 py-0.5 border text-muted-foreground"
+                    style={{ borderColor: "var(--hairline)" }}
+                  >
+                    {t}
+                  </span>
+                ))}
+                {c.stack.length > 3 && (
+                  <span
+                    className="mono text-[9px] px-2 py-0.5 text-muted-foreground"
+                  >
+                    +{c.stack.length - 3}
+                  </span>
+                )}
               </div>
             </button>
           );
         })}
       </div>
 
-      {open && <CaseModal study={open} onClose={() => setOpen(null)} />}
+      {/* ── Case study detail modal ── */}
+      {open && (
+        <CaseStudyModal study={open} onClose={() => setOpen(null)} />
+      )}
     </div>
   );
 }
 
-function CaseModal({ study, onClose }: { study: CaseStudy; onClose: () => void }) {
+function CaseStudyModal({
+  study,
+  onClose,
+}: {
+  study: CaseStudy;
+  onClose: () => void;
+}) {
   const meta = CATEGORY_META[study.category];
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [onClose]);
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start md:items-center justify-center p-4 md:p-10 overflow-auto"
-      style={{ background: "rgba(13,17,23,0.75)", backdropFilter: "blur(14px)" }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6"
+      style={{
+        background: "rgba(10, 25, 45, 0.75)",
+        backdropFilter: "blur(8px)",
+      }}
       onClick={onClose}
     >
       <div
-        className="glass-card brackets max-w-4xl w-full p-8 md:p-12 relative"
+        className="glass-card brackets max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10"
         style={{
           position: "relative",
           animation: "iso-rise 0.45s cubic-bezier(0.16,1,0.3,1) both",
@@ -291,7 +317,7 @@ function CaseModal({ study, onClose }: { study: CaseStudy; onClose: () => void }
                 background: meta?.color ?? "var(--signal)",
               }}
             />
-            TOOLS / STACK
+            TECHNOLOGY STACK
           </div>
           <div className="flex flex-wrap gap-2">
             {study.stack.map((t) => (

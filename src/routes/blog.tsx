@@ -49,34 +49,34 @@ function fmtDate(dateStr: string) {
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
-      { title: "Field Notes — techvrs | Security & Engineering Blog" },
+      { title: "Insights & Field Notes — TechVRS | Engineering, SEO, UI/UX & AI" },
       {
         name: "description",
         content:
-          "Detection walkthroughs, hardening guides, and lessons from building secure systems — SIEM rules, TLS configs, and LLM security. Published on Medium, cross-posted here.",
+          "Engineering breakdowns, technical SEO strategies, UI/UX insights, and secure AI tutorials from the TechVRS agency team.",
       },
       // ── Open Graph ───────────────────────────────────────────────────────
-      { property: "og:site_name", content: "techvrs" },
+      { property: "og:site_name", content: "TechVRS" },
       { property: "og:type", content: "blog" },
       { property: "og:url", content: "https://techvrs.com/blog" },
-      { property: "og:title", content: "Field Notes — techvrs | Security & Engineering Blog" },
+      { property: "og:title", content: "Insights & Field Notes — TechVRS | Engineering, SEO, UI/UX & AI" },
       {
         property: "og:description",
         content:
-          "Detection walkthroughs, hardening guides, and lessons from building secure systems — SIEM rules, TLS configs, and LLM security.",
+          "Engineering breakdowns, technical SEO strategies, UI/UX insights, and secure AI tutorials from the TechVRS agency team.",
       },
       { property: "og:image", content: "https://techvrs.com/hero-main.png" },
-      { property: "og:image:alt", content: "techvrs Field Notes — Notes from the console" },
+      { property: "og:image:alt", content: "TechVRS Insights — Engineering, SEO, UI/UX & AI" },
       // ── Twitter / X ──────────────────────────────────────────────────────
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Field Notes — techvrs | Security & Engineering Blog" },
+      { name: "twitter:title", content: "Insights & Field Notes — TechVRS | Engineering, SEO, UI/UX & AI" },
       {
         name: "twitter:description",
         content:
-          "Detection walkthroughs, hardening guides, and lessons from building secure systems — SIEM rules, TLS configs, and LLM security.",
+          "Engineering breakdowns, technical SEO strategies, UI/UX insights, and secure AI tutorials from the TechVRS agency team.",
       },
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
-      { name: "twitter:image:alt", content: "techvrs Field Notes — Notes from the console" },
+      { name: "twitter:image:alt", content: "TechVRS Insights — Engineering, SEO, UI/UX & AI" },
     ],
   }),
   component: BlogPage,
@@ -93,13 +93,13 @@ function BlogPage() {
     <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
 
       {/* ── Header ── */}
-      <SectionLabel>FIELD NOTES</SectionLabel>
+      <SectionLabel>AGENCY INSIGHTS</SectionLabel>
       <h1 className="flip-fade-text font-display text-5xl md:text-6xl font-bold max-w-3xl">
-        Notes <span className="accent-shift">from the console.</span>
+        Insights &amp; <span className="accent-shift">field notes.</span>
       </h1>
       <p className="flip-text mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-        Write-ups on detection techniques, hardening walkthroughs, and lessons from
-        building secure systems — published on Medium and mirrored here as they go live.
+        Technical breakdowns on modern web development, Core Web Vitals, conversion UI/UX,
+        and secure enterprise AI workflows — published on Medium and mirrored here.
       </p>
 
       {/* Live status strip */}

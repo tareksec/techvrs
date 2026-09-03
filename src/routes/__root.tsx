@@ -95,36 +95,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "techvrs · Tarek — SOC Analyst & Security Engineer" },
+      { title: "TechVRS — Modern Digital Agency | Web, Design, SEO & Secure AI" },
       {
         name: "description",
         content:
-          "Production-level security engineering from a SOC analyst — threat detection, hardened deployments, secure AI automation, and technical SEO. Available for roles and engagements.",
+          "TechVRS is a modern digital agency helping businesses build high-performance web applications, design conversion-focused experiences, grow through technical SEO, and deploy secure AI solutions.",
       },
-      { name: "author", content: "Tarek — techvrs" },
+      { name: "author", content: "TechVRS" },
       { name: "theme-color", content: "#0D1117" },
       // ── Open Graph ─────────────────────────────────────────────────────────
-      { property: "og:site_name", content: "techvrs" },
+      { property: "og:site_name", content: "TechVRS" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://techvrs.com/" },
-      { property: "og:title", content: "techvrs · Tarek — SOC Analyst & Security Engineer" },
+      { property: "og:title", content: "TechVRS — Modern Digital Agency | Web, Design, SEO & Secure AI" },
       {
         property: "og:description",
         content:
-          "Production-level security engineering — threat detection, hardened deployments, and secure AI automation. Available for SOC roles and security engagements.",
+          "Build. Grow. Secure. We engineer high-performance websites, conversion-focused UI/UX, technical SEO, and enterprise-grade AI solutions.",
       },
       { property: "og:image", content: "https://techvrs.com/hero-main.png" },
-      { property: "og:image:alt", content: "techvrs — Secure by Design. Built to Withstand What Others Miss." },
+      { property: "og:image:alt", content: "TechVRS — Digital Experiences Built to Perform." },
       // ── Twitter / X ────────────────────────────────────────────────────────
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "techvrs · Tarek — SOC Analyst & Security Engineer" },
+      { name: "twitter:title", content: "TechVRS — Modern Digital Agency | Web, Design, SEO & Secure AI" },
       {
         name: "twitter:description",
         content:
-          "Production-level security engineering — threat detection, hardened deployments, and secure AI automation. Available for SOC roles and security engagements.",
+          "Build. Grow. Secure. We engineer high-performance websites, conversion-focused UI/UX, technical SEO, and enterprise-grade AI solutions.",
       },
       { name: "twitter:image", content: "https://techvrs.com/hero-main.png" },
-      { name: "twitter:image:alt", content: "techvrs — Secure by Design. Built to Withstand What Others Miss." },
+      { name: "twitter:image:alt", content: "TechVRS — Digital Experiences Built to Perform." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -154,49 +154,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 const SCHEMA_WEBSITE = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "techvrs",
+  name: "TechVRS",
   url: "https://techvrs.com/",
   description:
-    "SOC analyst and security-first engineer portfolio — threat detection, hardened deployments, secure AI automation, and technical SEO.",
+    "A modern digital agency helping businesses build, grow, secure, and optimize their digital presence.",
 });
 
-const SCHEMA_PROFILE = JSON.stringify({
+const SCHEMA_ORGANIZATION = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "ProfilePage",
+  "@type": "ProfessionalService",
+  name: "TechVRS",
   url: "https://techvrs.com/",
-  breadcrumb: {
-    "@type": "BreadcrumbList",
-    itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://techvrs.com/" }],
-  },
-  mainEntity: {
-    "@type": "Person",
-    name: "Tarek",
-    jobTitle: "SOC Analyst & Security Engineer",
-    description:
-      "SOC analyst candidate with production-level security engineering skills — practical threat detection, hardened infrastructure, and secure AI automation.",
-    url: "https://techvrs.com/",
-    image: "https://techvrs.com/logo.png",
-    knowsAbout: [
-      "SOC Analysis",
-      "Threat Detection",
-      "Detection Engineering",
-      "SIEM",
-      "MITRE ATT&CK",
-      "Cybersecurity",
-      "Secure Web Deployment",
-      "Technical SEO",
-      "AI Agent Development",
-    ],
-    hasCredential: [
-      { "@type": "EducationalOccupationalCredential", name: "CompTIA Security+" },
-      { "@type": "EducationalOccupationalCredential", name: "CompTIA CySA+" },
-    ],
-    sameAs: [
-      "https://github.com/tareksec",
-      "https://www.linkedin.com/in/mdtarek404/",
-      "https://medium.com/@mdtareksec",
-    ],
-  },
+  logo: "https://techvrs.com/logo.png",
+  image: "https://techvrs.com/hero-main.png",
+  description:
+    "TechVRS is a modern digital agency specializing in Web Development, Web Design, Secure SEO, On-Page & Off-Page SEO, and AI Security & Solutions.",
+  serviceType: [
+    "Web Development",
+    "Web Design",
+    "Secure SEO",
+    "On-Page & Off-Page SEO",
+    "AI Security & AI Solutions",
+  ],
+  sameAs: [
+    "https://github.com/tareksec",
+    "https://www.linkedin.com/in/mdtarek404/",
+    "https://medium.com/@mdtareksec",
+  ],
 });
 
 function RootShell({ children }: { children: ReactNode }) {
@@ -217,7 +201,7 @@ function RootShell({ children }: { children: ReactNode }) {
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: SCHEMA_PROFILE }}
+          dangerouslySetInnerHTML={{ __html: SCHEMA_ORGANIZATION }}
         />
         <Scripts />
       </body>

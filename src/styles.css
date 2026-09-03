@@ -1157,10 +1157,11 @@ p {
 }
 
 /* ── Service section ambient glow accents (light mode) ── */
-.svc-ambient-soc     { --svc-glow: rgba(2, 132, 199, 0.12); }
-.svc-ambient-web     { --svc-glow: rgba(217, 119, 6, 0.10); }
-.svc-ambient-seo     { --svc-glow: rgba(22, 163, 74, 0.10); }
-.svc-ambient-ai      { --svc-glow: rgba(124, 58, 237, 0.10); }
+.svc-ambient-web-dev    { --svc-glow: rgba(2, 132, 199, 0.12); }
+.svc-ambient-web-design { --svc-glow: rgba(217, 119, 6, 0.10); }
+.svc-ambient-secure-seo { --svc-glow: rgba(14, 165, 233, 0.10); }
+.svc-ambient-seo        { --svc-glow: rgba(22, 163, 74, 0.10); }
+.svc-ambient-ai         { --svc-glow: rgba(124, 58, 237, 0.10); }
 [class*="svc-ambient"]::before {
   content: '';
   position: absolute;

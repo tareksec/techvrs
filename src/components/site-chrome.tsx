@@ -97,9 +97,10 @@ export function ThemeToggle() {
 
 const nav = [
   { to: "/",        label: "Home"     },
-  { to: "/about",   label: "About"    },
   { to: "/services",label: "Services" },
   { to: "/work",    label: "Work"     },
+  { to: "/demos",   label: "Demos"    },
+  { to: "/about",   label: "About"    },
   { to: "/blog",    label: "Blog"     },
   { to: "/contact", label: "Contact"  },
 ] as const;
@@ -300,21 +301,13 @@ export function SiteFooter() {
             <span className="font-display font-bold text-base">techvrs</span>
           </Link>
           <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-            SOC analyst and security-first engineer. Detection, hardened deployments,
-            technical SEO, and secure AI automation — built to last under attack.
+            A modern digital agency helping businesses build high-performance web applications,
+            craft conversion-driven designs, grow organic visibility through technical SEO,
+            and deploy secure AI solutions.
           </p>
           <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-            techvrs is a personal branding project — my full resume and portfolio live
-            at{" "}
-            <a
-              href="https://tareksec.dev"
-              target="_blank"
-              rel="noreferrer"
-              className="text-signal hover:underline"
-            >
-              tareksec.dev ↗
-            </a>
-            .
+            From the first pixel to search dominance and secure automation, we build digital
+            systems engineered for measurable business growth.
           </p>
           <StatusPulse />
 
@@ -323,7 +316,7 @@ export function SiteFooter() {
             to="/contact"
             className="mono text-[10px] uppercase tracking-widest border border-signal/50 text-signal px-4 py-2.5 hover:bg-signal hover:text-signal-foreground transition-colors inline-flex items-center gap-2 w-fit mt-2"
           >
-            Open a channel →
+            Start a project →
           </Link>
         </div>
 
@@ -354,17 +347,15 @@ export function SiteFooter() {
           </div>
           <ul className="flex flex-col gap-2.5 text-sm">
             {[
-              { label: "Portfolio — tareksec.dev", href: "https://tareksec.dev"                    },
-              { label: "Email",                    href: "mailto:hello@techvrs.com"                },
+              { label: "Email — hello@techvrs.com", href: "mailto:hello@techvrs.com"                },
               { label: "LinkedIn",                 href: "https://www.linkedin.com/in/mdtarek404/" },
               { label: "GitHub",                   href: "https://github.com/tareksec"             },
-              { label: "Medium",                   href: "https://medium.com/@mdtareksec"          },
-              { label: "ArtX Studio — design, dev & SEO", href: "https://artx.techvrs.com"         },
+              { label: "Medium Insights",          href: "https://medium.com/@mdtareksec"          },
             ].map((l) => (
               <li key={l.label}>
                 <a
                   href={l.href}
-                  target={l.href.startsWith("http") && !l.href.includes("artx.techvrs.com") ? "_blank" : undefined}
+                  target={l.href.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
                   className="text-muted-foreground hover:text-signal transition-colors flex items-center gap-2 group"
                 >
@@ -375,13 +366,13 @@ export function SiteFooter() {
             ))}
           </ul>
 
-          {/* Cert badges mini */}
+          {/* Capabilities badges mini */}
           <div className="mt-6">
             <div className="mono text-[10px] uppercase tracking-widest text-muted-foreground mb-3">
-              Certified
+              Capabilities
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {["Security+", "CySA+", "THM Top 1%", "AWS CCP"].map((c) => (
+              {["Web Development", "UI/UX Design", "Secure SEO", "AI Solutions"].map((c) => (
                 <span
                   key={c}
                   className="mono text-[9px] uppercase tracking-widest px-2 py-1 border border-hairline text-muted-foreground"
