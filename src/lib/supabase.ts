@@ -46,7 +46,9 @@ export async function getCategories(): Promise<DemoCategory[]> {
         .eq("published", true)
         .order("display_order", { ascending: true });
       if (!error && data && data.length > 0) {
-        return data as DemoCategory[];
+        const dbSlugs = new Set(data.map((c: any) => c.slug));
+        const missingSeed = SEED_CATEGORIES.filter((c) => c.published && !dbSlugs.has(c.slug));
+        return [...(data as DemoCategory[]), ...missingSeed];
       }
     } catch (err) {
       console.warn("[supabase] error fetching categories, using fallback:", err);
@@ -64,7 +66,9 @@ export async function getAllCategoriesAdmin(): Promise<DemoCategory[]> {
         .select("*")
         .order("display_order", { ascending: true });
       if (!error && data) {
-        return data as DemoCategory[];
+        const dbSlugs = new Set(data.map((c: any) => c.slug));
+        const missingSeed = SEED_CATEGORIES.filter((c) => !dbSlugs.has(c.slug));
+        return [...(data as DemoCategory[]), ...missingSeed];
       }
     } catch (err) {
       console.warn("[supabase] error fetching all categories:", err);
@@ -83,7 +87,15 @@ export async function getDemos(): Promise<DemoItem[]> {
         .eq("published", true)
         .order("display_order", { ascending: true });
       if (!error && data && data.length > 0) {
-        return data as DemoItem[];
+        const dbUrls = new Set(data.map((d: any) => (d.demo_url || "").trim().toLowerCase()));
+        const dbSlugs = new Set(data.map((d: any) => d.slug));
+        const missingSeed = SEED_DEMOS.filter((d) => {
+          if (!d.published) return false;
+          const urlMatch = d.demo_url && dbUrls.has(d.demo_url.trim().toLowerCase());
+          const slugMatch = dbSlugs.has(d.slug);
+          return !urlMatch && !slugMatch;
+        });
+        return [...(data as DemoItem[]), ...missingSeed];
       }
     } catch (err) {
       console.warn("[supabase] error fetching demos, using fallback:", err);
@@ -101,7 +113,14 @@ export async function getAllDemosAdmin(): Promise<DemoItem[]> {
         .select("*")
         .order("display_order", { ascending: true });
       if (!error && data) {
-        return data as DemoItem[];
+        const dbUrls = new Set(data.map((d: any) => (d.demo_url || "").trim().toLowerCase()));
+        const dbSlugs = new Set(data.map((d: any) => d.slug));
+        const missingSeed = SEED_DEMOS.filter((d) => {
+          const urlMatch = d.demo_url && dbUrls.has(d.demo_url.trim().toLowerCase());
+          const slugMatch = dbSlugs.has(d.slug);
+          return !urlMatch && !slugMatch;
+        });
+        return [...(data as DemoItem[]), ...missingSeed];
       }
     } catch (err) {
       console.warn("[supabase] error fetching all demos:", err);

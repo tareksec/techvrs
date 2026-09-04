@@ -101,8 +101,10 @@ function DemosPage() {
 
   // Synchronize state with URL parameters for native browser history
   const updateParams = useCallback(
-    (newParams: UpdateParamsInput) => {
+    (newParams: UpdateParamsInput, replace = false) => {
       navigate({
+        resetScroll: false,
+        replace,
         search: (prev) => {
           const next: DemosSearchParams = { ...prev };
           if (newParams.category !== undefined) {
@@ -424,9 +426,9 @@ function DemosPage() {
         currentFolderTitle={currentFolderTitle}
         parentFolderTitle={parentFolderTitle}
         searchQuery={searchQuery}
-        onSearchChange={(q) => updateParams({ q: q || undefined })}
+        onSearchChange={(q) => updateParams({ q: q || undefined }, true)}
         viewMode={viewMode}
-        onViewModeChange={(mode) => updateParams({ view: mode })}
+        onViewModeChange={(mode) => updateParams({ view: mode }, true)}
         breadcrumbs={breadcrumbs}
         onBreadcrumbNavigate={handleBreadcrumbNavigate}
         canGoBack={canGoBack}

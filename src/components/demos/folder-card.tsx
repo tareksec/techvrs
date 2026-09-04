@@ -22,6 +22,7 @@ export function FolderCard({
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`group text-left w-full transition-all duration-200 relative overflow-hidden flex flex-col justify-between active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-signal outline-none ${
         isPrimary

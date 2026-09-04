@@ -21,6 +21,33 @@ import {
 } from "../components/micro-interactions";
 import { ThemeProvider } from "../lib/theme";
 
+// Patch Node.prototype.removeChild and insertBefore to prevent fatal React
+// crashes ("Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node")
+// caused by Google Translate, browser extensions, or third-party DOM mutations.
+if (typeof window !== "undefined" && typeof Node !== "undefined" && Node.prototype) {
+  const originalRemoveChild = Node.prototype.removeChild;
+  Node.prototype.removeChild = function <T extends Node>(child: T): T {
+    if (child.parentNode !== this) {
+      if (child.parentNode) {
+        return child.parentNode.removeChild(child) as T;
+      }
+      return child;
+    }
+    return originalRemoveChild.call(this, child) as T;
+  };
+
+  const originalInsertBefore = Node.prototype.insertBefore;
+  Node.prototype.insertBefore = function <T extends Node>(newNode: T, referenceNode: Node | null): T {
+    if (referenceNode && referenceNode.parentNode !== this) {
+      if (referenceNode.parentNode) {
+        return referenceNode.parentNode.insertBefore(newNode, referenceNode) as T;
+      }
+      return this.appendChild(newNode) as T;
+    }
+    return originalInsertBefore.call(this, newNode, referenceNode) as T;
+  };
+}
+
 function NotFoundComponent() {
   return (
     <div className="flex items-center justify-center px-6 py-32">
