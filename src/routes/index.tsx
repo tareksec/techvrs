@@ -337,13 +337,14 @@ function WhyTechVRS() {
 /* ─── SERVICES OVERVIEW ─────────────────────────────────────────────── */
 const SVC_THEMES = [
   {
-    cardBg: "linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%)",
+    cardBg: "linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%)",
+    cardBgDark: "linear-gradient(145deg, #0b1528 0%, #0f1e3d 60%, #13274f 100%)",
     accent: "#0891b2",
     accentLight: "rgba(8,145,178,0.12)",
     accentBorder: "rgba(8,145,178,0.25)",
     ink: "#0f172a",
-    body: "#475569",
-    bullet: "#334155",
+    body: "#334155",
+    bullet: "#1e293b",
     gridColor: "rgba(0,168,204,0.08)",
     Illustration: IllustrationWebDev,
     SmallIcon: IconSecureGlobe,
@@ -354,13 +355,14 @@ const SVC_THEMES = [
     tags: ["React & Next.js", "TypeScript", "Tailwind CSS", "Headless CMS"],
   },
   {
-    cardBg: "linear-gradient(135deg, #fffbeb 0%, #ffffff 100%)",
+    cardBg: "linear-gradient(135deg, #ffffff 0%, #fffbeb 100%)",
+    cardBgDark: "linear-gradient(145deg, #181408 0%, #241c0e 60%, #302613 100%)",
     accent: "#d97706",
     accentLight: "rgba(217,119,6,0.12)",
     accentBorder: "rgba(217,119,6,0.25)",
     ink: "#1c1917",
-    body: "#475569",
-    bullet: "#334155",
+    body: "#334155",
+    bullet: "#1e293b",
     gridColor: "rgba(217,119,6,0.08)",
     Illustration: IllustrationWebDesign,
     SmallIcon: IconEye,
@@ -371,13 +373,14 @@ const SVC_THEMES = [
     tags: ["Figma Systems", "Conversion UX", "Responsive UI", "Micro-Interactions"],
   },
   {
-    cardBg: "linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%)",
+    cardBg: "linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%)",
+    cardBgDark: "linear-gradient(145deg, #09192b 0%, #0d233c 60%, #112d4d 100%)",
     accent: "#0ea5e9",
     accentLight: "rgba(14,165,233,0.12)",
     accentBorder: "rgba(14,165,233,0.25)",
     ink: "#0f172a",
-    body: "#475569",
-    bullet: "#334155",
+    body: "#334155",
+    bullet: "#1e293b",
     gridColor: "rgba(14,165,233,0.08)",
     Illustration: IllustrationSecureSEO,
     SmallIcon: IconSignal,
@@ -388,13 +391,14 @@ const SVC_THEMES = [
     tags: ["Core Web Vitals", "Crawl Architecture", "Structured Data", "Security Headers"],
   },
   {
-    cardBg: "linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%)",
+    cardBg: "linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%)",
+    cardBgDark: "linear-gradient(145deg, #091f14 0%, #0d2b1c 60%, #113824 100%)",
     accent: "#16a34a",
     accentLight: "rgba(22,163,74,0.12)",
     accentBorder: "rgba(22,163,74,0.25)",
     ink: "#052e16",
-    body: "#475569",
-    bullet: "#334155",
+    body: "#334155",
+    bullet: "#1e293b",
     gridColor: "rgba(22,163,74,0.08)",
     Illustration: IllustrationSEO,
     SmallIcon: IconSearch,
@@ -405,13 +409,14 @@ const SVC_THEMES = [
     tags: ["Keyword Clusters", "Authority Content", "Backlink Architecture", "SERP #1 Ranks"],
   },
   {
-    cardBg: "linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%)",
+    cardBg: "linear-gradient(135deg, #ffffff 0%, #faf5ff 100%)",
+    cardBgDark: "linear-gradient(145deg, #170d2b 0%, #20133c 60%, #2a194e 100%)",
     accent: "#7c3aed",
     accentLight: "rgba(124,58,237,0.12)",
     accentBorder: "rgba(124,58,237,0.25)",
     ink: "#2e1065",
-    body: "#475569",
-    bullet: "#334155",
+    body: "#334155",
+    bullet: "#1e293b",
     gridColor: "rgba(124,58,237,0.08)",
     Illustration: IllustrationAI,
     SmallIcon: IconAISecure,
@@ -428,9 +433,9 @@ function ServicesOverview() {
   const dk = theme === "dark";
 
   const DARK_CARD_BG = "linear-gradient(145deg, #0b1329 0%, #0f1c3a 60%, #132448 100%)";
-  const DARK_INK     = "#f1f5f9";
-  const DARK_BODY    = "#94a3b8";
-  const DARK_BULLET  = "#cbd5e1";
+  const DARK_INK     = "#f8fafc";
+  const DARK_BODY    = "#cbd5e1";
+  const DARK_BULLET  = "#e2e8f0";
 
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -445,84 +450,99 @@ function ServicesOverview() {
       const cards = cardRefs.current.filter((el): el is HTMLDivElement => el !== null);
       if (!cards.length) return;
 
-      const totalSteps = cards.length;
+      const totalSteps = cards.length; // 5
 
-      // Initial card placements
+      // Reset all cards initial state: Card 0 is front and center, subsequent cards parked below
       cards.forEach((card, i) => {
         if (i === 0) {
           gsap.set(card, {
             yPercent: 0,
+            y: 0,
             scale: 1,
             autoAlpha: 1,
             pointerEvents: "auto",
-            zIndex: 10,
+            zIndex: 20,
           });
         } else {
           gsap.set(card, {
-            yPercent: 110,
-            scale: 1,
+            yPercent: 100,
+            y: 0,
+            scale: 0.96,
             autoAlpha: 0,
             pointerEvents: "none",
-            zIndex: 10 + i,
+            zIndex: 20 + i,
           });
         }
       });
 
-      // Pinned scrubbed GSAP timeline
+      // Pinned scrubbed GSAP timeline with explicit dwell time per card
       const tl = gsap.timeline({
         scrollTrigger: {
           id: "services-pin",
           trigger: sectionRef.current,
           start: "top top",
-          end: () => `+=${(totalSteps - 1) * window.innerHeight * 0.85}`,
+          end: () => `+=${totalSteps * window.innerHeight * 0.75}`,
           pin: true,
-          scrub: 0.8,
+          scrub: 0.6,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const step = Math.min(
-              totalSteps - 1,
-              Math.round(self.progress * (totalSteps - 1))
-            );
+            const p = self.progress;
+            let step = 0;
+            if (p >= 0.75) step = 4;
+            else if (p >= 0.55) step = 3;
+            else if (p >= 0.35) step = 2;
+            else if (p >= 0.15) step = 1;
+            else step = 0;
             setActiveStep(step);
           },
         },
       });
 
-      for (let i = 1; i < totalSteps; i++) {
-        const label = `step-${i}`;
-        tl.addLabel(label);
+      // Card 0 dwell at start
+      tl.to({}, { duration: 0.5 });
 
-        // Previous cards scale down and tuck into a neat stacked deck
-        for (let j = 0; j < i; j++) {
-          const depth = i - j;
-          tl.to(
-            cards[j],
-            {
-              scale: Math.max(0.88, 1 - depth * 0.035),
-              y: -depth * 14,
-              autoAlpha: Math.max(0.3, 1 - depth * 0.22),
-              pointerEvents: "none",
-              duration: 1,
-              ease: "power1.inOut",
-            },
-            label
-          );
+      for (let i = 1; i < totalSteps; i++) {
+        const transitionLabel = `step-${i}`;
+        tl.addLabel(transitionLabel);
+
+        // Ensure all earlier cards are completely hidden (prevents any ghosting)
+        for (let j = 0; j < i - 1; j++) {
+          tl.set(cards[j], { autoAlpha: 0, pointerEvents: "none" }, transitionLabel);
         }
+
+        // Previous card scales down slightly and fades out completely (zero ghost text)
+        tl.to(
+          cards[i - 1],
+          {
+            scale: 0.95,
+            y: -14,
+            autoAlpha: 0,
+            pointerEvents: "none",
+            duration: 1,
+            ease: "power2.inOut",
+          },
+          transitionLabel
+        );
 
         // Current card glides up smoothly into center stage
         tl.to(
           cards[i],
           {
             yPercent: 0,
+            y: 0,
             scale: 1,
             autoAlpha: 1,
             pointerEvents: "auto",
             duration: 1,
-            ease: "power1.inOut",
+            ease: "power2.inOut",
           },
-          label
+          transitionLabel
         );
+
+        // Dwell time: generous dwell time for each card, plus extended dwell for Card 05
+        const dwell = i === totalSteps - 1 ? 1.5 : 0.6;
+        tl.to({}, { duration: dwell });
       }
     }, sectionRef);
 
@@ -532,9 +552,15 @@ function ServicesOverview() {
   const scrollToStep = (idx: number) => {
     const st = ScrollTrigger.getById("services-pin");
     if (!st) return;
-    const total = services.length - 1;
-    const targetProgress = total > 0 ? idx / total : 0;
+
+    // Timeline midpoints mapped into normalized progress (total = 7.8)
+    const dwellMidpoints = [0.25, 1.80, 3.40, 5.00, 7.00];
+    const totalDuration = 7.8;
+
+    const targetTime = dwellMidpoints[idx] ?? 0.25;
+    const targetProgress = Math.min(0.92, targetTime / totalDuration);
     const targetY = st.start + (st.end - st.start) * targetProgress;
+
     window.scrollTo({ top: targetY, behavior: "smooth" });
     setActiveStep(idx);
   };
@@ -542,7 +568,7 @@ function ServicesOverview() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden border-t min-h-screen flex flex-col justify-center pt-20 pb-10"
+      className="relative overflow-hidden border-t min-h-screen flex flex-col justify-center pt-16 pb-8 sm:pt-20 sm:pb-12"
       style={{
         background: dk
           ? "linear-gradient(135deg, #0b132b 0%, #0f1a35 100%)"
@@ -566,7 +592,7 @@ function ServicesOverview() {
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 w-full relative z-20 flex flex-col">
         {/* ── Section Header (Centered & Prominent) ── */}
-        <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-7">
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-3 mb-2">
             <span className="w-8 h-px bg-signal opacity-70" />
             <span className="mono text-[11px] uppercase tracking-[0.3em] text-signal font-semibold">CORE SERVICES</span>
@@ -622,7 +648,7 @@ function ServicesOverview() {
         </div>
 
         {/* ── Full-Width GSAP Stacking Cards Stage ── */}
-        <div className="relative w-full max-w-5xl mx-auto h-[490px] sm:h-[460px]">
+        <div className="relative w-full max-w-5xl mx-auto h-[530px] sm:h-[490px] lg:h-[480px]">
           {services.map((svc, i) => {
             const ct = SVC_THEMES[i] ?? SVC_THEMES[0];
             const { Illustration, SmallIcon } = ct;
@@ -633,17 +659,17 @@ function ServicesOverview() {
                 ref={(el) => { cardRefs.current[i] = el; }}
                 className="service-card-item absolute inset-0 w-full h-full will-change-transform rounded-3xl border transition-shadow duration-300"
                 style={{
-                  background: dk ? DARK_CARD_BG : ct.cardBg,
-                  borderColor: dk ? "rgba(0, 217, 255, 0.20)" : "rgba(0, 168, 204, 0.20)",
+                  backgroundColor: dk ? "#0c1527" : "#ffffff",
+                  background: dk ? (ct.cardBgDark ?? DARK_CARD_BG) : ct.cardBg,
+                  borderColor: dk ? `${ct.accent}40` : `${ct.accent}30`,
                   boxShadow: dk
-                    ? `0 30px 70px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.06), 0 0 60px -20px ${ct.accent}35`
-                    : `0 30px 60px -20px rgba(2,32,71,0.16), 0 0 0 1px rgba(2,132,199,0.12), 0 0 50px -20px ${ct.accent}30`,
+                    ? `0 25px 65px -15px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.06), 0 0 50px -15px ${ct.accent}30`
+                    : `0 25px 55px -15px rgba(2,32,71,0.12), 0 0 0 1px ${ct.accent}20, 0 0 45px -15px ${ct.accent}20`,
                   overflow: "hidden",
-                  transformOrigin: "top center",
-                  zIndex: 10 + i,
+                  zIndex: 20 + i,
                 }}
               >
-                {/* Ambient glows */}
+                {/* Ambient corner glows */}
                 <div aria-hidden style={{
                   position: "absolute", top: 0, left: 0,
                   width: "50%", height: "40%",
@@ -658,9 +684,9 @@ function ServicesOverview() {
                 }} />
 
                 {/* Card Inner Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 p-5 sm:p-7 h-full items-center">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 p-6 sm:p-7 lg:p-8 h-full items-center">
                   {/* Left side: content (7 cols) */}
-                  <div className="md:col-span-7 flex flex-col justify-between h-full gap-2 sm:gap-3">
+                  <div className="md:col-span-7 flex flex-col justify-between h-full gap-3 py-0.5">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="mono text-xs font-semibold px-2 py-0.5 rounded border border-muted/50 text-muted-foreground">
                         / {svc.index}
@@ -680,13 +706,13 @@ function ServicesOverview() {
 
                     <div>
                       <h3
-                        className="text-2xl sm:text-3xl font-display font-bold leading-tight"
+                        className="text-2xl sm:text-3xl lg:text-[32px] font-display font-bold leading-tight tracking-tight"
                         style={{ color: dk ? DARK_INK : ct.ink }}
                       >
                         {svc.title}
                       </h3>
                       <p
-                        className="mt-1.5 text-xs sm:text-sm leading-relaxed line-clamp-3 text-muted-foreground"
+                        className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground"
                         style={{ color: dk ? DARK_BODY : ct.body }}
                       >
                         {svc.description}
@@ -694,15 +720,15 @@ function ServicesOverview() {
                     </div>
 
                     {/* Deliverables */}
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 my-0.5">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 my-1">
                       {svc.bullets.map((b) => (
                         <li
                           key={b}
-                          className="flex items-start gap-1.5 text-xs font-medium"
+                          className="flex items-start gap-2 text-xs font-medium"
                           style={{ color: dk ? DARK_BULLET : ct.bullet }}
                         >
                           <span
-                            className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full text-[9px] shrink-0 mt-0.5 font-bold"
+                            className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[9px] shrink-0 mt-0.5 font-bold"
                             style={{
                               background: ct.accentLight,
                               color: ct.accent,
@@ -711,7 +737,7 @@ function ServicesOverview() {
                           >
                             ✓
                           </span>
-                          <span className="line-clamp-1">{b}</span>
+                          <span className="leading-snug">{b}</span>
                         </li>
                       ))}
                     </ul>
@@ -721,7 +747,7 @@ function ServicesOverview() {
                       {ct.tags.map((t) => (
                         <span
                           key={t}
-                          className="mono text-[9px] sm:text-[10px] px-2 py-0.5 rounded-md border font-medium"
+                          className="mono text-[9px] sm:text-[10px] px-2.5 py-0.5 rounded-md border font-medium"
                           style={{
                             borderColor: dk ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
                             background: dk ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
@@ -734,7 +760,7 @@ function ServicesOverview() {
                     </div>
 
                     {/* CTA */}
-                    <div className="pt-2 flex items-center justify-between border-t border-hairline/60">
+                    <div className="pt-2.5 flex items-center justify-between border-t border-hairline/60">
                       <Link
                         to="/services"
                         hash={svc.slug}
@@ -792,7 +818,7 @@ function ServicesOverview() {
                         />
                         <div className="relative z-10 w-full flex items-center justify-center">
                           <Illustration
-                            className="w-full max-h-[130px] sm:max-h-[160px] object-contain drop-shadow-md transition-transform duration-500 hover:scale-105"
+                            className="w-full max-h-[140px] sm:max-h-[160px] object-contain drop-shadow-md transition-transform duration-500 hover:scale-105"
                           />
                         </div>
                       </div>
