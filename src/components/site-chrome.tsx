@@ -4,20 +4,15 @@ import { useTheme } from "@/lib/theme";
 
 export function StatusPulse({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="mono flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-widest text-muted-foreground">
-      <span className="flex items-center gap-2">
-        <span className="pulse-dot" aria-hidden />
-        <span className="text-foreground">SYSTEM: SECURE</span>
-      </span>
-      <span className="text-hairline">|</span>
-      <span className="flex items-center gap-2">
-        <span className="pulse-dot amber" aria-hidden />
-        MONITORING: ACTIVE
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-medium tracking-wide text-muted-foreground">
+      <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-signal/10 border border-signal/20 text-foreground">
+        <span className="w-1.5 h-1.5 rounded-full bg-signal animate-pulse" aria-hidden />
+        <span>Accepting New Projects</span>
       </span>
       {!compact && (
         <>
-          <span className="text-hairline">|</span>
-          <span>STATUS: OPERATIONAL</span>
+          <span className="text-hairline">/</span>
+          <span className="mono text-[10px] uppercase tracking-widest text-muted-foreground">Q2 2026 Availability</span>
         </>
       )}
     </div>
@@ -314,7 +309,7 @@ export function SiteFooter() {
           {/* Mini CTA */}
           <Link
             to="/contact"
-            className="mono text-[10px] uppercase tracking-widest border border-signal/50 text-signal px-4 py-2.5 hover:bg-signal hover:text-signal-foreground transition-colors inline-flex items-center gap-2 w-fit mt-2"
+            className="text-xs font-semibold uppercase tracking-wider bg-signal text-signal-foreground px-5 py-2.5 rounded-xl hover:opacity-90 transition-all inline-flex items-center gap-2 w-fit mt-2 shadow-sm"
           >
             Start a project →
           </Link>
@@ -372,11 +367,16 @@ export function SiteFooter() {
               Capabilities
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {["Web Development", "UI/UX Design", "Secure SEO", "AI Solutions"].map((c) => (
+              {[
+                "Web Development",
+                "Web Design & UI/UX",
+                "Secure SEO",
+                "On-Page & Off-Page SEO",
+                "AI Solutions",
+              ].map((c) => (
                 <span
                   key={c}
-                  className="mono text-[9px] uppercase tracking-widest px-2 py-1 border border-hairline text-muted-foreground"
-                  style={{ background: "rgba(2,132,199,0.05)" }}
+                  className="text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-md border border-hairline text-muted-foreground bg-signal/5"
                 >
                   {c}
                 </span>
@@ -390,18 +390,18 @@ export function SiteFooter() {
       <div className="border-t border-hairline">
         <div className="mx-auto max-w-7xl px-6 py-4 mono text-[10px] uppercase tracking-widest text-muted-foreground flex flex-wrap justify-between gap-2 items-center">
           <span>
-            © {year} techvrs.com —{" "}
-            <span className="text-signal">Secure by Design.</span>
+            © {year} TechVRS —{" "}
+            <span className="text-signal">Modern Digital Technology Agency.</span>
           </span>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5">
               <span className="live-dot" aria-hidden style={{ width: 6, height: 6 }} />
-              System: Operational
+              Performance: 98+
             </span>
             <span className="text-hairline" aria-hidden>
               |
             </span>
-            <span>v1.0.0</span>
+            <span>All Systems Active</span>
           </div>
         </div>
       </div>
@@ -411,8 +411,8 @@ export function SiteFooter() {
 
 export function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mono text-[11px] uppercase tracking-[0.25em] text-signal mb-4 flex items-center gap-3">
-      <span className="h-px w-8 bg-signal/60" />
+    <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-signal mb-4 flex items-center gap-2.5">
+      <span className="h-1.5 w-1.5 rounded-full bg-signal" />
       {children}
     </div>
   );
@@ -428,9 +428,7 @@ export function Panel({
   as?: React.ElementType;
 }) {
   return (
-    <Tag className={`panel brackets hover-lift p-6 ${className}`}>
-      <span className="b-tr" />
-      <span className="b-bl" />
+    <Tag className={`panel hover-lift p-6 rounded-2xl ${className}`}>
       {children}
     </Tag>
   );

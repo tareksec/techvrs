@@ -24,22 +24,20 @@ import { ThemeProvider } from "../lib/theme";
 function NotFoundComponent() {
   return (
     <div className="flex items-center justify-center px-6 py-32">
-      <div className="max-w-lg text-center panel brackets p-10">
-        <span className="b-tr" />
-        <span className="b-bl" />
-        <div className="mono text-[11px] uppercase tracking-widest text-critical mb-4">
-          ERR_404 // ACCESS DENIED
+      <div className="max-w-lg text-center glass-card p-10 md:p-12 rounded-3xl border border-hairline/80 shadow-xl">
+        <div className="text-xs font-semibold uppercase tracking-wider text-signal mb-4">
+          PAGE NOT FOUND
         </div>
-        <h1 className="text-6xl font-display font-bold text-foreground">404</h1>
-        <p className="mt-4 text-sm text-muted-foreground mono">
-          The resource you requested is not indexed on this perimeter.
+        <h1 className="text-6xl md:text-7xl font-display font-bold text-foreground">404</h1>
+        <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+          The page you are looking for doesn't exist or has been moved to a new address.
         </p>
         <div className="mt-8">
           <Link
             to="/"
-            className="mono text-[11px] uppercase tracking-widest inline-flex items-center gap-2 border border-signal/60 text-signal px-5 py-3 hover:bg-signal hover:text-signal-foreground transition-colors"
+            className="text-xs uppercase tracking-wider font-semibold inline-flex items-center gap-2 bg-signal text-signal-foreground px-6 py-3.5 rounded-xl hover:shadow-[0_0_30px_-4px_rgba(0,217,255,0.5)] transition-all"
           >
-            ← Return to base
+            ← Back to Homepage
           </Link>
         </div>
       </div>
@@ -56,33 +54,31 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center panel brackets p-10">
-        <span className="b-tr" />
-        <span className="b-bl" />
-        <div className="mono text-[11px] uppercase tracking-widest text-critical mb-4">
-          ERR // UNCAUGHT_EXCEPTION
+      <div className="max-w-md text-center glass-card p-10 rounded-3xl border border-hairline/80 shadow-xl">
+        <div className="text-xs font-semibold uppercase tracking-wider text-critical mb-4">
+          AN ERROR OCCURRED
         </div>
         <h1 className="text-xl font-display font-semibold text-foreground">
-          This page did not load
+          Something went wrong
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Retry the request or return to base.
+        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+          Please try refreshing the page or navigating back home.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="mono text-[11px] uppercase tracking-widest border border-signal/60 text-signal px-4 py-2 hover:bg-signal hover:text-signal-foreground transition-colors"
+            className="text-xs font-semibold uppercase tracking-wider bg-signal text-signal-foreground px-5 py-2.5 rounded-xl hover:shadow-[0_0_20px_rgba(0,217,255,0.4)] transition-all"
           >
-            Retry
+            Try Again
           </button>
           <a
             href="/"
-            className="mono text-[11px] uppercase tracking-widest border border-hairline px-4 py-2 hover:border-foreground/40 transition-colors"
+            className="text-xs font-semibold uppercase tracking-wider border border-hairline px-5 py-2.5 rounded-xl hover:border-foreground/40 transition-colors"
           >
-            Go home
+            Go Home
           </a>
         </div>
       </div>

@@ -315,11 +315,8 @@ function ServicesPage() {
                   {s.bullets.map((bullet) => (
                     <div
                       key={bullet}
-                      className="glass-card brackets p-4 flex items-start gap-3"
-                      style={{ position: "relative" }}
+                      className="glass-card p-4 flex items-start gap-3 rounded-xl border border-hairline/80"
                     >
-                      <span className="b-tr" />
-                      <span className="b-bl" />
                       <span className="text-signal mt-0.5 shrink-0">
                         <IconCheck size={14} />
                       </span>
@@ -331,10 +328,8 @@ function ServicesPage() {
                 </div>
 
                 {/* ── 4-Phase Workflow ── */}
-                <div className="glass-card brackets p-8 mb-10" style={{ position: "relative" }}>
-                  <span className="b-tr" />
-                  <span className="b-bl" />
-                  <div className="mono text-[10px] uppercase tracking-widest text-signal mb-6 flex items-center gap-2">
+                <div className="glass-card p-8 mb-10 rounded-2xl border border-hairline/80">
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-6 flex items-center gap-2">
                     <span className="live-dot" aria-hidden />
                     DELIVERY ROADMAP // 04 PHASES
                   </div>
@@ -342,7 +337,7 @@ function ServicesPage() {
                     {s.workflow.map((step, idx) => (
                       <div key={step.phase} className="flex flex-col gap-2">
                         <div className="flex items-center gap-2">
-                          <span className="mono text-xs font-bold text-signal">
+                          <span className="text-xs font-bold text-signal bg-signal/10 px-2 py-0.5 rounded">
                             {String(idx + 1).padStart(2, "0")}
                           </span>
                           <h4 className="font-display font-semibold text-sm">{step.phase}</h4>
@@ -403,12 +398,9 @@ function ServicesPage() {
         ].map((m) => (
           <div
             key={m.title}
-            className="glass-card brackets p-6"
-            style={{ position: "relative" }}
+            className="glass-card p-6 rounded-2xl border border-hairline/80 shadow-sm"
           >
-            <span className="b-tr" />
-            <span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-3 flex items-center gap-2">
               <span className="live-dot" aria-hidden />
               ENGAGEMENT MODEL
             </div>
@@ -419,9 +411,7 @@ function ServicesPage() {
       </div>
 
       {/* ── Lead magnet + primary CTA ── */}
-      <div className="mt-16 glass-cta brackets p-10 md:p-14 relative overflow-hidden">
-        <span className="b-tr" />
-        <span className="b-bl" />
+      <div className="mt-16 glass-cta p-10 md:p-14 relative overflow-hidden rounded-3xl border border-hairline/80 shadow-xl">
         <div className="absolute inset-0 bg-grid opacity-10" aria-hidden />
         <div
           className="absolute -top-20 -right-20 h-[300px] w-[300px] blur-[90px]"
@@ -440,7 +430,7 @@ function ServicesPage() {
 
         <div className="relative grid gap-10 lg:grid-cols-2 items-center">
           <div>
-            <div className="mono text-[11px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-3 flex items-center gap-2">
               <span className="live-dot" aria-hidden />
               START A PROJECT // ACCEPTING NEW CLIENTS
             </div>
@@ -451,32 +441,26 @@ function ServicesPage() {
               Reach out with your goals and project requirements. We'll respond with a clear technical roadmap,
               architecture recommendations, and transparent timelines.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-4">
               <Link
                 to="/contact"
-                className="mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground px-6 py-4 hover:shadow-[0_0_40px_-5px_var(--signal)] transition-shadow inline-flex items-center gap-2"
+                className="text-xs uppercase tracking-wider bg-signal text-signal-foreground font-semibold px-8 py-4 rounded-xl hover:shadow-[0_0_40px_-5px_var(--signal)] transition-all inline-flex items-center gap-2"
               >
                 Start a project →
               </Link>
               <Link
-                to="/contact"
-                className="mono text-[10px] uppercase tracking-widest inline-flex items-center gap-2 text-muted-foreground hover:text-signal transition-colors"
+                to="/demos"
+                className="text-xs uppercase tracking-wider border border-hairline text-muted-foreground hover:text-foreground font-semibold px-6 py-4 rounded-xl transition-colors inline-flex items-center gap-2"
               >
-                <span className="live-dot" aria-hidden />
-                Request a Free Technical SEO &amp; Security Audit →
+                Explore Live Demos ↗
               </Link>
             </div>
           </div>
 
           {/* Lead magnet checklist + illustration */}
-          <div
-            className="glass-card brackets p-6 md:p-8 relative overflow-hidden"
-            style={{ position: "relative" }}
-          >
-            <span className="b-tr" />
-            <span className="b-bl" />
+          <div className="glass-card p-6 md:p-8 relative overflow-hidden rounded-2xl border border-hairline/80 shadow-md">
             <div className="relative z-10">
-              <div className="mono text-[10px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-3 flex items-center gap-2">
                 <span className="live-dot" aria-hidden />
                 FREE AGENCY RESOURCE
               </div>
@@ -489,7 +473,7 @@ function ServicesPage() {
               </p>
               <Link
                 to="/contact"
-                className="inline-flex mono text-[11px] uppercase tracking-widest border border-signal/60 text-signal px-5 py-3 hover:bg-signal/10 transition-all"
+                className="inline-flex text-xs uppercase tracking-wider font-semibold border border-signal/60 text-signal px-5 py-3 rounded-xl hover:bg-signal/10 transition-all"
               >
                 Request the checklist →
               </Link>

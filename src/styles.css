@@ -5,10 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -147,18 +147,9 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* ── Preserve sharp HUD aesthetic for branded elements ── */
-  .panel,
-  .brackets,
-  .panel *,
-  .brackets *,
-  header,
-  header *,
-  footer,
-  footer *,
-  nav,
-  nav * {
-    border-radius: 0 !important;
+  /* ── Modern Agency Architecture: Refined corner radii ── */
+  header {
+    border-radius: var(--radius-md);
   }
 
   html {
@@ -234,58 +225,49 @@
 }
 
 @utility bg-scanlines {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 3px,
-    rgba(0, 217, 255, 0.04) 3px,
-    rgba(0, 217, 255, 0.04) 4px
-  );
+  background-image: none;
 }
 
 /* Isometric / topographic data-grid backdrop (low opacity decorative) */
 @utility bg-datagrid {
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(0, 217, 255, 0.12) 0, transparent 2px),
-    radial-gradient(circle at 70% 60%, rgba(0, 217, 255, 0.10) 0, transparent 2px),
-    radial-gradient(circle at 40% 80%, rgba(0, 217, 255, 0.08) 0, transparent 2px),
-    linear-gradient(115deg, transparent 49.5%, rgba(0, 217, 255, 0.06) 49.5%, rgba(0, 217, 255, 0.06) 50.5%, transparent 50.5%),
-    linear-gradient(65deg, transparent 49.5%, rgba(0, 217, 255, 0.05) 49.5%, rgba(0, 217, 255, 0.05) 50.5%, transparent 50.5%);
-  background-size: 220px 220px, 260px 260px, 200px 200px, 120px 120px, 120px 120px;
-  opacity: 0.6;
+    radial-gradient(circle at 20% 30%, rgba(0, 217, 255, 0.08) 0, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgba(0, 217, 255, 0.06) 0, transparent 2px),
+    linear-gradient(115deg, transparent 49.5%, rgba(0, 217, 255, 0.03) 49.5%, rgba(0, 217, 255, 0.03) 50.5%, transparent 50.5%);
+  background-size: 220px 220px, 260px 260px, 120px 120px;
+  opacity: 0.5;
 }
 
-/* HUD panel with corner brackets */
+/* Modern agency surface card */
 @utility panel {
   position: relative;
   background: var(--panel);
   border: 1px solid var(--hairline);
+  border-radius: 1.25rem; /* 20px */
   transition: border-color 300ms ease-in-out, transform 300ms ease-in-out, box-shadow 300ms ease-in-out;
 }
 
-/* Light mode panel gets a subtle shadow */
+/* Light mode panel gets a subtle soft shadow */
 .light .panel {
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px -4px rgba(0,0,0,0.04);
 }
 
 @utility hover-lift {
   transition: transform 300ms ease-in-out, border-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
 }
 .hover-lift:hover {
-  border-color: rgba(0, 217, 255, 0.55);
+  border-color: rgba(0, 217, 255, 0.45);
   box-shadow:
-    0 0 0 1px rgba(0, 217, 255, 0.25),
-    0 0 24px -4px rgba(0, 217, 255, 0.35),
-    0 20px 60px -20px rgba(0, 217, 255, 0.30);
+    0 0 0 1px rgba(0, 217, 255, 0.15),
+    0 16px 40px -12px rgba(0, 217, 255, 0.18);
   transform: translateY(-2px);
 }
 
 .light .hover-lift:hover {
-  border-color: rgba(2, 132, 199, 0.55);
+  border-color: rgba(2, 132, 199, 0.45);
   box-shadow:
-    0 0 0 1px rgba(2, 132, 199, 0.20),
-    0 0 24px -4px rgba(2, 132, 199, 0.25),
-    0 20px 60px -20px rgba(2, 132, 199, 0.15);
+    0 0 0 1px rgba(2, 132, 199, 0.15),
+    0 16px 40px -12px rgba(2, 132, 199, 0.10);
   transform: translateY(-2px);
 }
 
@@ -296,37 +278,18 @@ a, button {
               transform 300ms ease-in-out;
 }
 a:hover, button:hover {
-  text-shadow: 0 0 12px rgba(0, 217, 255, 0.35);
+  text-shadow: 0 0 12px rgba(0, 217, 255, 0.25);
 }
 .light a:hover, .light button:hover {
-  text-shadow: 0 0 10px rgba(2, 132, 199, 0.25);
+  text-shadow: 0 0 10px rgba(2, 132, 199, 0.20);
 }
 
-/* Corner-bracket HUD frame */
+/* Brackets neutralized for clean agency aesthetics */
 .brackets::before,
 .brackets::after,
 .brackets > .b-tr,
 .brackets > .b-bl {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--signal);
-  border-style: solid;
-  border-width: 0;
-  transition: width 300ms ease-in-out, height 300ms ease-in-out;
-  pointer-events: none;
-}
-.brackets::before { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
-.brackets::after  { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
-.brackets > .b-tr { top: -1px; right: -1px; border-top-width: 1px; border-right-width: 1px; }
-.brackets > .b-bl { bottom: -1px; left: -1px; border-bottom-width: 1px; border-left-width: 1px; }
-.brackets:hover::before,
-.brackets:hover::after,
-.brackets:hover > .b-tr,
-.brackets:hover > .b-bl {
-  width: 22px;
-  height: 22px;
+  display: none !important;
 }
 
 /* Smooth pulsing status dots */
@@ -376,35 +339,17 @@ a:hover, button:hover {
   animation: pulse-dot-amber 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Scanline sweep animation */
+/* Scanline sweep neutralized for clean agency aesthetics */
 @keyframes scan-sweep {
-  0% { transform: translateY(-100%); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateY(200%); opacity: 0; }
+  0%, 100% { opacity: 0; }
 }
 .scan-sweep::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent, rgba(0, 217, 255, 0.22), transparent);
-  height: 40%;
-  animation: scan-sweep 6s ease-in-out infinite;
-  pointer-events: none;
-}
-.light .scan-sweep::after {
-  background: linear-gradient(to bottom, transparent, rgba(2, 132, 199, 0.14), transparent);
+  display: none !important;
 }
 
-/* Typewriter caret */
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
-}
+/* Caret neutralized for smooth typography */
 .caret::after {
-  content: "▌";
-  color: var(--signal);
-  margin-left: 2px;
-  animation: blink 1s steps(1) infinite;
+  content: "";
 }
 
 /* Terminal reveal: sequential fade-up on load */
@@ -854,9 +799,6 @@ a:hover, button:hover {
     0 8px 30px rgba(0, 0, 0, 0.3),
     0 20px 60px -12px rgba(0, 0, 0, 0.4);
 }
-.feature-card * {
-  border-radius: 0 !important;
-}
 .feature-card .fc-badge {
   border-radius: 999px !important;
 }
@@ -1028,6 +970,7 @@ p {
 
 /* ── Glassmorphism card — premium frosted look ── */
 .glass-card {
+  border-radius: 1.25rem;
   background: linear-gradient(
     160deg,
     rgba(255, 255, 255, 0.68) 0%,
@@ -1508,4 +1451,18 @@ p {
   .cursor-ring {
     display: none;
   }
+}
+
+/* ── Service Stacking Cards (Initial CSS states before GSAP hydration) ── */
+.service-card-item {
+  transform: translate3d(0, 110%, 0);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.service-card-item:first-child {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }

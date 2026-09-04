@@ -86,18 +86,15 @@ export function IllustrationSecureSEO({ className = "", style }: SceneProps) {
 export function IllustrationSEO({ className = "", style }: SceneProps) {
   return (
     <div className={className} style={{ ...containerStyle, ...style }}>
-      <picture>
-        <source srcSet="/3.webp" type="image/webp" />
-        <img
-          src="/3.png"
-          alt="On-Page & Off-Page SEO — search growth and authority building"
-          width={480}
-          height={480}
-          style={imgStyle}
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
+      <img
+        src="/seo-growth.jpg"
+        alt="On-Page & Off-Page SEO — search growth analytics and organic ranking authority"
+        width={512}
+        height={512}
+        style={imgStyle}
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   );
 }

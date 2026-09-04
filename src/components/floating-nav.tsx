@@ -74,17 +74,17 @@ function ElsewhereMenu() {
         </span>
       </button>
 
-      {/* Dropdown panel — dark terminal card, sharp corners */}
+      {/* Dropdown panel — modern rounded agency glass card */}
       <div
         role="menu"
-        className={`absolute right-0 top-[calc(100%+0.5rem)] w-64 origin-top-right border border-[#1f2a3a] bg-[#0D1117] shadow-2xl shadow-black/50 transition-all duration-150 ease-out ${
+        className={`absolute right-0 top-[calc(100%+0.5rem)] w-64 origin-top-right rounded-2xl border border-hairline bg-background/95 backdrop-blur-xl shadow-2xl shadow-black/20 dark:shadow-black/50 overflow-hidden transition-all duration-150 ease-out ${
           open
             ? "visible translate-y-0 opacity-100"
             : "invisible -translate-y-1 opacity-0"
         }`}
       >
-        <div className="mono px-3 py-2 text-[9px] uppercase tracking-[0.2em] text-[#5b6b82] border-b border-[#1f2a3a]">
-          External // Elsewhere
+        <div className="px-4 py-2.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground border-b border-hairline/60">
+          Elsewhere &amp; Ecosystem
         </div>
         <ul className="py-1">
           {ELSEWHERE_LINKS.map((l) => (
@@ -205,21 +205,21 @@ export function FloatingNav() {
             />
             <div className="flex flex-col leading-tight">
               <span className="font-display text-sm font-bold tracking-tight">techvrs</span>{" "}
-              <span className="mono text-[8px] uppercase tracking-widest text-muted-foreground">
-                secure by design
+              <span className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground">
+                Digital Agency
               </span>
             </div>
           </Link>
 
           {/* ── Desktop links: soft pill hover, persistent signal pill on active ── */}
-          <ul className="hidden items-center gap-0.5 md:flex">
+          <ul className="hidden items-center gap-1 md:flex">
             {NAV_ITEMS.slice(1).map(({ to, label }) => (
               <li key={to}>
                 <Link
                   to={to}
                   activeOptions={{ exact: to === "/" }}
-                  className="mono block rounded-full px-3 py-1.5 text-[11px] uppercase tracking-widest text-muted-foreground transition-all duration-300 ease-out hover:bg-signal/10 hover:text-foreground"
-                  activeProps={{ className: "!text-signal bg-signal/10" }}
+                  className="block rounded-full px-3.5 py-1.5 text-xs font-medium text-muted-foreground transition-all duration-300 ease-out hover:bg-signal/10 hover:text-foreground"
+                  activeProps={{ className: "!text-signal bg-signal/10 font-semibold" }}
                 >
                   {label}
                 </Link>

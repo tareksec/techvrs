@@ -96,14 +96,13 @@ function AboutPage() {
         {STATS.map((s, i) => (
           <div
             key={s.label}
-            className="glass-card brackets p-5 text-center"
-            style={{ position: "relative", animationDelay: `${i * 0.08}s` }}
+            className="glass-card p-6 text-center rounded-2xl border border-hairline/80"
+            style={{ animationDelay: `${i * 0.08}s` }}
           >
-            <span className="b-tr" /><span className="b-bl" />
             <div className="font-display text-3xl md:text-4xl font-bold text-signal leading-none mb-2 count-glow">
               <AnimatedCounter value={s.value} />
             </div>
-            <div className="mono text-[9px] uppercase tracking-widest text-muted-foreground">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
               {s.label}
             </div>
           </div>
@@ -137,33 +136,31 @@ function AboutPage() {
 
           {/* Pillars split */}
           <div className="grid sm:grid-cols-2 gap-4 my-2">
-            <div className="panel brackets p-5 flex flex-col gap-2.5" style={{ position: "relative" }}>
-              <span className="b-tr" /><span className="b-bl" />
+            <div className="panel p-6 flex flex-col gap-2.5 rounded-2xl border border-hairline/80">
               <div className="flex items-center gap-2">
-                <span className="text-signal"><IconSecureGlobe size={16} /></span>
-                <span className="mono text-[10px] uppercase tracking-widest text-signal font-semibold">
+                <span className="text-signal"><IconSecureGlobe size={18} /></span>
+                <span className="text-xs uppercase tracking-wider text-signal font-bold">
                   Development &amp; Design
                 </span>
               </div>
-              <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground">
+              <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground mt-1">
                 <li>• High-performance React &amp; Next.js builds</li>
                 <li>• Design systems &amp; responsive UI/UX</li>
                 <li>• Headless CMS &amp; modern API integrations</li>
               </ul>
             </div>
 
-            <div className="panel brackets p-5 flex flex-col gap-2.5" style={{ position: "relative" }}>
-              <span className="b-tr" /><span className="b-bl" />
+            <div className="panel p-6 flex flex-col gap-2.5 rounded-2xl border border-hairline/80">
               <div className="flex items-center gap-2">
-                <span className="text-signal"><IconSignal size={16} /></span>
-                <span className="mono text-[10px] uppercase tracking-widest text-signal font-semibold">
+                <span className="text-signal"><IconSignal size={18} /></span>
+                <span className="text-xs uppercase tracking-wider text-signal font-bold">
                   SEO &amp; Secure AI
                 </span>
               </div>
-              <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground">
-                <li>• Technical SEO &amp; Core Web Vitals optimization</li>
-                <li>• Search intent &amp; authority growth campaigns</li>
-                <li>• Custom AI agents with privacy guardrails</li>
+              <ul className="flex flex-col gap-1.5 text-xs text-muted-foreground mt-1">
+                <li>• Technical SEO &amp; Core Web Vitals audits</li>
+                <li>• Organic search strategy &amp; authority building</li>
+                <li>• Privacy-hardened AI automations &amp; LLMs</li>
               </ul>
             </div>
           </div>
@@ -209,9 +206,8 @@ function AboutPage() {
         {/* Sidebar */}
         <div className="flex flex-col gap-5">
           {/* Company identity card */}
-          <div className="glass-card brackets p-6" style={{ position: "relative" }}>
-            <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-3 flex items-center gap-2">
+          <div className="glass-card p-6 rounded-2xl border border-hairline/80 shadow-sm">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-3 flex items-center gap-2">
               <span className="live-dot" aria-hidden />
               AGENCY PROFILE
             </div>
@@ -224,23 +220,22 @@ function AboutPage() {
             <div className="border-t border-hairline pt-3 flex flex-col gap-2 text-xs text-muted-foreground">
               <div className="flex justify-between">
                 <span>Specialization:</span>
-                <span className="text-foreground">Full-Service Digital</span>
+                <span className="text-foreground font-medium">Full-Service Digital</span>
               </div>
               <div className="flex justify-between">
                 <span>Stack:</span>
-                <span className="text-foreground">React · Next.js · TypeScript</span>
+                <span className="text-foreground font-medium">React · Next.js · TypeScript</span>
               </div>
               <div className="flex justify-between">
                 <span>Standards:</span>
-                <span className="text-foreground">OWASP · Core Web Vitals</span>
+                <span className="text-foreground font-medium">OWASP · Core Web Vitals</span>
               </div>
             </div>
           </div>
 
           {/* Technical founder credibility note (secondary) */}
-          <div className="glass-card brackets p-6" style={{ position: "relative" }}>
-            <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-2 flex items-center gap-2">
+          <div className="glass-card p-6 rounded-2xl border border-hairline/80 shadow-sm">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-2 flex items-center gap-2">
               <span className="pulse-dot" aria-hidden />
               FOUNDED ON ENGINEERING RIGOR
             </div>
@@ -251,12 +246,8 @@ function AboutPage() {
           </div>
 
           {/* Direct channels */}
-          <div
-            className="glass-card brackets p-6 flex flex-col gap-3"
-            style={{ position: "relative" }}
-          >
-            <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-1">
+          <div className="glass-card p-6 rounded-2xl border border-hairline/80 shadow-sm flex flex-col gap-3">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-1">
               CONNECT WITH US
             </div>
             {[
@@ -270,7 +261,7 @@ function AboutPage() {
                 href={l.href}
                 target={l.href.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
-                className="mono text-[11px] text-muted-foreground hover:text-signal transition-colors flex items-center gap-2"
+                className="text-xs text-muted-foreground hover:text-signal transition-colors flex items-center gap-2"
               >
                 <span className="text-signal opacity-60">↗</span>
                 {l.label}
@@ -290,10 +281,8 @@ function AboutPage() {
           {CORE_CAPABILITIES.map((d) => (
             <div
               key={d.title}
-              className="glass-card brackets p-7 flex flex-col gap-4 hover-lift"
-              style={{ position: "relative" }}
+              className="glass-card p-7 flex flex-col gap-4 hover-lift rounded-2xl border border-hairline/80"
             >
-              <span className="b-tr" /><span className="b-bl" />
               <div
                 style={{
                   width: 48,
@@ -326,19 +315,16 @@ function AboutPage() {
           {Object.entries(skills).map(([group, items]) => (
             <div
               key={group}
-              className="glass-card brackets p-5 flex flex-col gap-4"
-              style={{ position: "relative" }}
+              className="glass-card p-6 flex flex-col gap-4 rounded-2xl border border-hairline/80"
             >
-              <span className="b-tr" /><span className="b-bl" />
-              <div className="mono text-[10px] uppercase tracking-widest text-signal border-b border-hairline pb-3">
+              <div className="text-xs font-semibold uppercase tracking-wider text-signal border-b border-hairline pb-3">
                 {group}
               </div>
               <ul className="flex flex-wrap gap-2">
                 {items.map((s) => (
                   <li
                     key={s}
-                    className="mono text-[11px] px-2.5 py-1.5 border border-hairline text-foreground/75 hover:border-signal/50 hover:text-signal transition-colors cursor-default"
-                    style={{ background: "rgba(255,255,255,0.4)", backdropFilter: "blur(4px)" }}
+                    className="text-xs px-2.5 py-1.5 rounded-lg border border-hairline text-foreground/80 hover:border-signal/50 hover:text-signal transition-colors cursor-default bg-signal/[0.02]"
                   >
                     {s}
                   </li>

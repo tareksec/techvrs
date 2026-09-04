@@ -66,11 +66,8 @@ function AdminLoginPage() {
 
   return (
     <div className="mx-auto max-w-md px-6 py-28 min-h-[75vh] flex flex-col justify-center">
-      <div className="panel brackets p-8 md:p-10 relative shadow-2xl">
-        <span className="b-tr" />
-        <span className="b-bl" />
-
-        <div className="mono text-[10px] uppercase tracking-widest text-signal mb-4 flex items-center gap-2">
+      <div className="glass-card p-8 md:p-10 relative shadow-2xl rounded-3xl border border-hairline/80">
+        <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-4 flex items-center gap-2">
           <Lock className="w-3.5 h-3.5" />
           SECURE ADMINISTRATIVE ACCESS
         </div>

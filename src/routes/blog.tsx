@@ -104,7 +104,7 @@ function BlogPage() {
 
       {/* Live status strip */}
       <div className="mt-8 flex flex-wrap items-center gap-4">
-        <div className="flex items-center gap-2 mono text-[10px] uppercase tracking-widest text-muted-foreground">
+        <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
           <span className="live-dot" aria-hidden />
           Live Medium feed — @mdtareksec
         </div>
@@ -112,7 +112,7 @@ function BlogPage() {
           href="https://medium.com/@mdtareksec"
           target="_blank"
           rel="noreferrer"
-          className="mono text-[10px] uppercase tracking-widest text-signal border border-signal/40 px-3 py-1.5 hover:bg-signal/10 transition-colors"
+          className="text-xs font-semibold uppercase tracking-wider text-signal border border-signal/40 px-3.5 py-1.5 rounded-full hover:bg-signal/10 transition-colors"
         >
           Follow on Medium ↗
         </a>
@@ -122,18 +122,17 @@ function BlogPage() {
         {isLoading && <LoadingSkeleton />}
 
         {isError && (
-          <div className="glass-card brackets p-8" style={{ position: "relative" }}>
-            <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[11px] uppercase tracking-widest text-critical mb-2">
-              FEED_ERROR // CONNECTION_LOST
+          <div className="glass-card p-8 rounded-2xl border border-hairline/80">
+            <div className="text-xs font-semibold uppercase tracking-wider text-critical mb-2">
+              FEED ERROR
             </div>
             <p className="text-muted-foreground">
-              Could not reach the transmission relay. Read the archive directly on{" "}
+              Could not reach the Medium RSS relay. Read our published articles directly on{" "}
               <a
                 href="https://medium.com/@mdtareksec"
                 target="_blank"
                 rel="noreferrer"
-                className="text-signal hover:underline"
+                className="text-signal hover:underline font-semibold"
               >
                 Medium
               </a>
@@ -150,17 +149,15 @@ function BlogPage() {
                 href={data[0].link}
                 target="_blank"
                 rel="noreferrer"
-                className="glass-card brackets group flex flex-col md:flex-row gap-0 mb-8 overflow-hidden hover-lift"
-                style={{ position: "relative" }}
+                className="glass-card group flex flex-col md:flex-row gap-0 mb-8 overflow-hidden hover-lift rounded-3xl border border-hairline/80 shadow-md"
               >
-                <span className="b-tr" /><span className="b-bl" />
                 <div className="flex-1 p-8 md:p-10 flex flex-col gap-4">
                   <div className="flex items-center gap-3">
-                    <span className="mono text-[10px] uppercase tracking-widest border border-signal/40 text-signal px-2 py-0.5 flex items-center gap-1.5">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider border border-signal/40 text-signal px-2.5 py-0.5 rounded-md flex items-center gap-1.5 bg-signal/10">
                       <span className="live-dot" aria-hidden />
-                      LATEST
+                      LATEST INSIGHT
                     </span>
-                    <span className="mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                    <span className="text-xs text-muted-foreground font-mono">
                       {fmtDate(data[0].pubDate)} · {readTime(data[0].description)}
                     </span>
                   </div>
@@ -170,13 +167,13 @@ function BlogPage() {
                   <p className="text-muted-foreground leading-relaxed line-clamp-3 text-[0.95rem]">
                     {stripHtml(data[0].description).slice(0, 240)}…
                   </p>
-                  <div className="mt-auto flex items-center gap-4">
+                  <div className="mt-auto flex items-center gap-4 pt-2">
                     {data[0].categories?.[0] && (
-                      <span className="mono text-[10px] uppercase tracking-widest text-signal border border-signal/40 px-2 py-1">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-signal border border-signal/40 px-2.5 py-1 rounded-md bg-signal/[0.04]">
                         {data[0].categories[0]}
                       </span>
                     )}
-                    <span className="mono text-[10px] uppercase tracking-widest text-signal flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-signal flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                       Read on Medium
                       <span className="group-hover:translate-x-1 transition-transform inline-block">↗</span>
                     </span>
@@ -190,19 +187,19 @@ function BlogPage() {
                     borderLeft: "1px solid rgba(2,132,199,0.15)",
                   }}
                 >
-                  <div className="mono text-[9px] uppercase tracking-widest text-signal opacity-60 text-center">
-                    LATEST TRANSMISSION
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-signal/80 text-center">
+                    EDITORIAL FEATURE
                   </div>
                   <div
-                    className="w-20 h-20 rounded-full flex items-center justify-center"
+                    className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-inner"
                     style={{
                       background: "rgba(2,132,199,0.10)",
                       border: "1px solid rgba(2,132,199,0.25)",
                     }}
                   >
-                    <span className="mono text-signal text-2xl">✦</span>
+                    <span className="text-signal text-2xl font-bold">✦</span>
                   </div>
-                  <div className="mono text-[9px] uppercase tracking-widest text-muted-foreground text-center">
+                  <div className="text-xs font-mono text-muted-foreground text-center">
                     {readTime(data[0].description)} read
                   </div>
                 </div>
@@ -217,12 +214,10 @@ function BlogPage() {
                   href={item.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="glass-card brackets hover-lift flex flex-col gap-4 p-6 group"
-                  style={{ position: "relative", animationDelay: `${i * 0.05}s` }}
+                  className="glass-card hover-lift flex flex-col gap-4 p-6 group rounded-2xl border border-hairline/80"
+                  style={{ animationDelay: `${i * 0.05}s` }}
                 >
-                  <span className="b-tr" /><span className="b-bl" />
-
-                  <div className="mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  <div className="text-xs text-muted-foreground font-mono">
                     {fmtDate(item.pubDate)} · {readTime(item.description)}
                   </div>
 
@@ -236,13 +231,13 @@ function BlogPage() {
 
                   <div className="mt-auto pt-4 border-t border-hairline flex items-center justify-between">
                     {item.categories?.[0] ? (
-                      <span className="mono text-[10px] uppercase tracking-widest text-signal border border-signal/35 px-2 py-0.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-signal border border-signal/35 px-2.5 py-0.5 rounded-md bg-signal/[0.04]">
                         {item.categories[0]}
                       </span>
                     ) : (
                       <span />
                     )}
-                    <span className="mono text-[10px] uppercase tracking-widest text-signal flex items-center gap-1 group-hover:gap-2 transition-all">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-signal flex items-center gap-1 group-hover:gap-2 transition-all">
                       Read ↗
                     </span>
                   </div>
@@ -256,7 +251,7 @@ function BlogPage() {
                 href="https://medium.com/@mdtareksec"
                 target="_blank"
                 rel="noreferrer"
-                className="mono text-[11px] uppercase tracking-widest border border-signal/60 text-signal px-8 py-4 hover:bg-signal hover:text-signal-foreground transition-colors inline-flex items-center gap-2"
+                className="text-xs uppercase tracking-wider font-semibold border border-signal/60 text-signal px-8 py-4 rounded-xl hover:bg-signal hover:text-signal-foreground transition-all inline-flex items-center gap-2"
               >
                 View full archive on Medium ↗
               </a>
@@ -271,13 +266,12 @@ function BlogPage() {
 function LoadingSkeleton() {
   return (
     <>
-      <div className="mono text-[11px] uppercase tracking-widest text-signal mb-6 flex items-center gap-3">
+      <div className="text-xs font-semibold uppercase tracking-wider text-signal mb-6 flex items-center gap-3">
         <span className="pulse-dot" aria-hidden />
-        FETCHING LATEST TRANSMISSIONS...
+        FETCHING LATEST ARTICLES...
       </div>
       {/* Featured skeleton */}
-      <div className="glass-card brackets p-10 mb-8 h-48 animate-pulse" style={{ position: "relative" }}>
-        <span className="b-tr" /><span className="b-bl" />
+      <div className="glass-card p-10 mb-8 h-48 animate-pulse rounded-3xl border border-hairline/80">
         <div className="h-3 w-24 bg-hairline mb-4 rounded" />
         <div className="h-7 w-2/3 bg-hairline mb-3 rounded" />
         <div className="h-3 w-full bg-hairline mb-2 rounded" />
@@ -285,8 +279,7 @@ function LoadingSkeleton() {
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {[0, 1, 2, 3, 4, 5].map((i) => (
-          <div key={i} className="glass-card brackets p-6 h-56 animate-pulse" style={{ position: "relative" }}>
-            <span className="b-tr" /><span className="b-bl" />
+          <div key={i} className="glass-card p-6 h-56 animate-pulse rounded-2xl border border-hairline/80">
             <div className="h-3 w-1/3 bg-hairline mb-4 rounded" />
             <div className="h-5 w-3/4 bg-hairline mb-3 rounded" />
             <div className="h-3 w-full bg-hairline mb-2 rounded" />

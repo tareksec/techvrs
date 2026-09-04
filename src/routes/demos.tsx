@@ -687,12 +687,10 @@ function DemosPage() {
       </FinderWindow>
 
       {/* ── Conversion Bottom CTA ── */}
-      <div className="mt-14 sm:mt-20 panel brackets p-6 sm:p-8 md:p-12 relative overflow-hidden">
-        <span className="b-tr" />
-        <span className="b-bl" />
+      <div className="mt-14 sm:mt-20 glass-cta p-6 sm:p-8 md:p-12 relative overflow-hidden rounded-3xl border border-hairline/80 shadow-xl">
         <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6 sm:gap-8">
           <div className="max-w-xl">
-            <div className="mono text-[10px] sm:text-[11px] uppercase tracking-widest text-signal mb-2">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-2">
               BESPOKE BUILDS &amp; ARCHITECTURE
             </div>
             <h3 className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-foreground mb-2 sm:mb-3">
@@ -708,13 +706,13 @@ function DemosPage() {
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
             <Link
               to="/contact"
-              className="mono text-xs uppercase tracking-wider px-6 py-3.5 sm:py-4 bg-signal text-signal-foreground font-bold rounded-xl text-center hover:shadow-[0_0_30px_var(--signal)] min-h-[48px] flex items-center justify-center transition-shadow"
+              className="text-xs uppercase tracking-wider px-7 py-4 bg-signal text-signal-foreground font-semibold rounded-xl text-center hover:shadow-[0_0_30px_-4px_rgba(0,217,255,0.5)] min-h-[48px] flex items-center justify-center transition-all"
             >
               Start a Project →
             </Link>
             <Link
               to="/services"
-              className="mono text-xs uppercase tracking-wider px-6 py-3.5 sm:py-4 border border-signal/50 text-signal font-semibold rounded-xl text-center hover:bg-signal/10 min-h-[48px] flex items-center justify-center transition-colors"
+              className="text-xs uppercase tracking-wider px-6 py-4 border border-hairline text-foreground/80 font-semibold rounded-xl text-center hover:border-signal/50 hover:text-signal min-h-[48px] flex items-center justify-center transition-colors"
             >
               Explore Services
             </Link>

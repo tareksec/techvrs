@@ -78,13 +78,13 @@ function WorkPage() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className="mono text-[11px] uppercase tracking-widest px-4 py-2 border transition-all"
+              className="text-xs font-semibold uppercase tracking-wider px-4 py-2 rounded-full border transition-all"
               style={{
                 borderColor: isActive
                   ? meta?.color ?? "var(--signal)"
                   : "var(--hairline)",
                 color: isActive ? meta?.color ?? "var(--signal)" : "var(--muted-foreground)",
-                background: isActive ? meta?.bg ?? "rgba(2,132,199,0.10)" : "transparent",
+                background: isActive ? meta?.bg ?? "rgba(2,132,199,0.12)" : "transparent",
                 boxShadow: isActive
                   ? `0 0 16px -4px ${meta?.color ?? "rgba(2,132,199,0.4)"}55`
                   : "none",
@@ -104,15 +104,12 @@ function WorkPage() {
             <button
               key={c.slug}
               onClick={() => setOpen(c)}
-              className="text-left glass-card brackets hover-lift flex flex-col gap-4 p-6 group"
-              style={{ position: "relative" }}
+              className="text-left glass-card hover-lift flex flex-col gap-4 p-6 group rounded-2xl border border-hairline/80"
             >
-              <span className="b-tr" /><span className="b-bl" />
-
               {/* Category tag + index */}
               <div className="flex items-center justify-between">
                 <span
-                  className="mono text-[10px] uppercase tracking-widest px-2.5 py-1 border inline-flex items-center gap-1.5"
+                  className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md border inline-flex items-center gap-1.5"
                   style={{
                     color: meta?.color,
                     borderColor: `${meta?.color}55`,
@@ -121,13 +118,13 @@ function WorkPage() {
                 >
                   <span
                     style={{
-                      width: 5, height: 5, borderRadius: "50%",
+                      width: 6, height: 6, borderRadius: "50%",
                       background: meta?.dot, display: "inline-block",
                     }}
                   />
                   {c.category}
                 </span>
-                <span className="mono text-xs text-muted-foreground">/ {c.index}</span>
+                <span className="text-xs text-muted-foreground font-mono">/ {c.index}</span>
               </div>
 
               {/* Title */}
@@ -222,19 +219,16 @@ function CaseStudyModal({
       onClick={onClose}
     >
       <div
-        className="glass-card brackets max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10"
+        className="glass-card max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10 rounded-3xl border border-hairline/80 shadow-2xl relative"
         style={{
-          position: "relative",
           animation: "iso-rise 0.45s cubic-bezier(0.16,1,0.3,1) both",
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <span className="b-tr" /><span className="b-bl" />
-
         {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 mono text-[11px] uppercase tracking-widest text-muted-foreground hover:text-signal transition-colors flex items-center gap-1"
+          className="absolute top-5 right-5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-signal transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-hairline bg-background/50"
         >
           ESC ✕
         </button>

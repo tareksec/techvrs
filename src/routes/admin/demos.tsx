@@ -291,32 +291,32 @@ function AdminDemosPage() {
 
       {/* Metrics Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
-        <div className="glass-card brackets p-5">
-          <div className="mono text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
+        <div className="glass-card p-5 rounded-2xl border border-hairline/80">
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
             Total Demos
           </div>
           <div className="font-display text-3xl font-bold text-signal">
             {demos.length}
           </div>
         </div>
-        <div className="glass-card brackets p-5">
-          <div className="mono text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
+        <div className="glass-card p-5 rounded-2xl border border-hairline/80">
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
             Categories
           </div>
           <div className="font-display text-3xl font-bold text-foreground">
             {categories.length}
           </div>
         </div>
-        <div className="glass-card brackets p-5">
-          <div className="mono text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
+        <div className="glass-card p-5 rounded-2xl border border-hairline/80">
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
             Featured Demos
           </div>
           <div className="font-display text-3xl font-bold text-amber">
             {demos.filter((d) => d.featured).length}
           </div>
         </div>
-        <div className="glass-card brackets p-5">
-          <div className="mono text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
+        <div className="glass-card p-5 rounded-2xl border border-hairline/80">
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
             Published
           </div>
           <div className="font-display text-3xl font-bold text-green-400">

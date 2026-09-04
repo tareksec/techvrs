@@ -118,10 +118,9 @@ function ContactPage() {
         <div className="lg:col-span-2 flex flex-col gap-5">
 
           {/* What to expect */}
-          <div className="glass-card brackets p-6" style={{ position: "relative" }}>
-            <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-4 flex items-center gap-2">
-              <IconSecureGlobe size={14} />
+          <div className="glass-card p-6 rounded-2xl border border-hairline/80 shadow-sm">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-4 flex items-center gap-2">
+              <IconSecureGlobe size={15} />
               WHAT TO EXPECT
             </div>
             <ul className="flex flex-col gap-3 mb-4">
@@ -132,21 +131,20 @@ function ContactPage() {
                 "Security by design embedded across all deliverables",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <span className="shrink-0 text-signal/70 mt-0.5 mono text-[10px]">◈</span>
+                  <span className="shrink-0 text-signal mt-0.5 font-bold">✓</span>
                   {item}
                 </li>
               ))}
             </ul>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               No generic sales pitches. We evaluate your goals and provide concrete technical recommendations.
             </p>
           </div>
 
           {/* Core capabilities list */}
-          <div className="glass-card brackets p-6" style={{ position: "relative" }}>
-            <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-4 flex items-center gap-2">
-              <IconShieldLock size={14} />
+          <div className="glass-card p-6 rounded-2xl border border-hairline/80 shadow-sm">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-4 flex items-center gap-2">
+              <IconShieldLock size={15} />
               SERVICES WE DELIVER
             </div>
             <ul className="flex flex-col gap-2.5 mb-2">
@@ -158,7 +156,7 @@ function ContactPage() {
                 "AI Security & Custom Business Agents",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <span className="shrink-0 text-signal/70 mt-0.5 mono text-[10px]">◈</span>
+                  <span className="shrink-0 text-signal mt-0.5 font-bold">✓</span>
                   {item}
                 </li>
               ))}
@@ -166,9 +164,8 @@ function ContactPage() {
           </div>
 
           {/* Direct channels */}
-          <div className="glass-card brackets p-6 flex flex-col gap-3" style={{ position: "relative" }}>
-            <span className="b-tr" /><span className="b-bl" />
-            <div className="mono text-[10px] uppercase tracking-widest text-signal mb-1">
+          <div className="glass-card p-6 rounded-2xl border border-hairline/80 shadow-sm flex flex-col gap-3">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-signal mb-1">
               DIRECT CHANNELS
             </div>
             {[
@@ -182,7 +179,7 @@ function ContactPage() {
                 href={l.href}
                 target={l.href.startsWith("http") ? "_blank" : undefined}
                 rel="noreferrer"
-                className="mono text-[11px] text-muted-foreground hover:text-signal transition-colors flex items-center gap-2"
+                className="text-xs text-muted-foreground hover:text-signal transition-colors flex items-center gap-2"
               >
                 <span className="text-signal opacity-60">↗</span>
                 {l.label}
@@ -191,15 +188,11 @@ function ContactPage() {
           </div>
 
           {/* Lead magnet */}
-          <div
-            className="glass-card brackets p-5 flex items-start gap-3"
-            style={{ position: "relative" }}
-          >
-            <span className="b-tr" /><span className="b-bl" />
+          <div className="glass-card p-5 rounded-2xl border border-hairline/80 shadow-sm flex items-start gap-3">
             <span className="live-dot mt-1 shrink-0" aria-hidden />
-            <p className="mono text-[10px] uppercase tracking-widest text-muted-foreground leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Free resource — request the{" "}
-              <span className="text-signal">27-Point Web &amp; Security Launch Checklist</span>{" "}
+              <span className="text-signal font-semibold">27-Point Web &amp; Security Launch Checklist</span>{" "}
               in your message and we'll include it with our reply.
             </p>
           </div>
@@ -207,11 +200,7 @@ function ContactPage() {
 
         {/* Form */}
         <div className="lg:col-span-3">
-          <div
-            className="glass-cta brackets p-8 md:p-10 relative overflow-hidden"
-            style={{ position: "relative" }}
-          >
-            <span className="b-tr" /><span className="b-bl" />
+          <div className="glass-cta p-8 md:p-10 relative overflow-hidden rounded-3xl border border-hairline/80 shadow-xl">
             <div className="absolute inset-0 bg-grid opacity-[0.07]" aria-hidden />
             <div
               aria-hidden
@@ -223,31 +212,24 @@ function ContactPage() {
               {sent ? (
                 <div className="text-center py-16 flex flex-col items-center gap-4">
                   <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center text-2xl"
-                    style={{
-                      background: "rgba(2,132,199,0.12)",
-                      border: "1px solid rgba(2,132,199,0.35)",
-                      color: "var(--signal)",
-                    }}
+                    className="w-14 h-14 rounded-full bg-signal/15 border border-signal/40 flex items-center justify-center text-signal text-2xl font-bold"
                   >
                     ✓
                   </div>
-                  <div className="mono text-[11px] uppercase tracking-widest text-signal">
-                    INQUIRY RECEIVED
-                  </div>
-                  <p className="text-foreground/85 max-w-xs text-center leading-relaxed">
-                    Thank you! Our technical team will review your project requirements and respond within 24 hours.
+                  <div className="text-2xl font-display font-bold">Inquiry Received</div>
+                  <p className="text-muted-foreground max-w-md text-sm leading-relaxed">
+                    Thank you for reaching out to TechVRS. A partner will review your goals and reply within 24 business hours.
                   </p>
                   <button
                     onClick={() => setSent(false)}
-                    className="mt-2 mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-signal transition-colors"
+                    className="mt-4 text-xs uppercase tracking-wider text-signal hover:underline"
                   >
-                    Submit another inquiry →
+                    Send another inquiry →
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                  <div className="mono text-[10px] uppercase tracking-widest text-signal flex items-center gap-2">
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-signal flex items-center gap-2">
                     <span className="pulse-dot" aria-hidden />
                     PROJECT INQUIRY // COMPOSE
                   </div>
@@ -268,12 +250,11 @@ function ContactPage() {
                         required
                         name="name"
                         autoComplete="name"
-                        className="w-full px-4 py-3 outline-none transition-all text-foreground placeholder:text-muted-foreground/60"
+                        className="w-full px-4 py-3 outline-none transition-all text-foreground placeholder:text-muted-foreground/60 rounded-xl"
                         style={{
                           background: "rgba(255,255,255,0.5)",
                           backdropFilter: "blur(8px)",
                           border: "1px solid var(--hairline)",
-                          borderRadius: 0,
                         }}
                         onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(2,132,199,0.6)")}
                         onBlur={(e) => (e.currentTarget.style.borderColor = "var(--hairline)")}
@@ -286,12 +267,11 @@ function ContactPage() {
                         type="email"
                         name="email"
                         autoComplete="email"
-                        className="w-full px-4 py-3 outline-none transition-all text-foreground placeholder:text-muted-foreground/60"
+                        className="w-full px-4 py-3 outline-none transition-all text-foreground placeholder:text-muted-foreground/60 rounded-xl"
                         style={{
                           background: "rgba(255,255,255,0.5)",
                           backdropFilter: "blur(8px)",
                           border: "1px solid var(--hairline)",
-                          borderRadius: 0,
                         }}
                         onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(2,132,199,0.6)")}
                         onBlur={(e) => (e.currentTarget.style.borderColor = "var(--hairline)")}
@@ -311,13 +291,12 @@ function ContactPage() {
                             key={a}
                             onClick={() => setAudience(a)}
                             aria-pressed={active}
-                            className="mono text-[10px] uppercase tracking-widest px-2 py-3 border transition-all text-center leading-tight"
+                            className="text-xs font-semibold uppercase tracking-wider px-2 py-3 rounded-xl border transition-all text-center leading-tight"
                             style={{
                               borderColor: active ? m.color : "var(--hairline)",
                               color: active ? m.color : "var(--muted-foreground)",
                               background: active ? m.bg : "rgba(255,255,255,0.35)",
                               backdropFilter: "blur(6px)",
-                              boxShadow: active ? `0 0 14px -4px ${m.color}55` : "none",
                             }}
                           >
                             {a}
@@ -332,12 +311,11 @@ function ContactPage() {
                       required
                       name="message"
                       rows={5}
-                      className="w-full px-4 py-3 outline-none transition-all text-foreground placeholder:text-muted-foreground/60 resize-none"
+                      className="w-full px-4 py-3 outline-none transition-all text-foreground placeholder:text-muted-foreground/60 resize-none rounded-xl"
                       style={{
                         background: "rgba(255,255,255,0.5)",
                         backdropFilter: "blur(8px)",
                         border: "1px solid var(--hairline)",
-                        borderRadius: 0,
                       }}
                       onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(2,132,199,0.6)")}
                       onBlur={(e) => (e.currentTarget.style.borderColor = "var(--hairline)")}
@@ -346,7 +324,7 @@ function ContactPage() {
                   </Field>
 
                   {error && (
-                    <div className="mono text-xs text-critical p-3 border border-critical/40 bg-critical/10">
+                    <div className="text-xs text-critical p-3 rounded-xl border border-critical/40 bg-critical/10">
                       {error}
                     </div>
                   )}
@@ -354,7 +332,7 @@ function ContactPage() {
                   <button
                     type="submit"
                     disabled={sending}
-                    className="w-full py-4 mono text-[11px] uppercase tracking-widest bg-signal text-signal-foreground font-semibold hover:shadow-[0_0_36px_-4px_var(--signal)] transition-shadow disabled:opacity-50"
+                    className="w-full py-4 text-xs uppercase tracking-wider bg-signal text-signal-foreground font-semibold rounded-xl hover:shadow-[0_0_36px_-4px_var(--signal)] transition-all disabled:opacity-50"
                   >
                     {sending ? "Sending inquiry…" : "Submit Project Inquiry →"}
                   </button>
