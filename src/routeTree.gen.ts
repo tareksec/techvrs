@@ -12,14 +12,23 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PromptsRouteImport } from './routes/prompts'
+import { Route as PormtsRouteImport } from './routes/pormts'
 import { Route as DemosRouteImport } from './routes/demos'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PormtsIndexRouteImport } from './routes/pormts.index'
+import { Route as PormtsSavedRouteImport } from './routes/pormts.saved'
+import { Route as PormtsGuideRouteImport } from './routes/pormts.guide'
+import { Route as PormtsCollectionsRouteImport } from './routes/pormts.collections'
+import { Route as PormtsBuilderRouteImport } from './routes/pormts.builder'
+import { Route as PormtsAboutRouteImport } from './routes/pormts.about'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminDemosRouteImport } from './routes/admin/demos'
+import { Route as PormtsPromptSlugRouteImport } from './routes/pormts.prompt.$slug'
 
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
@@ -34,6 +43,16 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PromptsRoute = PromptsRouteImport.update({
+  id: '/prompts',
+  path: '/prompts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PormtsRoute = PormtsRouteImport.update({
+  id: '/pormts',
+  path: '/pormts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemosRoute = DemosRouteImport.update({
@@ -61,6 +80,36 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PormtsIndexRoute = PormtsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsSavedRoute = PormtsSavedRouteImport.update({
+  id: '/saved',
+  path: '/saved',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsGuideRoute = PormtsGuideRouteImport.update({
+  id: '/guide',
+  path: '/guide',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsCollectionsRoute = PormtsCollectionsRouteImport.update({
+  id: '/collections',
+  path: '/collections',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsBuilderRoute = PormtsBuilderRouteImport.update({
+  id: '/builder',
+  path: '/builder',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsAboutRoute = PormtsAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => PormtsRoute,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
@@ -76,6 +125,11 @@ const AdminDemosRoute = AdminDemosRouteImport.update({
   path: '/admin/demos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PormtsPromptSlugRoute = PormtsPromptSlugRouteImport.update({
+  id: '/prompt/$slug',
+  path: '/prompt/$slug',
+  getParentRoute: () => PormtsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -83,12 +137,21 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
+  '/pormts': typeof PormtsRouteWithChildren
+  '/prompts': typeof PromptsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work': typeof WorkRoute
   '/admin/demos': typeof AdminDemosRoute
   '/admin/login': typeof AdminLoginRoute
   '/api/chat': typeof ApiChatRoute
+  '/pormts/about': typeof PormtsAboutRoute
+  '/pormts/builder': typeof PormtsBuilderRoute
+  '/pormts/collections': typeof PormtsCollectionsRoute
+  '/pormts/guide': typeof PormtsGuideRoute
+  '/pormts/saved': typeof PormtsSavedRoute
+  '/pormts/': typeof PormtsIndexRoute
+  '/pormts/prompt/$slug': typeof PormtsPromptSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -96,12 +159,20 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
+  '/prompts': typeof PromptsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work': typeof WorkRoute
   '/admin/demos': typeof AdminDemosRoute
   '/admin/login': typeof AdminLoginRoute
   '/api/chat': typeof ApiChatRoute
+  '/pormts/about': typeof PormtsAboutRoute
+  '/pormts/builder': typeof PormtsBuilderRoute
+  '/pormts/collections': typeof PormtsCollectionsRoute
+  '/pormts/guide': typeof PormtsGuideRoute
+  '/pormts/saved': typeof PormtsSavedRoute
+  '/pormts': typeof PormtsIndexRoute
+  '/pormts/prompt/$slug': typeof PormtsPromptSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -110,12 +181,21 @@ export interface FileRoutesById {
   '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/demos': typeof DemosRoute
+  '/pormts': typeof PormtsRouteWithChildren
+  '/prompts': typeof PromptsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work': typeof WorkRoute
   '/admin/demos': typeof AdminDemosRoute
   '/admin/login': typeof AdminLoginRoute
   '/api/chat': typeof ApiChatRoute
+  '/pormts/about': typeof PormtsAboutRoute
+  '/pormts/builder': typeof PormtsBuilderRoute
+  '/pormts/collections': typeof PormtsCollectionsRoute
+  '/pormts/guide': typeof PormtsGuideRoute
+  '/pormts/saved': typeof PormtsSavedRoute
+  '/pormts/': typeof PormtsIndexRoute
+  '/pormts/prompt/$slug': typeof PormtsPromptSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -125,12 +205,21 @@ export interface FileRouteTypes {
     | '/blog'
     | '/contact'
     | '/demos'
+    | '/pormts'
+    | '/prompts'
     | '/services'
     | '/sitemap.xml'
     | '/work'
     | '/admin/demos'
     | '/admin/login'
     | '/api/chat'
+    | '/pormts/about'
+    | '/pormts/builder'
+    | '/pormts/collections'
+    | '/pormts/guide'
+    | '/pormts/saved'
+    | '/pormts/'
+    | '/pormts/prompt/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -138,12 +227,20 @@ export interface FileRouteTypes {
     | '/blog'
     | '/contact'
     | '/demos'
+    | '/prompts'
     | '/services'
     | '/sitemap.xml'
     | '/work'
     | '/admin/demos'
     | '/admin/login'
     | '/api/chat'
+    | '/pormts/about'
+    | '/pormts/builder'
+    | '/pormts/collections'
+    | '/pormts/guide'
+    | '/pormts/saved'
+    | '/pormts'
+    | '/pormts/prompt/$slug'
   id:
     | '__root__'
     | '/'
@@ -151,12 +248,21 @@ export interface FileRouteTypes {
     | '/blog'
     | '/contact'
     | '/demos'
+    | '/pormts'
+    | '/prompts'
     | '/services'
     | '/sitemap.xml'
     | '/work'
     | '/admin/demos'
     | '/admin/login'
     | '/api/chat'
+    | '/pormts/about'
+    | '/pormts/builder'
+    | '/pormts/collections'
+    | '/pormts/guide'
+    | '/pormts/saved'
+    | '/pormts/'
+    | '/pormts/prompt/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -165,6 +271,8 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
   DemosRoute: typeof DemosRoute
+  PormtsRoute: typeof PormtsRouteWithChildren
+  PromptsRoute: typeof PromptsRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WorkRoute: typeof WorkRoute
@@ -194,6 +302,20 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prompts': {
+      id: '/prompts'
+      path: '/prompts'
+      fullPath: '/prompts'
+      preLoaderRoute: typeof PromptsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pormts': {
+      id: '/pormts'
+      path: '/pormts'
+      fullPath: '/pormts'
+      preLoaderRoute: typeof PormtsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demos': {
@@ -231,6 +353,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pormts/': {
+      id: '/pormts/'
+      path: '/'
+      fullPath: '/pormts/'
+      preLoaderRoute: typeof PormtsIndexRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/saved': {
+      id: '/pormts/saved'
+      path: '/saved'
+      fullPath: '/pormts/saved'
+      preLoaderRoute: typeof PormtsSavedRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/guide': {
+      id: '/pormts/guide'
+      path: '/guide'
+      fullPath: '/pormts/guide'
+      preLoaderRoute: typeof PormtsGuideRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/collections': {
+      id: '/pormts/collections'
+      path: '/collections'
+      fullPath: '/pormts/collections'
+      preLoaderRoute: typeof PormtsCollectionsRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/builder': {
+      id: '/pormts/builder'
+      path: '/builder'
+      fullPath: '/pormts/builder'
+      preLoaderRoute: typeof PormtsBuilderRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/about': {
+      id: '/pormts/about'
+      path: '/about'
+      fullPath: '/pormts/about'
+      preLoaderRoute: typeof PormtsAboutRouteImport
+      parentRoute: typeof PormtsRoute
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -252,8 +416,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminDemosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pormts/prompt/$slug': {
+      id: '/pormts/prompt/$slug'
+      path: '/prompt/$slug'
+      fullPath: '/pormts/prompt/$slug'
+      preLoaderRoute: typeof PormtsPromptSlugRouteImport
+      parentRoute: typeof PormtsRoute
+    }
   }
 }
+
+interface PormtsRouteChildren {
+  PormtsAboutRoute: typeof PormtsAboutRoute
+  PormtsBuilderRoute: typeof PormtsBuilderRoute
+  PormtsCollectionsRoute: typeof PormtsCollectionsRoute
+  PormtsGuideRoute: typeof PormtsGuideRoute
+  PormtsSavedRoute: typeof PormtsSavedRoute
+  PormtsIndexRoute: typeof PormtsIndexRoute
+  PormtsPromptSlugRoute: typeof PormtsPromptSlugRoute
+}
+
+const PormtsRouteChildren: PormtsRouteChildren = {
+  PormtsAboutRoute: PormtsAboutRoute,
+  PormtsBuilderRoute: PormtsBuilderRoute,
+  PormtsCollectionsRoute: PormtsCollectionsRoute,
+  PormtsGuideRoute: PormtsGuideRoute,
+  PormtsSavedRoute: PormtsSavedRoute,
+  PormtsIndexRoute: PormtsIndexRoute,
+  PormtsPromptSlugRoute: PormtsPromptSlugRoute,
+}
+
+const PormtsRouteWithChildren =
+  PormtsRoute._addFileChildren(PormtsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -261,6 +455,8 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
   DemosRoute: DemosRoute,
+  PormtsRoute: PormtsRouteWithChildren,
+  PromptsRoute: PromptsRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WorkRoute: WorkRoute,

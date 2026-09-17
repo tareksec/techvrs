@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { prompts } from "@/content/pormts";
 
 interface SitemapEntry {
   path: string;
@@ -20,12 +21,27 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/about", changefreq: "monthly", priority: "0.8" },
           { path: "/blog", changefreq: "weekly", priority: "0.7" },
           { path: "/contact", changefreq: "monthly", priority: "0.7" },
+          { path: "/pormts", changefreq: "weekly", priority: "0.9" },
+          {
+            path: "/pormts/collections",
+            changefreq: "weekly",
+            priority: "0.8",
+          },
+          { path: "/pormts/guide", changefreq: "monthly", priority: "0.7" },
+          { path: "/pormts/about", changefreq: "monthly", priority: "0.5" },
+          ...prompts.map((prompt) => ({
+            path: `/pormts/prompt/${prompt.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.7",
+          })),
         ];
         const urls = entries.map((e) =>
           [
             `  <url>`,
             `    <loc>${baseUrl}${e.path}</loc>`,
-            e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
+            e.changefreq
+              ? `    <changefreq>${e.changefreq}</changefreq>`
+              : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,
           ]

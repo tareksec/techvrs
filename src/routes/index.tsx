@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent, type MotionValue } from "motion/react";
 import { Panel, SectionLabel, StatusPulse } from "@/components/site-chrome";
 import { AnimatedCounter, Magnetic } from "@/components/micro-interactions";
 import { useTheme } from "@/lib/theme";
@@ -110,10 +109,10 @@ function Hero() {
           <div className="reveal mt-6 flex flex-wrap gap-2.5">
             {[
               { Icon: IconSecureGlobe, label: "Web Development" },
-              { Icon: IconEye,         label: "Web Design & UI/UX" },
-              { Icon: IconSignal,      label: "Secure SEO" },
-              { Icon: IconSearch,      label: "On-Page & Off-Page SEO" },
-              { Icon: IconAISecure,    label: "AI Solutions" },
+              { Icon: IconEye, label: "Web Design & UI/UX" },
+              { Icon: IconSignal, label: "Secure SEO" },
+              { Icon: IconSearch, label: "On-Page & Off-Page SEO" },
+              { Icon: IconAISecure, label: "AI Solutions" },
             ].map(({ Icon, label }) => (
               <span
                 key={label}
@@ -232,9 +231,9 @@ function TrustBar() {
 function StatsBar() {
   const stats = [
     { value: "99.9%", label: "Uptime Standard" },
-    { value: "95+",   label: "Core Web Vitals" },
+    { value: "95+", label: "Core Web Vitals" },
     { value: "<1.2s", label: "Target Load Time" },
-    { value: "100%",  label: "Security Audit Integrity" },
+    { value: "100%", label: "Security Audit Integrity" },
   ];
   return (
     <section className="border-b border-hairline bg-panel/60 backdrop-blur-sm relative overflow-hidden">
@@ -428,147 +427,309 @@ const SVC_THEMES = [
   },
 ];
 
+interface ServiceStackCardProps {
+  svc: (typeof services)[number];
+  i: number;
+  total: number;
+  progress: MotionValue<number>;
+  range: [number, number];
+  targetScale: number;
+  themeConfig: (typeof SVC_THEMES)[number];
+  isDark: boolean;
+  containerRefCallback: (el: HTMLDivElement | null) => void;
+}
+
+function ServiceStackCard({
+  svc,
+  i,
+  total,
+  progress,
+  range,
+  targetScale,
+  themeConfig: ct,
+  isDark: dk,
+  containerRefCallback,
+}: ServiceStackCardProps) {
+  const cardContainerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: cardScrollYProgress } = useScroll({
+    target: cardContainerRef,
+    offset: ["start end", "start start"],
+  });
+
+  const imageScale = useTransform(cardScrollYProgress, [0, 1], [1.18, 1]);
+  const scale = useTransform(progress, range, [1, targetScale]);
+
+  const DARK_CARD_BG = "linear-gradient(145deg, #0b1329 0%, #0f1c3a 60%, #132448 100%)";
+  const DARK_INK = "#f8fafc";
+  const DARK_BODY = "#cbd5e1";
+  const DARK_BULLET = "#e2e8f0";
+
+  const { Illustration, SmallIcon } = ct;
+
+  return (
+    <div
+      ref={(el) => {
+        cardContainerRef.current = el;
+        containerRefCallback(el);
+      }}
+      id={`service-card-${i}`}
+      className="h-screen flex items-center justify-center sticky top-0 px-4 sm:px-6 pointer-events-none"
+    >
+      <motion.div
+        style={{
+          backgroundColor: dk ? "#0c1527" : "#ffffff",
+          background: dk ? (ct.cardBgDark ?? DARK_CARD_BG) : ct.cardBg,
+          borderColor: dk ? `${ct.accent}45` : `${ct.accent}35`,
+          boxShadow: dk
+            ? `0 -6px 25px -5px rgba(0,0,0,0.6), 0 25px 65px -15px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.06), 0 0 50px -15px ${ct.accent}30`
+            : `0 -4px 20px -5px rgba(2,32,71,0.08), 0 25px 55px -15px rgba(2,32,71,0.14), 0 0 0 1px ${ct.accent}20, 0 0 45px -15px ${ct.accent}20`,
+          scale,
+          top: `calc(15px + ${i * 24}px)`,
+          zIndex: 10 + i,
+        }}
+        className="pointer-events-auto relative w-full max-w-5xl rounded-3xl border transition-shadow duration-300 overflow-hidden origin-top"
+      >
+        {/* Ambient corner glows */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "50%",
+            height: "40%",
+            background: `radial-gradient(ellipse 80% 60% at 0% 0%, ${ct.accent}14, transparent)`,
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            bottom: 0,
+            right: 0,
+            width: "60%",
+            height: "60%",
+            background: `radial-gradient(ellipse 60% 60% at 100% 100%, ${ct.accent}12, transparent)`,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Card Inner Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 p-6 sm:p-7 lg:p-8 h-full items-center">
+          {/* Left side: content (7 cols) */}
+          <div className="md:col-span-7 flex flex-col justify-between h-full gap-3 py-0.5">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="mono text-xs font-semibold px-2 py-0.5 rounded border border-muted/50 text-muted-foreground">
+                / {svc.index}
+              </span>
+              <span
+                className="mono text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full border inline-flex items-center gap-1.5 font-semibold"
+                style={{
+                  color: ct.accent,
+                  borderColor: `${ct.accent}44`,
+                  background: `${ct.accent}14`,
+                }}
+              >
+                <SmallIcon size={12} />
+                {svc.tagline}
+              </span>
+            </div>
+
+            <div>
+              <h3
+                className="text-2xl sm:text-3xl lg:text-[32px] font-display font-bold leading-tight tracking-tight"
+                style={{ color: dk ? DARK_INK : ct.ink }}
+              >
+                {svc.title}
+              </h3>
+              <p
+                className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground"
+                style={{ color: dk ? DARK_BODY : ct.body }}
+              >
+                {svc.description}
+              </p>
+            </div>
+
+            {/* Deliverables */}
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 my-1">
+              {svc.bullets.map((b) => (
+                <li
+                  key={b}
+                  className="flex items-start gap-2 text-xs font-medium"
+                  style={{ color: dk ? DARK_BULLET : ct.bullet }}
+                >
+                  <span
+                    className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[9px] shrink-0 mt-0.5 font-bold"
+                    style={{
+                      background: ct.accentLight,
+                      color: ct.accent,
+                      border: `1px solid ${ct.accentBorder}`,
+                    }}
+                  >
+                    ✓
+                  </span>
+                  <span className="leading-snug">{b}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Tech pills */}
+            <div className="flex flex-wrap gap-1.5 pt-0.5">
+              {ct.tags.map((t) => (
+                <span
+                  key={t}
+                  className="mono text-[9px] sm:text-[10px] px-2.5 py-0.5 rounded-md border font-medium"
+                  style={{
+                    borderColor: dk ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
+                    background: dk ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
+                    color: dk ? "#94a3b8" : "#64748b",
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="pt-2.5 flex items-center justify-between border-t border-hairline/60">
+              <Link
+                to="/services"
+                hash={svc.slug}
+                className="group mono text-xs uppercase tracking-wider px-4 py-2 rounded-xl font-semibold border transition-all inline-flex items-center gap-2 shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  borderColor: `${ct.accent}66`,
+                  color: ct.accent,
+                  background: `${ct.accent}12`,
+                }}
+              >
+                <span>Explore Discipline</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+              </Link>
+              <span className="mono text-xs text-muted-foreground font-mono">
+                {svc.index} / {String(total).padStart(2, "0")}
+              </span>
+            </div>
+          </div>
+
+          {/* Right side: Visual preview (5 cols) */}
+          <div className="hidden md:flex md:col-span-5 h-full items-center justify-center">
+            <div
+              className="w-full h-full max-h-[360px] rounded-2xl border p-4 relative backdrop-blur-md overflow-hidden flex flex-col justify-between shadow-lg"
+              style={{
+                borderColor: `${ct.accent}33`,
+                background: dk ? "rgba(15,26,53,0.75)" : "rgba(255,255,255,0.85)",
+              }}
+            >
+              <div className="flex items-center justify-between pb-2.5 border-b border-hairline/40">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-red-400/80" />
+                  <span className="w-2 h-2 rounded-full bg-amber-400/80" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-400/80" />
+                </div>
+                <div
+                  className="mono text-[8px] sm:text-[9px] uppercase tracking-widest flex items-center gap-1.5 font-semibold"
+                  style={{ color: ct.accent }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: ct.accent }} />
+                  <span>{ct.chipLabel}</span>
+                </div>
+              </div>
+
+              <div className="relative flex items-center justify-center py-2 flex-1 overflow-hidden">
+                <div
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    width: "70%",
+                    height: "70%",
+                    background: `radial-gradient(circle, ${ct.accent}18 0%, transparent 70%)`,
+                    filter: "blur(20px)",
+                    pointerEvents: "none",
+                  }}
+                />
+                <motion.div
+                  className="relative z-10 w-full flex items-center justify-center"
+                  style={{ scale: imageScale }}
+                >
+                  <Illustration
+                    className="w-full max-h-[140px] sm:max-h-[160px] object-contain drop-shadow-md transition-transform duration-500 hover:scale-105"
+                  />
+                </motion.div>
+              </div>
+
+              <div
+                className="mt-2 p-2 rounded-xl border flex items-center justify-between"
+                style={{
+                  background: dk ? "rgba(10, 18, 38, 0.7)" : "rgba(240, 249, 255, 0.75)",
+                  borderColor: `${ct.accent}30`,
+                }}
+              >
+                <div>
+                  <div className="font-display font-bold text-sm sm:text-base leading-none" style={{ color: ct.accent }}>
+                    {ct.metricValue}
+                  </div>
+                  <div className="text-[10px] text-muted-foreground font-medium mt-0.5">
+                    {ct.metricLabel}
+                  </div>
+                </div>
+                <div
+                  className="mono text-[9px] px-2 py-0.5 rounded border font-semibold"
+                  style={{
+                    color: ct.accent,
+                    borderColor: `${ct.accent}40`,
+                    background: `${ct.accent}10`,
+                  }}
+                >
+                  {ct.secondaryMetric}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 function ServicesOverview() {
   const { theme } = useTheme();
   const dk = theme === "dark";
 
-  const DARK_CARD_BG = "linear-gradient(145deg, #0b1329 0%, #0f1c3a 60%, #132448 100%)";
-  const DARK_INK     = "#f8fafc";
-  const DARK_BODY    = "#cbd5e1";
-  const DARK_BULLET  = "#e2e8f0";
-
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const cardContainersRef = useRef<(HTMLDivElement | null)[]>([]);
   const [activeStep, setActiveStep] = useState(0);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      const cards = cardRefs.current.filter((el): el is HTMLDivElement => el !== null);
-      if (!cards.length) return;
-
-      const totalSteps = cards.length; // 5
-
-      // Reset all cards initial state: Card 0 is front and center, subsequent cards parked below
-      cards.forEach((card, i) => {
-        if (i === 0) {
-          gsap.set(card, {
-            yPercent: 0,
-            y: 0,
-            scale: 1,
-            autoAlpha: 1,
-            pointerEvents: "auto",
-            zIndex: 20,
-          });
-        } else {
-          gsap.set(card, {
-            yPercent: 100,
-            y: 0,
-            scale: 0.96,
-            autoAlpha: 0,
-            pointerEvents: "none",
-            zIndex: 20 + i,
-          });
-        }
-      });
-
-      // Pinned scrubbed GSAP timeline with explicit dwell time per card
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          id: "services-pin",
-          trigger: sectionRef.current,
-          start: "top top",
-          end: () => `+=${totalSteps * window.innerHeight * 0.75}`,
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const p = self.progress;
-            let step = 0;
-            if (p >= 0.75) step = 4;
-            else if (p >= 0.55) step = 3;
-            else if (p >= 0.35) step = 2;
-            else if (p >= 0.15) step = 1;
-            else step = 0;
-            setActiveStep(step);
-          },
-        },
-      });
-
-      // Card 0 dwell at start
-      tl.to({}, { duration: 0.5 });
-
-      for (let i = 1; i < totalSteps; i++) {
-        const transitionLabel = `step-${i}`;
-        tl.addLabel(transitionLabel);
-
-        // Ensure all earlier cards are completely hidden (prevents any ghosting)
-        for (let j = 0; j < i - 1; j++) {
-          tl.set(cards[j], { autoAlpha: 0, pointerEvents: "none" }, transitionLabel);
-        }
-
-        // Previous card scales down slightly and fades out completely (zero ghost text)
-        tl.to(
-          cards[i - 1],
-          {
-            scale: 0.95,
-            y: -14,
-            autoAlpha: 0,
-            pointerEvents: "none",
-            duration: 1,
-            ease: "power2.inOut",
-          },
-          transitionLabel
-        );
-
-        // Current card glides up smoothly into center stage
-        tl.to(
-          cards[i],
-          {
-            yPercent: 0,
-            y: 0,
-            scale: 1,
-            autoAlpha: 1,
-            pointerEvents: "auto",
-            duration: 1,
-            ease: "power2.inOut",
-          },
-          transitionLabel
-        );
-
-        // Dwell time: generous dwell time for each card, plus extended dwell for Card 05
-        const dwell = i === totalSteps - 1 ? 1.5 : 0.6;
-        tl.to({}, { duration: dwell });
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const step = Math.min(
+      services.length - 1,
+      Math.max(0, Math.floor(latest * services.length))
+    );
+    setActiveStep(step);
+  });
 
   const scrollToStep = (idx: number) => {
-    const st = ScrollTrigger.getById("services-pin");
-    if (!st) return;
+    const el = cardContainersRef.current[idx];
+    if (!el) return;
+    const navOffset = 80;
+    const elementPosition = el.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - navOffset;
 
-    // Timeline midpoints mapped into normalized progress (total = 7.8)
-    const dwellMidpoints = [0.25, 1.80, 3.40, 5.00, 7.00];
-    const totalDuration = 7.8;
-
-    const targetTime = dwellMidpoints[idx] ?? 0.25;
-    const targetProgress = Math.min(0.92, targetTime / totalDuration);
-    const targetY = st.start + (st.end - st.start) * targetProgress;
-
-    window.scrollTo({ top: targetY, behavior: "smooth" });
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
     setActiveStep(idx);
   };
 
   return (
     <section
-      ref={sectionRef}
-      className="relative overflow-hidden border-t min-h-screen flex flex-col justify-center pt-16 pb-8 sm:pt-20 sm:pb-12"
+      className="relative border-t"
       style={{
         background: dk
           ? "linear-gradient(135deg, #0b132b 0%, #0f1a35 100%)"
@@ -590,8 +751,8 @@ function ServicesOverview() {
         WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 30%, #000 0%, transparent 80%)",
       }} />
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 w-full relative z-20 flex flex-col">
-        {/* ── Section Header (Centered & Prominent) ── */}
+      {/* ── Section Header ── */}
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 w-full relative z-20 pt-16 sm:pt-20 pb-4">
         <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
           <div className="inline-flex items-center gap-3 mb-2">
             <span className="w-8 h-px bg-signal opacity-70" />
@@ -613,249 +774,69 @@ function ServicesOverview() {
           </p>
 
           {/* Quick-Jump Discipline Pill Bar */}
-          <div className="mt-3.5 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
-            {services.map((svc, idx) => {
-              const isActive = activeStep === idx;
-              const ct = SVC_THEMES[idx] ?? SVC_THEMES[0];
-              return (
-                <button
-                  key={svc.slug}
-                  type="button"
-                  onClick={() => scrollToStep(idx)}
-                  className="mono text-[11px] font-semibold px-3 py-1 rounded-full border transition-all duration-300 flex items-center gap-1.5 cursor-pointer"
-                  style={{
-                    borderColor: isActive ? ct.accent : (dk ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.10)"),
-                    background: isActive
-                      ? (dk ? `${ct.accent}25` : `${ct.accent}15`)
-                      : (dk ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.7)"),
-                    color: isActive ? (dk ? "#ffffff" : ct.ink) : (dk ? "#94a3b8" : "#64748b"),
-                    boxShadow: isActive ? `0 0 12px -2px ${ct.accent}40` : "none",
-                    transform: isActive ? "scale(1.03)" : "scale(1)",
-                  }}
-                >
-                  <span
-                    className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+          <div className="mt-4 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
+            <div
+              className="inline-flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-full backdrop-blur-xl border border-hairline/80 shadow-md flex-wrap justify-center"
+              style={{
+                backgroundColor: dk ? "rgba(11, 19, 43, 0.85)" : "rgba(255, 255, 255, 0.85)",
+              }}
+            >
+              {services.map((svc, idx) => {
+                const isActive = activeStep === idx;
+                const ct = SVC_THEMES[idx] ?? SVC_THEMES[0];
+                return (
+                  <button
+                    key={svc.slug}
+                    type="button"
+                    onClick={() => scrollToStep(idx)}
+                    className="mono text-[11px] font-semibold px-3 py-1 rounded-full border transition-all duration-300 flex items-center gap-1.5 cursor-pointer"
                     style={{
-                      background: isActive ? ct.accent : (dk ? "#475569" : "#cbd5e1"),
-                      boxShadow: isActive ? `0 0 6px ${ct.accent}` : "none",
+                      borderColor: isActive ? ct.accent : (dk ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.10)"),
+                      background: isActive
+                        ? (dk ? `${ct.accent}25` : `${ct.accent}15`)
+                        : (dk ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.7)"),
+                      color: isActive ? (dk ? "#ffffff" : ct.ink) : (dk ? "#94a3b8" : "#64748b"),
+                      boxShadow: isActive ? `0 0 12px -2px ${ct.accent}40` : "none",
+                      transform: isActive ? "scale(1.03)" : "scale(1)",
                     }}
-                  />
-                  <span>{svc.index}. {svc.title}</span>
-                </button>
-              );
-            })}
+                  >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                      style={{
+                        background: isActive ? ct.accent : (dk ? "#475569" : "#cbd5e1"),
+                        boxShadow: isActive ? `0 0 6px ${ct.accent}` : "none",
+                      }}
+                    />
+                    <span>{svc.index}. {svc.title}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* ── Full-Width GSAP Stacking Cards Stage ── */}
-        <div className="relative w-full max-w-5xl mx-auto h-[530px] sm:h-[490px] lg:h-[480px]">
-          {services.map((svc, i) => {
-            const ct = SVC_THEMES[i] ?? SVC_THEMES[0];
-            const { Illustration, SmallIcon } = ct;
-
-            return (
-              <div
-                key={svc.slug}
-                ref={(el) => { cardRefs.current[i] = el; }}
-                className="service-card-item absolute inset-0 w-full h-full will-change-transform rounded-3xl border transition-shadow duration-300"
-                style={{
-                  backgroundColor: dk ? "#0c1527" : "#ffffff",
-                  background: dk ? (ct.cardBgDark ?? DARK_CARD_BG) : ct.cardBg,
-                  borderColor: dk ? `${ct.accent}40` : `${ct.accent}30`,
-                  boxShadow: dk
-                    ? `0 25px 65px -15px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.06), 0 0 50px -15px ${ct.accent}30`
-                    : `0 25px 55px -15px rgba(2,32,71,0.12), 0 0 0 1px ${ct.accent}20, 0 0 45px -15px ${ct.accent}20`,
-                  overflow: "hidden",
-                  zIndex: 20 + i,
-                }}
-              >
-                {/* Ambient corner glows */}
-                <div aria-hidden style={{
-                  position: "absolute", top: 0, left: 0,
-                  width: "50%", height: "40%",
-                  background: `radial-gradient(ellipse 80% 60% at 0% 0%, ${ct.accent}14, transparent)`,
-                  pointerEvents: "none",
-                }} />
-                <div aria-hidden style={{
-                  position: "absolute", bottom: 0, right: 0,
-                  width: "60%", height: "60%",
-                  background: `radial-gradient(ellipse 60% 60% at 100% 100%, ${ct.accent}12, transparent)`,
-                  pointerEvents: "none",
-                }} />
-
-                {/* Card Inner Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 p-6 sm:p-7 lg:p-8 h-full items-center">
-                  {/* Left side: content (7 cols) */}
-                  <div className="md:col-span-7 flex flex-col justify-between h-full gap-3 py-0.5">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="mono text-xs font-semibold px-2 py-0.5 rounded border border-muted/50 text-muted-foreground">
-                        / {svc.index}
-                      </span>
-                      <span
-                        className="mono text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full border inline-flex items-center gap-1.5 font-semibold"
-                        style={{
-                          color: ct.accent,
-                          borderColor: `${ct.accent}44`,
-                          background: `${ct.accent}14`,
-                        }}
-                      >
-                        <SmallIcon size={12} />
-                        {svc.tagline}
-                      </span>
-                    </div>
-
-                    <div>
-                      <h3
-                        className="text-2xl sm:text-3xl lg:text-[32px] font-display font-bold leading-tight tracking-tight"
-                        style={{ color: dk ? DARK_INK : ct.ink }}
-                      >
-                        {svc.title}
-                      </h3>
-                      <p
-                        className="mt-2 text-xs sm:text-sm leading-relaxed text-muted-foreground"
-                        style={{ color: dk ? DARK_BODY : ct.body }}
-                      >
-                        {svc.description}
-                      </p>
-                    </div>
-
-                    {/* Deliverables */}
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 my-1">
-                      {svc.bullets.map((b) => (
-                        <li
-                          key={b}
-                          className="flex items-start gap-2 text-xs font-medium"
-                          style={{ color: dk ? DARK_BULLET : ct.bullet }}
-                        >
-                          <span
-                            className="inline-flex items-center justify-center w-4 h-4 rounded-full text-[9px] shrink-0 mt-0.5 font-bold"
-                            style={{
-                              background: ct.accentLight,
-                              color: ct.accent,
-                              border: `1px solid ${ct.accentBorder}`,
-                            }}
-                          >
-                            ✓
-                          </span>
-                          <span className="leading-snug">{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Tech pills */}
-                    <div className="flex flex-wrap gap-1.5 pt-0.5">
-                      {ct.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="mono text-[9px] sm:text-[10px] px-2.5 py-0.5 rounded-md border font-medium"
-                          style={{
-                            borderColor: dk ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
-                            background: dk ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
-                            color: dk ? "#94a3b8" : "#64748b",
-                          }}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* CTA */}
-                    <div className="pt-2.5 flex items-center justify-between border-t border-hairline/60">
-                      <Link
-                        to="/services"
-                        hash={svc.slug}
-                        className="group mono text-xs uppercase tracking-wider px-4 py-2 rounded-xl font-semibold border transition-all inline-flex items-center gap-2 shadow-sm hover:scale-[1.02] active:scale-[0.98]"
-                        style={{
-                          borderColor: `${ct.accent}66`,
-                          color: ct.accent,
-                          background: `${ct.accent}12`,
-                        }}
-                      >
-                        <span>Explore Discipline</span>
-                        <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-                      </Link>
-                      <span className="mono text-xs text-muted-foreground font-mono">
-                        {svc.index} / {String(services.length).padStart(2, "0")}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Right side: Visual preview (5 cols) */}
-                  <div className="hidden md:flex md:col-span-5 h-full items-center justify-center">
-                    <div
-                      className="w-full h-full max-h-[360px] rounded-2xl border p-4 relative backdrop-blur-md overflow-hidden flex flex-col justify-between shadow-lg"
-                      style={{
-                        borderColor: `${ct.accent}33`,
-                        background: dk ? "rgba(15,26,53,0.75)" : "rgba(255,255,255,0.85)",
-                      }}
-                    >
-                      <div className="flex items-center justify-between pb-2.5 border-b border-hairline/40">
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full bg-red-400/80" />
-                          <span className="w-2 h-2 rounded-full bg-amber-400/80" />
-                          <span className="w-2 h-2 rounded-full bg-emerald-400/80" />
-                        </div>
-                        <div
-                          className="mono text-[8px] sm:text-[9px] uppercase tracking-widest flex items-center gap-1.5 font-semibold"
-                          style={{ color: ct.accent }}
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: ct.accent }} />
-                          <span>{ct.chipLabel}</span>
-                        </div>
-                      </div>
-
-                      <div className="relative flex items-center justify-center py-2 flex-1">
-                        <div
-                          aria-hidden
-                          style={{
-                            position: "absolute",
-                            width: "70%",
-                            height: "70%",
-                            background: `radial-gradient(circle, ${ct.accent}18 0%, transparent 70%)`,
-                            filter: "blur(20px)",
-                            pointerEvents: "none",
-                          }}
-                        />
-                        <div className="relative z-10 w-full flex items-center justify-center">
-                          <Illustration
-                            className="w-full max-h-[140px] sm:max-h-[160px] object-contain drop-shadow-md transition-transform duration-500 hover:scale-105"
-                          />
-                        </div>
-                      </div>
-
-                      <div
-                        className="mt-2 p-2 rounded-xl border flex items-center justify-between"
-                        style={{
-                          background: dk ? "rgba(10, 18, 38, 0.7)" : "rgba(240, 249, 255, 0.75)",
-                          borderColor: `${ct.accent}30`,
-                        }}
-                      >
-                        <div>
-                          <div className="font-display font-bold text-sm sm:text-base leading-none" style={{ color: ct.accent }}>
-                            {ct.metricValue}
-                          </div>
-                          <div className="text-[10px] text-muted-foreground font-medium mt-0.5">
-                            {ct.metricLabel}
-                          </div>
-                        </div>
-                        <div
-                          className="mono text-[9px] px-2 py-0.5 rounded border font-semibold"
-                          style={{
-                            color: ct.accent,
-                            borderColor: `${ct.accent}40`,
-                            background: `${ct.accent}10`,
-                          }}
-                        >
-                          {ct.secondaryMetric}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      {/* ── Framer Motion Stacking Cards Container ── */}
+      <div ref={containerRef} className="relative w-full pb-20">
+        {services.map((svc, i) => {
+          const targetScale = 1 - (services.length - i) * 0.04;
+          return (
+            <ServiceStackCard
+              key={svc.slug}
+              svc={svc}
+              i={i}
+              total={services.length}
+              progress={scrollYProgress}
+              range={[i * (1 / services.length), 1]}
+              targetScale={targetScale}
+              themeConfig={SVC_THEMES[i] ?? SVC_THEMES[0]}
+              isDark={dk}
+              containerRefCallback={(el) => {
+                cardContainersRef.current[i] = el;
+              }}
+            />
+          );
+        })}
       </div>
     </section>
   );

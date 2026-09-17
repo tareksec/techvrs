@@ -1,0 +1,1011 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useState, useMemo } from "react";
+import {
+  Search,
+  Copy,
+  Check,
+  Flame,
+  Palette,
+  Code2,
+  PenTool,
+  Bot,
+  Camera,
+  Briefcase,
+  Sparkles,
+  SlidersHorizontal,
+  Bell,
+  ChevronDown,
+  X,
+  Play,
+  Filter,
+  ArrowLeft,
+  ExternalLink,
+  Layers,
+  Bookmark,
+  Zap,
+  Swords,
+  Heart,
+  Ghost,
+  Star,
+  Moon,
+  Film,
+  Tv,
+} from "lucide-react";
+import { Skiper96 } from "@/components/ui/skiper96";
+import { ConvertoFooter } from "@/components/ui/converto-footer";
+
+export const Route = createFileRoute("/pormts")({
+  head: () => ({
+    meta: [
+      { title: "Prompt Library — TechVRS | Production AI Prompt Hub" },
+      {
+        name: "description",
+        content:
+          "Curated production-ready AI prompts for Midjourney v6.1, Flux.1 Dev, Claude 3.5 Sonnet, and GPT-4o with real visual examples and 1-click copy.",
+      },
+    ],
+  }),
+  component: FlixPromptWebApp,
+});
+
+export interface PromptItem {
+  id: string;
+  title: string;
+  category: string;
+  rating: string;
+  year: string;
+  copies?: string;
+  model: string;
+  image: string;
+  description: string;
+  prompt: string;
+  parameters?: string;
+  tags: string[];
+}
+
+export const CATEGORIES = [
+  { id: "trending", label: "Trending", icon: Flame },
+  { id: "action", label: "Action", icon: Swords },
+  { id: "romance", label: "Romance", icon: Heart },
+  { id: "animation", label: "Animation", icon: Sparkles },
+  { id: "horror", label: "Horror", icon: Ghost },
+  { id: "special", label: "Special", icon: Star },
+  { id: "drakor", label: "Drakor", icon: Moon },
+];
+
+export const FEATURED_HEROES = [
+  {
+    id: "hero-1",
+    title: "The\nAdventure of\nBlue Sword",
+    subtitle: "Cinematic Neo-Tokyo Samurai with glowing katana and atmospheric clouds",
+    buttonText: "Let Play Moview",
+    model: "Midjourney v6.1",
+    rating: "4.9",
+    copies: "8.4k",
+    image:
+      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&auto=format&fit=crop&q=80",
+    prompt:
+      "Cinematic wide-angle shot of a cybernetic ronin warrior standing on a windswept hill under ink-wash clouds, glowing cyan blue steel katana, volumetric mist, Makoto Shinkai style, 8k resolution, octane render, Unreal Engine 5 --ar 16:9 --v 6.1 --stylize 450",
+    parameters: "--ar 16:9 --v 6.1 --stylize 450",
+  },
+  {
+    id: "hero-2",
+    title: "Recalling the\njourney of Dol's\nexciting story",
+    subtitle: "Disney Pixar 3D stylized friends embarking on a joyful road adventure",
+    buttonText: "Let Play Moview",
+    model: "Flux.1 Dev / Pixar 3D",
+    rating: "4.9",
+    copies: "12.1k",
+    image:
+      "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80",
+    prompt:
+      "Disney Pixar style 3D render of cheerful village friends embarking on a lively road journey, warm sunbeams, pastel color palette, soft subsurface scattering, detailed clay textures, miniature photography depth of field, 8k --ar 16:9",
+    parameters: "FLUX.1 [dev] • 3D Pixar Preset",
+  },
+];
+
+export const PROMPT_COLLECTION: PromptItem[] = [
+  {
+    id: "1",
+    title: "Loetoeng Kasarung",
+    category: "animation",
+    rating: "7.8",
+    year: "2023",
+    copies: "3.2k",
+    model: "Midjourney v6",
+    image:
+      "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=700&auto=format&fit=crop&q=80",
+    description: "Legendary folklore king primate in vibrant Pixar animation style.",
+    prompt:
+      "A majestic, expressive monkey king warrior with regal gold ornaments, Disney Pixar 3D style character portrait, soft cinematic rim lighting, subsurface scattering, 8k render, octane render --ar 3:4 --v 6.0",
+    tags: ["Pixar", "Folklore", "3D Character"],
+  },
+  {
+    id: "2",
+    title: "Gajah Langka",
+    category: "animation",
+    rating: "6.0",
+    year: "2023",
+    copies: "1.8k",
+    model: "DALL·E 3",
+    image:
+      "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=700&auto=format&fit=crop&q=80",
+    description: "Gentle island giant overlooking tranquil coastal sunrise.",
+    prompt:
+      "Whimsical stylized baby elephant exploring a turquoise tropical beach shore, sun flare over palm trees, soft Pixar lighting, cute expressions, joyful vibes, hyper detailed 3D render.",
+    tags: ["Animal", "Cute", "Beach"],
+  },
+  {
+    id: "3",
+    title: "Si Kang Satay",
+    category: "animation",
+    rating: "7.1",
+    year: "2023",
+    copies: "2.4k",
+    model: "Midjourney v6",
+    image:
+      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=700&auto=format&fit=crop&q=80",
+    description: "Traditional street barbecue chef with glowing charcoal embers.",
+    prompt:
+      "A cheerful young village vendor grilling skewers over glowing charcoal embers, flying sparks and smoke, warm ambient night market lighting, Pixar 3D animated character, rich vibrant textures --ar 3:4",
+    tags: ["Culinary", "3D Style", "Culture"],
+  },
+  {
+    id: "4",
+    title: "Mommy Cat",
+    category: "animation",
+    rating: "7.8",
+    year: "2023",
+    copies: "4.9k",
+    model: "Midjourney v6",
+    image:
+      "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=700&auto=format&fit=crop&q=80",
+    description: "Chubby fluffy feline lounging in cozy modern bedroom sunlight.",
+    prompt:
+      "Adorable fluffy mother cat resting on plush white bedding, warm morning sun streaming through sheer curtains, soft dust motes, Disney Pixar animation style, highly expressive eyes, 8k --ar 3:4",
+    tags: ["Cat", "Cozy", "Aesthetic"],
+  },
+  {
+    id: "5",
+    title: "Hijaber Cantiq",
+    category: "animation",
+    rating: "6.1",
+    year: "2023",
+    copies: "2.1k",
+    model: "Flux.1 Dev",
+    image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=700&auto=format&fit=crop&q=80",
+    description: "Fashion-forward stylized digital creator snapping a selfie.",
+    prompt:
+      "Stylish young woman in modern pastel hijab holding a smartphone, capturing a selfie, bright sunny urban street backdrop, Disney Pixar stylized 3D character, warm soft skin lighting, cheerful smile.",
+    tags: ["Fashion", "Modern", "Portrait"],
+  },
+  {
+    id: "6",
+    title: "Xatra- X",
+    category: "animation",
+    rating: "6.5",
+    year: "2022",
+    copies: "1.9k",
+    model: "Midjourney v6",
+    image:
+      "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=80",
+    description: "Futuristic superhero defenders posing against neon sunset horizon.",
+    prompt:
+      "Epic superhero ensemble in high-tech glowing suits, dynamic heroic stances, sunset cityscape in background, comic-book meets 3D Pixar animation lighting, cinematic atmosphere, 8k --ar 3:4",
+    tags: ["Action", "Sci-Fi", "Hero"],
+  },
+  {
+    id: "7",
+    title: "Cyber Samurai Katana",
+    category: "action",
+    rating: "8.4",
+    year: "2024",
+    copies: "5.1k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=700&auto=format&fit=crop&q=80",
+    description: "Neon-soaked cyber samurai battling in rainy Neo-Tokyo streets.",
+    prompt:
+      "Futuristic cyborg samurai drawing an energetic plasma blade, rain reflections on asphalt, neon billboard reflections, high octane motion blur, cinematic 8k --ar 3:4",
+    tags: ["Action", "Cyberpunk", "Katana"],
+  },
+  {
+    id: "8",
+    title: "Shadow Assassin Dash",
+    category: "action",
+    rating: "8.8",
+    year: "2024",
+    copies: "6.7k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=700&auto=format&fit=crop&q=80",
+    description: "Stealth shadow warrior leaping across moonlit rooftop ridges.",
+    prompt:
+      "Shadow assassin with flowing black silk scarf leaping over moonlit ancient temple rooftops, throwing glowing shuriken, dynamic motion trail, cinematic dark fantasy anime, 8k --ar 3:4",
+    tags: ["Action", "Ninja", "Stealth"],
+  },
+  {
+    id: "9",
+    title: "Neon Highway Pursuit",
+    category: "action",
+    rating: "8.6",
+    year: "2024",
+    copies: "4.3k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700&auto=format&fit=crop&q=80",
+    description: "High speed cyber motorcycle chase through glowing neon tunnels.",
+    prompt:
+      "Futuristic Akira-style red superbike speeding through rain-slicked neon tunnel, light trails, motion blur, sparks flying from undercarriage, cinematic 8k --ar 3:4",
+    tags: ["Action", "Speed", "Cyberpunk"],
+  },
+  {
+    id: "10",
+    title: "Starlight Romance in Seoul",
+    category: "romance",
+    rating: "8.2",
+    year: "2024",
+    copies: "5.8k",
+    model: "Flux.1 Dev",
+    image:
+      "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=700&auto=format&fit=crop&q=80",
+    description: "Intimate romantic couple under blooming cherry blossom lantern light.",
+    prompt:
+      "Romantic couple sharing an umbrella under falling cherry blossom petals at night, Namsan Tower lights in the distance, Korean drama aesthetic, soft bokeh, cinematic warm lighting.",
+    tags: ["Romance", "Kdrama", "Night"],
+  },
+  {
+    id: "11",
+    title: "Rainy Cafe Whisper",
+    category: "romance",
+    rating: "8.5",
+    year: "2024",
+    copies: "3.9k",
+    model: "Flux.1 Dev",
+    image:
+      "https://images.unsplash.com/photo-1552611052-33e04de081de?w=700&auto=format&fit=crop&q=80",
+    description: "Warm coffee cups and affectionate smiles by a rain-streaked window.",
+    prompt:
+      "Two lovers whispering over warm latte mugs by a rain-streaked Parisian cafe window, soft bokeh streetlights outside, cozy sweaters, vintage film tone, 35mm f/1.4.",
+    tags: ["Romance", "Coffee", "Cozy"],
+  },
+  {
+    id: "12",
+    title: "Midnight Phantom Manor",
+    category: "horror",
+    rating: "7.9",
+    year: "2024",
+    copies: "3.7k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=700&auto=format&fit=crop&q=80",
+    description: "Gothic haunted mansion with misty fog and eerie moonlight.",
+    prompt:
+      "Eerie Victorian gothic mansion isolated in a misty pine forest, blood moon in the stormy sky, crows circling, dark fantasy photography, hyper-detailed, ominous glow --ar 3:4",
+    tags: ["Horror", "Gothic", "Dark"],
+  },
+  {
+    id: "13",
+    title: "Abyssal Crypt Guardian",
+    category: "horror",
+    rating: "8.3",
+    year: "2024",
+    copies: "4.1k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=700&auto=format&fit=crop&q=80",
+    description: "Ancient stone gargoyle waking with glowing red spectral eyes.",
+    prompt:
+      "Ancient crumbling cathedral crypt, sinister gargoyle statue coming alive with glowing crimson eyes, green spectral mist, dark Lovecraftian atmosphere, 8k render.",
+    tags: ["Horror", "Crypt", "Creepy"],
+  },
+  {
+    id: "14",
+    title: "Seoul Autumn Serenade",
+    category: "drakor",
+    rating: "8.7",
+    year: "2024",
+    copies: "6.2k",
+    model: "Flux.1 Dev",
+    image:
+      "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=700&auto=format&fit=crop&q=80",
+    description: "Golden ginkgo leaves and vintage bicycle in Bukchon Hanok village.",
+    prompt:
+      "Traditional Bukchon Hanok village alleyway lined with vibrant golden autumn ginkgo trees, sunlight filtering through leaves, classic Korean drama cinematic shot, 35mm film grain --ar 3:4",
+    tags: ["Drakor", "Autumn", "Aesthetic"],
+  },
+  {
+    id: "15",
+    title: "Jeju Coastline Sunset",
+    category: "drakor",
+    rating: "8.9",
+    year: "2024",
+    copies: "5.4k",
+    model: "Flux.1 Dev",
+    image:
+      "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=700&auto=format&fit=crop&q=80",
+    description: "Tranquil coastal highway with yellow canola fields and golden sunset.",
+    prompt:
+      "Jeju island seaside road beside blooming yellow canola flowers, golden ocean sunset, gentle breeze in the grass, Korean drama establishing shot, 35mm film still.",
+    tags: ["Drakor", "Jeju", "Sunset"],
+  },
+  {
+    id: "16",
+    title: "Clay Village Baker",
+    category: "animation",
+    rating: "8.2",
+    year: "2024",
+    copies: "3.5k",
+    model: "Flux.1 Dev",
+    image:
+      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=700&auto=format&fit=crop&q=80",
+    description: "Cute stop-motion clay baker taking fresh croissants out of wood oven.",
+    prompt:
+      "Adorable claymation style village baker taking steaming golden croissants out of a miniature stone oven, soft warm kitchen light, Aardman and Pixar style, 8k.",
+    tags: ["Animation", "Claymation", "Cozy"],
+  },
+  {
+    id: "17",
+    title: "Autonomous React Architect",
+    category: "special",
+    rating: "9.3",
+    year: "2024",
+    copies: "14.5k",
+    model: "Claude 3.5 Sonnet",
+    image:
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=700&auto=format&fit=crop&q=80",
+    description: "Production-ready accessible React 19 and Tailwind CSS code generator.",
+    prompt:
+      "You are an Elite Frontend Engineer specializing in React 19, TypeScript, and Tailwind CSS v4. Implement a production-ready component with full keyboard accessibility (WAI-ARIA), smooth micro-interactions, responsive mobile layout, and zero runtime layout shift.",
+    tags: ["Special", "Code", "React"],
+  },
+  {
+    id: "18",
+    title: "High-Conversion SaaS Copywriter",
+    category: "special",
+    rating: "8.9",
+    year: "2024",
+    copies: "9.8k",
+    model: "GPT-4o",
+    image:
+      "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=700&auto=format&fit=crop&q=80",
+    description: "Direct-response conversion copy based on Eugene Schwartz frameworks.",
+    prompt:
+      "Act as an industry-leading B2B SaaS conversion copywriter. Write a high-converting hero section, value proposition matrix, 3-tier pricing strategy, and objection-handling FAQ for [Product Name]. Apply the PAS (Problem-Agitation-Solution) framework.",
+    tags: ["Special", "Copywriting", "SaaS"],
+  },
+  {
+    id: "19",
+    title: "Multi-Agent Systems Architect",
+    category: "special",
+    rating: "9.5",
+    year: "2024",
+    copies: "8.2k",
+    model: "Claude 3.5 Sonnet",
+    image:
+      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=700&auto=format&fit=crop&q=80",
+    description: "Fault-tolerant LangGraph and AutoGen hierarchical multi-agent orchestrator.",
+    prompt:
+      "You are a Multi-Agent Systems Architect. Design a hierarchical supervisor-worker agent system for automated technical research and code generation. Define state transitions, memory compaction, tool verification loops, and fallback recovery strategies.",
+    tags: ["Special", "AI Agents", "LangGraph"],
+  },
+  {
+    id: "20",
+    title: "James Webb Infrared Nebula",
+    category: "special",
+    rating: "9.1",
+    year: "2024",
+    copies: "7.1k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&auto=format&fit=crop&q=80",
+    description: "Deep space cosmic star cluster with glowing stardust pillars.",
+    prompt:
+      "Astrophotography of cosmic stellar nursery nebula, infrared false-color composite, glowing cosmic dust pillars, diffraction spikes on brilliant stars, James Webb Space Telescope resolution, 8k --ar 3:4",
+    tags: ["Special", "Space", "Cosmic"],
+  },
+  {
+    id: "21",
+    title: "Nordic Minimalist Glass Villa",
+    category: "special",
+    rating: "8.5",
+    year: "2024",
+    copies: "4.8k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&auto=format&fit=crop&q=80",
+    description: "Modern architectural villa in snowy Scandinavian pine forest.",
+    prompt:
+      "Modern minimalist architectural villa, floor-to-ceiling glass walls, warm interior timber glow, surrounded by snow-covered Scandinavian pine trees, twilight architectural photography, 8k --ar 3:4",
+    tags: ["Special", "Architecture", "Design"],
+  },
+  {
+    id: "22",
+    title: "Luxury Chronograph Horology",
+    category: "special",
+    rating: "8.4",
+    year: "2024",
+    copies: "3.6k",
+    model: "FLUX.1 [dev]",
+    image:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&auto=format&fit=crop&q=80",
+    description: "Studio macro photography of mechanical skeleton watch movement.",
+    prompt:
+      "Macro studio shot of mechanical luxury skeleton watch movement, polished tourbillon gears, sapphire crystal reflections, dramatic rim lighting on brushed titanium, ultra-sharp 8k.",
+    tags: ["Special", "Luxury", "Macro"],
+  },
+  {
+    id: "23",
+    title: "Steampunk Aerial Frigate",
+    category: "animation",
+    rating: "8.7",
+    year: "2024",
+    copies: "4.2k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&auto=format&fit=crop&q=80",
+    description: "Brass airship sailing through towering cumulus sunset clouds.",
+    prompt:
+      "Majestic steampunk airship with brass propellers and glowing lanterns cruising above golden clouds at sunset, Hayao Miyazaki and Pixar style, cinematic adventure, 8k --ar 3:4",
+    tags: ["Animation", "Steampunk", "Adventure"],
+  },
+  {
+    id: "24",
+    title: "B2B Venture Pitch Narrative",
+    category: "special",
+    rating: "8.8",
+    year: "2024",
+    copies: "6.1k",
+    model: "GPT-4o",
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&auto=format&fit=crop&q=80",
+    description: "10-slide seed stage fundraising pitch deck structure.",
+    prompt:
+      "Construct a Y Combinator-caliber 10-slide seed pitch deck structure for an AI-native startup. Focus on acute problem validation, proprietary data moat, bottom-up TAM/SAM calculations, and 18-month capital runway projections.",
+    tags: ["Special", "Startups", "Pitch"],
+  },
+  {
+    id: "25",
+    title: "Mecha Horizon Titan",
+    category: "action",
+    rating: "8.9",
+    year: "2024",
+    copies: "5.7k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?w=700&auto=format&fit=crop&q=80",
+    description: "Colossal mech unit standing guard over neon-lit futuristic skyline.",
+    prompt:
+      "Gargantuan armored mech robot standing among neon skyscrapers in heavy rainfall, glowing amber chest reactor, reflections on wet steel armor, Pacific Rim and Evangelion aesthetic, 8k cinematic --ar 3:4",
+    tags: ["Action", "Mecha", "Sci-Fi"],
+  },
+  {
+    id: "26",
+    title: "Dragon Slayer Peak",
+    category: "action",
+    rating: "8.7",
+    year: "2024",
+    copies: "6.3k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=700&auto=format&fit=crop&q=80",
+    description: "Knight facing a mountain dragon under stormy sunset clouds.",
+    prompt:
+      "Armored knight with two-handed broadsword confronting a colossal red wyrm on a craggy mountain peak, lightning storm at sunset, embers floating in the air, dark fantasy illustration, epic scale 8k --ar 3:4",
+    tags: ["Action", "Fantasy", "Dragon"],
+  },
+  {
+    id: "27",
+    title: "Sunset Gondola Serenade",
+    category: "romance",
+    rating: "8.3",
+    year: "2024",
+    copies: "4.5k",
+    model: "Flux.1 Dev",
+    image:
+      "https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=700&auto=format&fit=crop&q=80",
+    description: "Lovers sharing sunset cruise through historic Venetian canals.",
+    prompt:
+      "Couple in elegant attire on a wooden gondola gliding through Venetian canals at twilight, warm lanterns reflecting on shimmering waters, pastel sky, cinematic romance still, 50mm f/1.2.",
+    tags: ["Romance", "Venice", "Golden Hour"],
+  },
+  {
+    id: "28",
+    title: "Spectral Forest Mist",
+    category: "horror",
+    rating: "8.1",
+    year: "2024",
+    copies: "3.8k",
+    model: "Midjourney v6.1",
+    image:
+      "https://images.unsplash.com/photo-1511497584788-87676104235f?w=700&auto=format&fit=crop&q=80",
+    description: "Shadowy entity floating through twisted pine trees in thick fog.",
+    prompt:
+      "Haunting spectral figure with wispy translucent robes drifting between gnarled black pine trees, thick creeping fog, eerie silver moonlight, Scandinavian folk horror mood, 8k --ar 3:4",
+    tags: ["Horror", "Ghost", "Forest"],
+  },
+  {
+    id: "29",
+    title: "Gangnam Midnight Neon",
+    category: "drakor",
+    rating: "8.4",
+    year: "2024",
+    copies: "4.9k",
+    model: "Flux.1 Dev",
+    image:
+      "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=700&auto=format&fit=crop&q=80",
+    description: "Korean drama rainy street crossing with colorful umbrella reflections.",
+    prompt:
+      "Rain-soaked Gangnam street crossing at night, vibrant neon store signs casting colorful reflections on asphalt, transparent umbrellas, cinematic K-drama film grade, 35mm photography.",
+    tags: ["Drakor", "Seoul", "Rain"],
+  },
+  {
+    id: "30",
+    title: "Tiny Island Explorer",
+    category: "animation",
+    rating: "8.6",
+    year: "2024",
+    copies: "5.2k",
+    model: "Midjourney v6",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&auto=format&fit=crop&q=80",
+    description: "Miniature explorer boy paddling a walnut shell boat on tropical lagoon.",
+    prompt:
+      "Cute miniature explorer boy paddling a carved walnut boat across crystal turquoise water, oversized tropical flora, whimsical lighting, Disney Pixar 3D animation style, 8k render --ar 3:4",
+    tags: ["Animation", "Miniature", "Whimsical"],
+  },
+];
+
+export function FlixPromptWebApp() {
+  const [activeCategory, setActiveCategory] = useState("animation");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeTab, setActiveTab] = useState<"movie" | "series" | "originals">("movie");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [selectedPrompt, setSelectedPrompt] = useState<PromptItem | null>(null);
+  const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set());
+
+  const copyPromptText = (id: string, text: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2400);
+  };
+
+  const toggleBookmark = (id: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setBookmarkedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const filteredItems = useMemo(() => {
+    return PROMPT_COLLECTION.filter((item) => {
+      if (activeTab === "series" && !["animation", "drakor", "romance"].includes(item.category)) {
+        return false;
+      }
+      if (activeTab === "originals" && item.category !== "special") {
+        return false;
+      }
+
+      const matchesCategory =
+        activeCategory === "trending" ||
+        item.category.toLowerCase() === activeCategory.toLowerCase();
+
+      const query = searchQuery.trim().toLowerCase();
+      const matchesQuery =
+        !query ||
+        item.title.toLowerCase().includes(query) ||
+        item.description.toLowerCase().includes(query) ||
+        item.model.toLowerCase().includes(query) ||
+        item.prompt.toLowerCase().includes(query) ||
+        item.tags.some((t) => t.toLowerCase().includes(query));
+
+      return matchesCategory && matchesQuery;
+    });
+  }, [activeCategory, searchQuery, activeTab]);
+
+  return (
+    <div className="min-h-screen w-full bg-[#52606e] text-slate-100 flex flex-col justify-between select-none">
+      
+      {/* ── Outer Matte Glass Background ── */}
+      <div className="w-full flex-1 flex flex-col items-center p-3 sm:p-6 lg:p-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#5e6f80] via-[#4e5c6a] to-[#414d59]">
+        
+        {/* Main Frosted Glass Card Container (Matching screenshot) */}
+        <div className="w-full max-w-[1320px] bg-[#647485]/80 backdrop-blur-3xl rounded-[34px] sm:rounded-[42px] border border-white/20 shadow-[0_30px_90px_-15px_rgba(0,0,0,0.35)] p-6 sm:p-8 lg:p-10 relative overflow-hidden flex-1 flex flex-col">
+          
+          {/* Subtle Ambient Radial Lighting */}
+          <div className="pointer-events-none absolute -top-40 -left-40 w-[450px] h-[450px] bg-white/10 rounded-full blur-[100px]" />
+          <div className="pointer-events-none absolute -bottom-40 -right-40 w-[450px] h-[450px] bg-cyan-400/10 rounded-full blur-[100px]" />
+
+          {/* ── 1. Top Bar Header (User Profile Removed) ── */}
+          <header className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-5 pb-6 border-b border-white/15">
+            
+            {/* Left: Logo */}
+            <div className="flex items-center gap-2">
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-white drop-shadow-sm">
+                Flix.id
+              </span>
+            </div>
+
+            {/* Center: Skiper96 Expandable Tabs Navigation [Movie | Series | Originals | 🔍] */}
+            <Skiper96
+              tabs={[
+                { id: "movie", title: "Movie", icon: Film },
+                { id: "series", title: "Series", icon: Tv },
+                { id: "originals", title: "Originals", icon: Sparkles },
+              ]}
+              activeTab={activeTab}
+              onTabChange={(id) => setActiveTab(id as "movie" | "series" | "originals")}
+            >
+              {/* Inline Search Capsule */}
+              <div className="relative flex items-center pl-2 pr-2">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search prompts..."
+                  className="bg-transparent text-xs sm:text-sm text-white placeholder:text-white/40 focus:outline-none w-24 sm:w-36 lg:w-44 px-2"
+                />
+                <div className="w-6 h-6 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-white/70 transition shrink-0 cursor-pointer">
+                  <Search className="w-3.5 h-3.5" />
+                </div>
+              </div>
+            </Skiper96>
+
+            {/* Right: Clean Exit / Return to Main Website Link (User Profile Removed) */}
+            <div className="flex items-center gap-3">
+              <a
+                href="/"
+                title="Return to Main Website"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 text-xs font-semibold text-white transition shadow-sm backdrop-blur-md"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Main Website</span>
+              </a>
+            </div>
+          </header>
+
+          {/* ── 2. Hero Featured Banners (Two Large Side-by-Side Cards) ── */}
+          <section className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-5 my-6 sm:my-7">
+            {FEATURED_HEROES.map((hero) => (
+              <div
+                key={hero.id}
+                className="relative h-[270px] sm:h-[300px] rounded-[26px] overflow-hidden border border-white/15 shadow-xl group cursor-pointer"
+                onClick={() => {
+                  setSelectedPrompt({
+                    id: hero.id,
+                    title: hero.title.replace(/\n/g, " "),
+                    category: "Featured",
+                    rating: "9.5",
+                    year: "2024",
+                    model: hero.model,
+                    image: hero.image,
+                    description: hero.subtitle,
+                    prompt: hero.prompt,
+                    tags: ["Featured", "Cinematic", "Masterpiece"],
+                  });
+                }}
+              >
+                {/* Background Cover Image */}
+                <img
+                  src={hero.image}
+                  alt={hero.title}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-[0.88]"
+                />
+
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
+
+                {/* Banner Content */}
+                <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between">
+                  <div className="max-w-md">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight drop-shadow-sm whitespace-pre-line tracking-tight">
+                      {hero.title}
+                    </h2>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={(e) => copyPromptText(hero.id, hero.prompt, e)}
+                      className="flex items-center gap-2.5 px-4 sm:px-5 py-2 rounded-full bg-black/85 hover:bg-black backdrop-blur-md text-white text-xs sm:text-sm font-semibold border border-white/15 transition-all shadow-lg active:scale-95"
+                    >
+                      <span className="w-4 h-4 rounded-full bg-white flex items-center justify-center shrink-0">
+                        <Play className="w-2 h-2 fill-slate-950 text-slate-950 ml-0.5" />
+                      </span>
+                      <span>{copiedId === hero.id ? "Copied Prompt!" : hero.buttonText}</span>
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        copyPromptText(hero.id, hero.prompt);
+                      }}
+                      className="p-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/15 transition"
+                      title="Quick Copy"
+                    >
+                      {copiedId === hero.id ? (
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      ) : (
+                        <Copy className="w-3.5 h-3.5" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </section>
+
+          {/* ── 3. Category Filter Pills Row ── */}
+          <div className="relative z-10 flex items-center gap-2.5 sm:gap-3 overflow-x-auto pb-5 scrollbar-none">
+            {CATEGORIES.map((cat) => {
+              const Icon = cat.icon;
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-[18px] text-xs sm:text-sm whitespace-nowrap transition-all duration-200 border ${
+                    isActive
+                      ? "bg-white/35 text-white border-white/50 shadow-md font-semibold backdrop-blur-xl"
+                      : "bg-white/12 text-white/80 border-white/15 hover:bg-white/20 hover:text-white backdrop-blur-md font-medium"
+                  }`}
+                >
+                  <Icon className={`w-4 h-4 ${isActive ? "text-white" : "text-white/70"}`} />
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* ── 4. Section Title & View Action Buttons ── */}
+          <div className="relative z-10 flex items-center justify-between pt-1 pb-4">
+            <div className="flex items-center gap-3">
+              <h3 className="text-xl sm:text-2xl font-bold text-white capitalize tracking-tight">
+                Trending in {CATEGORIES.find((c) => c.id === activeCategory)?.label || "Prompts"}
+              </h3>
+              <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-full bg-white/10 text-white/70 text-xs font-medium border border-white/10">
+                {filteredItems.length} prompts
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <div className="flex items-center bg-black/55 backdrop-blur-md border border-white/15 rounded-full px-3 py-1.5 gap-2.5 text-white/70">
+                <button
+                  type="button"
+                  title="Filter options"
+                  className="hover:text-white transition"
+                >
+                  <SlidersHorizontal className="w-3.5 h-3.5" />
+                </button>
+                <span className="w-px h-3 bg-white/20" />
+                <button
+                  type="button"
+                  title="Sort order"
+                  className="hover:text-white transition"
+                >
+                  <Filter className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* ── 5. Poster Card Grid (6 Cards Row matching screenshot) ── */}
+          <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
+            {filteredItems.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => setSelectedPrompt(item)}
+                className="group cursor-pointer flex flex-col"
+              >
+                {/* Poster Cover */}
+                <div className="relative aspect-[3/4] w-full rounded-[22px] overflow-hidden bg-slate-900 border border-white/15 shadow-md group-hover:border-white/40 transition-all duration-300">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+
+                  {/* Hover Quick Copy Overlay */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center p-3 gap-2 backdrop-blur-xs">
+                    <button
+                      onClick={(e) => copyPromptText(item.id, item.prompt, e)}
+                      className="p-3 bg-white text-slate-950 rounded-full shadow-xl transition transform hover:scale-110 active:scale-95 font-bold"
+                      title="Quick Copy Prompt"
+                    >
+                      {copiedId === item.id ? (
+                        <Check className="w-4 h-4 text-emerald-600" />
+                      ) : (
+                        <Copy className="w-4 h-4" />
+                      )}
+                    </button>
+                    <button
+                      onClick={(e) => toggleBookmark(item.id, e)}
+                      className="p-3 bg-white/20 hover:bg-white/30 text-white rounded-full backdrop-blur-md border border-white/20 transition transform hover:scale-110"
+                      title="Bookmark"
+                    >
+                      <Bookmark
+                        className={`w-4 h-4 ${
+                          bookmarkedIds.has(item.id) ? "fill-amber-400 text-amber-400" : ""
+                        }`}
+                      />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Card Title and Rating strictly matching screenshot */}
+                <div className="mt-2.5 px-0.5">
+                  <h4 className="text-xs sm:text-sm font-semibold text-white/95 line-clamp-1 group-hover:text-white transition">
+                    {item.title}
+                  </h4>
+                  <div className="flex items-center gap-2 mt-0.5 text-[11px] text-white/60 font-medium">
+                    <span className="flex items-center gap-1 text-amber-400 font-semibold">
+                      ★ {item.rating}
+                    </span>
+                    <span>{item.year}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Empty State */}
+          {filteredItems.length === 0 && (
+            <div className="py-20 text-center text-slate-400">
+              <Layers className="w-12 h-12 mx-auto text-slate-500 mb-3 opacity-60" />
+              <p className="text-base font-semibold text-slate-200">No prompts found</p>
+              <p className="text-xs text-slate-400 mt-1">Try switching categories or clearing search keywords</p>
+            </div>
+          )}
+
+          {/* ── 6. Prompt Details Modal Popup ── */}
+          {selectedPrompt && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-in fade-in duration-200"
+              onClick={() => setSelectedPrompt(null)}
+            >
+              <div
+                className="relative w-full max-w-2xl bg-[#1d2736] border border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setSelectedPrompt(null)}
+                  className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="flex gap-4 items-start">
+                  <img
+                    src={selectedPrompt.image}
+                    alt={selectedPrompt.title}
+                    className="w-20 h-28 object-cover rounded-2xl border border-white/15 shadow-md shrink-0"
+                  />
+                  <div>
+                    <span className="inline-block px-3 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 mb-1.5">
+                      {selectedPrompt.model}
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-bold text-white">
+                      {selectedPrompt.title}
+                    </h3>
+                    <div className="flex items-center gap-3 mt-1 text-xs text-slate-400 font-medium">
+                      <span className="text-amber-400">★ {selectedPrompt.rating}</span>
+                      <span>•</span>
+                      <span>{selectedPrompt.copies || selectedPrompt.year} uses</span>
+                      <span>•</span>
+                      <span className="capitalize">{selectedPrompt.category}</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-300 mt-2 line-clamp-2">
+                      {selectedPrompt.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Prompt Box */}
+                <div className="mt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                      Full Production Prompt
+                    </span>
+                    <button
+                      onClick={() => copyPromptText("modal-copy", selectedPrompt.prompt)}
+                      className="flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition"
+                    >
+                      {copiedId === "modal-copy" ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" /> Copied!
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" /> Copy Prompt
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  <div className="p-4 bg-black/50 border border-white/10 rounded-2xl text-xs sm:text-sm font-mono text-slate-200 select-all leading-relaxed max-h-48 overflow-y-auto">
+                    {selectedPrompt.prompt}
+                  </div>
+                </div>
+
+                {/* Parameters & Tags */}
+                {selectedPrompt.parameters && (
+                  <div className="mt-3 flex items-center gap-2 text-[11px] text-slate-400 font-mono">
+                    <span className="text-cyan-400 font-semibold">Parameters:</span>
+                    <span className="bg-white/5 px-2.5 py-1 rounded-md border border-white/5">
+                      {selectedPrompt.parameters}
+                    </span>
+                  </div>
+                )}
+
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {selectedPrompt.tags?.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 rounded-full text-[11px] bg-white/5 border border-white/10 text-slate-300"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Footer Actions */}
+                <div className="mt-6 flex items-center justify-between pt-4 border-t border-white/10">
+                  <button
+                    onClick={() => toggleBookmark(selectedPrompt.id)}
+                    className="flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition"
+                  >
+                    <Bookmark
+                      className={`w-4 h-4 ${
+                        bookmarkedIds.has(selectedPrompt.id) ? "fill-cyan-400 text-cyan-400" : ""
+                      }`}
+                    />
+                    {bookmarkedIds.has(selectedPrompt.id) ? "Saved" : "Save Prompt"}
+                  </button>
+
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => setSelectedPrompt(null)}
+                      className="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs sm:text-sm font-medium text-slate-300 transition"
+                    >
+                      Close
+                    </button>
+                    <button
+                      onClick={() => copyPromptText("modal-btn", selectedPrompt.prompt)}
+                      className="px-6 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs sm:text-sm font-bold transition shadow-lg flex items-center gap-2 active:scale-95"
+                    >
+                      {copiedId === "modal-btn" ? (
+                        <>
+                          <Check className="w-4 h-4 text-slate-950" /> Copied to Clipboard
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-4 h-4 text-slate-950" /> Copy & Use
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ── 7. Converto Modern Rounded Card Footer Matching Uploaded Image ── */}
+      <div className="w-full bg-[#0a0c10] py-4">
+        <ConvertoFooter
+          brandName="CONVERTO"
+          displayWordmark="CONVRTO"
+          description="Reneria is a full-service interior design agency specializing in residential and commercial design."
+          copyrightText="©2025 Converto All rights reserved."
+          creditText="Design by Grabui - Powered by Placeholder"
+        />
+      </div>
+    </div>
+  );
+}

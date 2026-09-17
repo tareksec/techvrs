@@ -1,0 +1,336 @@
+.ph-preview {
+  height: 175px;
+  padding: 22px 20px 0;
+  overflow: hidden;
+  position: relative;
+  --stage: #e6eddd;
+  --preview-paper: #f7faef;
+  --preview-ink: #253629;
+  --preview-accent: #b8d981;
+  background: var(--stage);
+}
+.ph-tone-sage {
+  --stage: #e6eddd;
+  --preview-paper: #f7faef;
+  --preview-ink: #253629;
+  --preview-accent: #b8d981;
+}
+.ph-tone-orange {
+  --stage: #efe4d8;
+  --preview-paper: #e98151;
+  --preview-ink: #382414;
+  --preview-accent: #fbd7a5;
+}
+.ph-tone-purple {
+  --stage: #e9e5f1;
+  --preview-paper: #272732;
+  --preview-ink: #f1edf9;
+  --preview-accent: #aca1e1;
+}
+.ph-tone-sand {
+  --stage: #eee9df;
+  --preview-paper: #fbf6ed;
+  --preview-ink: #514c35;
+  --preview-accent: #a3a77d;
+}
+.ph-tone-blue {
+  --stage: #e4eaf0;
+  --preview-paper: #f3f7fa;
+  --preview-ink: #293c5c;
+  --preview-accent: #96b9e8;
+}
+.ph-tone-pink {
+  --stage: #f1e1e5;
+  --preview-paper: #fae9ee;
+  --preview-ink: #6a3049;
+  --preview-accent: #cc8da4;
+}
+.ph-mini-site {
+  background: var(--preview-paper);
+  color: var(--preview-ink);
+  border: 1px solid #0000000a;
+  border-radius: 4px 4px 0 0;
+  min-height: 180px;
+  padding: 0 13px;
+  box-shadow: 0 6px 16px #0000000b;
+  position: relative;
+  overflow: hidden;
+}
+.ph-mini-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 27px;
+  border-bottom: 1px solid #80808022;
+  font-size: 4px;
+  position: relative;
+  z-index: 2;
+}
+.ph-mini-nav b {
+  font-size: 10px;
+  letter-spacing: -0.5px;
+}
+.ph-mini-nav > span {
+  font-size: 4px;
+  white-space: nowrap;
+}
+.ph-mini-nav i {
+  font-style: normal;
+  border: 1px solid #80808055;
+  padding: 3px 5px;
+  border-radius: 2px;
+}
+.ph-mini-content {
+  position: relative;
+  z-index: 1;
+  margin-top: 17px;
+}
+.ph-mini-eyebrow {
+  font-size: 4px;
+  letter-spacing: 0.7px;
+}
+.ph-mini-content h3 {
+  font-size: 23px;
+  line-height: 1.08;
+  font-family: Outfit, Arial, sans-serif;
+  letter-spacing: -0.8px;
+  white-space: pre-line;
+  margin: 5px 0;
+}
+.ph-mini-content p {
+  font-size: 4px;
+  opacity: 0.65;
+  margin: 7px 0;
+}
+.ph-mini-cta {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  background: var(--preview-ink);
+  color: var(--preview-paper);
+  padding: 4px 7px;
+  font-size: 4px;
+  border-radius: 2px;
+}
+.ph-mini-window {
+  position: absolute;
+  right: -7px;
+  bottom: -32px;
+  width: 50%;
+  height: 110px;
+  background: var(--preview-paper);
+  border: 1px solid #a2b78966;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #00000006;
+  transform: rotate(-9deg);
+}
+.ph-mini-window > div {
+  padding: 8px;
+  font-size: 4px;
+  border-bottom: 1px solid #80808033;
+}
+.ph-mini-window > div span {
+  float: right;
+}
+.ph-mini-window section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 8px;
+}
+.ph-mini-window i {
+  height: 28px;
+  background: var(--preview-accent);
+  border-radius: 2px;
+  opacity: 0.4;
+}
+.ph-mini-window i:nth-child(2n) {
+  opacity: 0.65;
+}
+.ph-mini-flower {
+  position: absolute;
+  right: 6px;
+  bottom: -21px;
+  font-size: 105px;
+  line-height: 1;
+  color: var(--preview-ink);
+  transform: rotate(13deg);
+}
+.ph-tone-orange .ph-mini-content h3,
+.ph-tone-sand .ph-mini-content h3 {
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+.ph-mini-products {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+}
+.ph-mini-products > div {
+  background: #e7e2d5;
+  flex: 1;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.ph-vase {
+  width: 23px;
+  height: 36px;
+  border-radius: 5px 5px 14px 14px;
+  background: #a3a182;
+  box-shadow: inset -8px 0 9px #00000020;
+}
+.ph-lamp {
+  width: 36px;
+  height: 30px;
+  background: #c8ae8c;
+  clip-path: polygon(
+    35% 0,
+    65% 0,
+    100% 55%,
+    55% 55%,
+    55% 95%,
+    80% 95%,
+    80% 100%,
+    20% 100%,
+    20% 95%,
+    45% 95%,
+    45% 55%,
+    0 55%
+  );
+}
+.ph-bottle {
+  width: 20px;
+  height: 41px;
+  border-radius: 7px 7px 3px 3px;
+  background: #c9ab84;
+  box-shadow: inset -7px 0 8px #00000016;
+}
+.ph-mini-dashboard {
+  display: flex;
+  gap: 9px;
+  margin: 0 -8px;
+}
+.ph-mini-sidebar {
+  width: 22px;
+  line-height: 24px;
+  border-right: 1px solid #88888830;
+  font-size: 10px;
+  padding-top: 8px;
+  color: var(--preview-accent);
+}
+.ph-mini-dash-content {
+  flex: 1;
+  padding: 10px 0;
+}
+.ph-mini-dash-content > span {
+  font-size: 4px;
+  opacity: 0.5;
+}
+.ph-mini-dash-content h3 {
+  font-size: 10px;
+  margin: 4px 0 7px;
+}
+.ph-mini-dash-content h3 small {
+  float: right;
+  font-weight: 400;
+}
+.ph-mini-metrics {
+  display: flex;
+  gap: 5px;
+}
+.ph-mini-metrics > div {
+  background: #88888812;
+  border: 1px solid #88888822;
+  border-radius: 3px;
+  padding: 5px;
+  flex: 1;
+}
+.ph-mini-metrics span,
+.ph-mini-metrics em {
+  display: block;
+  font-size: 3px;
+  font-style: normal;
+  opacity: 0.6;
+}
+.ph-mini-metrics b {
+  display: block;
+  font-size: 8px;
+  margin: 3px 0;
+}
+.ph-mini-chart {
+  background: #88888810;
+  border: 1px solid #88888825;
+  margin-top: 7px;
+  padding: 7px;
+  border-radius: 3px;
+}
+.ph-mini-chart > span {
+  font-size: 4px;
+}
+.ph-mini-chart > div {
+  height: 45px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding-top: 6px;
+}
+.ph-mini-chart i {
+  flex: 1;
+  background: var(--preview-accent);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.8;
+}
+.ph-mini-chart i:nth-child(2n) {
+  opacity: 0.45;
+}
+.ph-preview-hero {
+  height: 278px;
+  padding: 0;
+}
+.ph-preview-hero .ph-mini-site {
+  padding: 0 27px;
+  height: 100%;
+  border: 0;
+}
+.ph-preview-hero .ph-mini-nav {
+  height: 42px;
+}
+.ph-preview-hero .ph-mini-nav b {
+  font-size: 16px;
+}
+.ph-preview-hero .ph-mini-nav > span {
+  font-size: 6px;
+}
+.ph-preview-hero .ph-mini-content {
+  margin-top: 29px;
+}
+.ph-preview-hero .ph-mini-eyebrow {
+  font-size: 6px;
+}
+.ph-preview-hero .ph-mini-content h3 {
+  font-size: 43px;
+  letter-spacing: -1.7px;
+  margin: 9px 0;
+}
+.ph-preview-hero .ph-mini-content p {
+  font-size: 7px;
+  margin: 11px 0;
+}
+.ph-preview-hero .ph-mini-cta {
+  font-size: 6px;
+  padding: 7px 10px;
+}
+.ph-preview-hero .ph-mini-window {
+  height: 150px;
+  bottom: -36px;
+  width: 45%;
+  right: 7px;
+}
+.ph-preview-hero .ph-mini-window > div {
+  font-size: 6px;
+}
+.ph-preview-hero .ph-mini-window i {
+  height: 43px;
+}

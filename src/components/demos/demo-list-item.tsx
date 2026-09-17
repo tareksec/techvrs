@@ -21,6 +21,10 @@ export function DemoListItem({ demo, categoryName, onPreview }: DemoListItemProp
             alt={demo.title}
             className="w-full h-full object-cover"
             loading="lazy"
+            referrerPolicy="no-referrer"
+            onError={(e) => {
+              e.currentTarget.src = "/hero-main.png";
+            }}
           />
         </div>
 

@@ -399,18 +399,27 @@ function DemosPage() {
         </p>
 
         {/* Quick Stacks Banner */}
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <span className="mono text-[10px] uppercase tracking-widest text-muted-foreground">
+        <div className="mt-8 flex flex-wrap items-center gap-2.5">
+          <span className="mono text-[10px] uppercase tracking-widest text-muted-foreground mr-1">
             Architecture Stacks:
           </span>
-          {["WordPress", "WooCommerce", "Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase"].map((tag) => (
-            <span
-              key={tag}
-              className="mono text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md border border-hairline bg-panel/40 text-foreground/80"
-            >
-              {tag}
-            </span>
-          ))}
+          {["WordPress", "Next.js", "React", "WooCommerce", "TypeScript", "Tailwind CSS", "Supabase", "Fintech", "AI Solutions"].map((tag) => {
+            const isActive = searchQuery.toLowerCase() === tag.toLowerCase();
+            return (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => updateParams({ q: isActive ? undefined : tag, category: null, sub: null }, true)}
+                className={`mono text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md border transition-all cursor-pointer ${
+                  isActive
+                    ? "border-signal bg-signal/15 text-signal font-semibold shadow-[0_0_12px_rgba(0,217,255,0.2)]"
+                    : "border-hairline bg-panel/40 text-foreground/80 hover:border-signal/50 hover:text-signal"
+                }`}
+              >
+                {tag}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -499,15 +508,24 @@ function DemosPage() {
 
                 {/* Featured Demos highlight section */}
                 <div className="pt-6 sm:pt-8 border-t border-hairline/40">
-                  <div className="mono text-[10px] sm:text-[11px] uppercase tracking-widest text-amber mb-4 sm:mb-5 flex items-center gap-2">
-                    <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    FEATURED CLIENT BUILDS &amp; CONCEPTS
+                  <div className="flex items-center justify-between mb-4 sm:mb-5">
+                    <div className="mono text-[10px] sm:text-[11px] uppercase tracking-widest text-amber flex items-center gap-2 font-semibold">
+                      <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      FEATURED CLIENT BUILDS &amp; CONCEPTS
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => updateParams({ filter: "featured" })}
+                      className="mono text-[10px] uppercase tracking-wider text-signal hover:underline flex items-center gap-1 cursor-pointer"
+                    >
+                      View All Featured ({counts.featured}) →
+                    </button>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
                     {demos
                       .filter((d) => d.featured)
-                      .slice(0, 3)
+                      .slice(0, 6)
                       .map((demo) => (
                         <DemoCard
                           key={demo.id}
@@ -517,6 +535,70 @@ function DemosPage() {
                         />
                       ))}
                   </div>
+                </div>
+
+                {/* Complete Directory Grid Section */}
+                <div className="pt-6 sm:pt-8 border-t border-hairline/40">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-5">
+                    <div>
+                      <div className="mono text-[10px] sm:text-[11px] uppercase tracking-widest text-signal flex items-center gap-2 font-semibold">
+                        <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        ALL SHOWCASE WEBSITES &amp; APPLICATIONS ({demos.length})
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        Production-grade websites, high-conversion themes, and bespoke React/Next.js platforms.
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="mono text-[9px] uppercase tracking-widest text-muted-foreground mr-1">
+                        Filter:
+                      </span>
+                      {[
+                        { label: `All (${demos.length})`, filter: "all" as const },
+                        { label: `WordPress (${counts.wordpress})`, filter: "wordpress" as const },
+                        { label: `Custom (${counts.custom})`, filter: "custom" as const },
+                        { label: `Featured (${counts.featured})`, filter: "featured" as const },
+                      ].map((item) => (
+                        <button
+                          key={item.filter}
+                          type="button"
+                          onClick={() => updateParams({ filter: item.filter })}
+                          className={`mono text-[9px] uppercase tracking-wider px-2.5 py-1 rounded-md border transition-all cursor-pointer ${
+                            activeFilter === item.filter
+                              ? "border-signal bg-signal/15 text-signal font-semibold"
+                              : "border-hairline bg-panel/40 text-muted-foreground hover:text-foreground"
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {viewMode === "grid" ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
+                      {demos.map((demo) => (
+                        <DemoCard
+                          key={demo.id}
+                          demo={demo}
+                          categoryName={getCategoryName(demo.category_id)}
+                          onPreview={setPreviewDemo}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="space-y-2.5">
+                      {demos.map((demo) => (
+                        <DemoListItem
+                          key={demo.id}
+                          demo={demo}
+                          categoryName={getCategoryName(demo.category_id)}
+                          onPreview={setPreviewDemo}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             )}

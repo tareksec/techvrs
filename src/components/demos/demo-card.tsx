@@ -36,7 +36,11 @@ export function DemoCard({ demo, categoryName, onPreview }: DemoCardProps) {
           src={demo.thumbnail_url || "/hero-main.png"}
           alt={demo.title}
           loading="lazy"
-          className="w-full h-full object-cover object-top pt-6 transition-transform duration-500 group-hover:scale-105"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            e.currentTarget.src = "/hero-main.png";
+          }}
+          className="w-full h-full object-cover object-top pt-6 transition-transform duration-700 ease-out group-hover:scale-105"
         />
 
         {/* Hover overlay with Quick View button (Desktop) */}

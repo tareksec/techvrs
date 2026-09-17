@@ -122,6 +122,10 @@ export function DemoModal({ demo, categoryName, onClose }: DemoModalProps) {
                 src={demo.thumbnail_url || "/hero-main.png"}
                 alt={demo.title}
                 loading="lazy"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = "/hero-main.png";
+                }}
                 className="w-full h-full object-cover object-top"
               />
             </div>
