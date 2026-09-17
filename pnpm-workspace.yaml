@@ -1,3 +1,5 @@
 minimumReleaseAgeExclude:
   - framer-motion@13.4.0
   - motion@13.4.0
+  - miniflare@5.20260916.0-alpha
+  - wrangler@4.133.0
