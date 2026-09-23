@@ -1,0 +1,42 @@
+﻿name: Daily Scheduled Blog Publisher (12:00 AM BST)
+
+on:
+  schedule:
+    # 18:00 UTC = 12:00 AM (00:00) Bangladesh Standard Time (BST = UTC+6)
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish-daily-post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run daily post publisher
+        run: node scripts/publish-daily.mjs
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain src/content/)" ]; then
+            git add src/content/
+            git commit -m "chore(blog): publish daily post [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+            echo "Successfully committed and pushed daily published article."
+          else
+            echo "No file changes detected."
+          fi
