@@ -1,0 +1,92 @@
+﻿[
+  {
+    "slug": "ai-agent-security-owasp-top-10",
+    "title": "Securing Autonomous AI Agents: Navigating the OWASP Top 10 for LLMs",
+    "excerpt": "A deep dive into prompt injection, insecure output handling, and excessive agency in autonomous agent architectures.",
+    "category": "AI Security",
+    "readTime": "7 min",
+    "date": "2026-09-24",
+    "content": "## The New Attack Surface\n\nAs organizations deploy autonomous AI agents with database access and execution privileges, conventional boundary defenses fall short. Insecure output handling (LLM02) and excessive agency (LLM08) allow malicious actors to pivot from natural language queries into unauthorized execution pipelines."
+  },
+  {
+    "slug": "zero-trust-cloud-architecture-2026",
+    "title": "Implementing Zero Trust Network Access (ZTNA) in Hybrid Multi-Cloud Environments",
+    "excerpt": "Why legacy VPNs fail in 2026 and how micro-segmentation and continuous identity verification protect distributed infrastructure.",
+    "category": "Cloud Security",
+    "readTime": "8 min",
+    "date": "2026-09-25",
+    "content": "## Never Trust, Always Verify\n\nZero Trust architecture replaces perimeter implicit trust with continuous per-request authentication, dynamic device posture checking, and granular micro-segmentation across AWS, GCP, and on-premises clusters."
+  },
+  {
+    "slug": "api-security-posture-management",
+    "title": "API Security Posture Management: Defending Against Shadow APIs and BOLA Flaws",
+    "excerpt": "Broken Object Level Authorization (BOLA) remains the #1 API threat. Learn how to discover unmapped endpoints and enforce schema validation.",
+    "category": "AppSec",
+    "readTime": "6 min",
+    "date": "2026-09-26",
+    "content": "## Shadow Endpoints and Authorization Gaps\n\nModern microservices introduce dozens of undeclared API endpoints during agile sprints. Continuous eBPF-based discovery and automated OpenAPI schema validation ensure complete visibility and access enforcement."
+  },
+  {
+    "slug": "prompt-injection-defense-in-depth",
+    "title": "Prompt Injection & Jailbreak Defense: Hardening Enterprise LLM Gateways",
+    "excerpt": "Strategies for dual-LLM verification, structured input delimiters, and semantic firewalling against direct and indirect prompt attacks.",
+    "category": "AI Security",
+    "readTime": "7 min",
+    "date": "2026-09-27",
+    "content": "## Indirect Injections in RAG Pipelines\n\nWhen retrieval-augmented generation systems ingest untrusted third-party web content, hidden instructions can override system prompts. Defense-in-depth requires isolation between retrieval data and executive decision engines."
+  },
+  {
+    "slug": "cloud-siem-mitre-attck-triage",
+    "title": "Automating Alert Triage with Cloud-Native SIEM and MITRE ATT&CK Mapping",
+    "excerpt": "Cutting SOC alert fatigue by 80% using automated correlation rules, threat intelligence lookups, and ATT&CK tag enrichment.",
+    "category": "SecOps",
+    "readTime": "9 min",
+    "date": "2026-09-28",
+    "content": "## Precision Over Volume\n\nSecurity teams drown in false positives. By mapping telemetry against the MITRE ATT&CK matrix in real time and applying automated enrichment, analysts can focus exclusively on verified multi-stage adversary behaviors."
+  },
+  {
+    "slug": "supply-chain-software-security-sbom",
+    "title": "Securing the Software Supply Chain: Automated SBOM Verification in CI/CD",
+    "excerpt": "Generating and validating Software Bill of Materials (SBOM) using CycloneDX and Cosign signature verification in GitHub Actions.",
+    "category": "DevSecOps",
+    "readTime": "6 min",
+    "date": "2026-09-29",
+    "content": "## Trusting Your Dependencies\n\nAttacks on open-source dependencies have multiplied exponentially. Automated cryptographic signing of build artifacts and container image scanning at pull time prevent malicious packages from infiltrating production deployments."
+  },
+  {
+    "slug": "identity-threat-detection-response-itdr",
+    "title": "The Rise of ITDR: Why Identity is the New Perimeter in Enterprise Defense",
+    "excerpt": "Detecting credential stuffing, session hijacking, and privilege escalation using Identity Threat Detection and Response.",
+    "category": "Identity Security",
+    "readTime": "7 min",
+    "date": "2026-09-30",
+    "content": "## Attackers Don't Break In—They Log In\n\nModern threat actors bypass firewall perimeters by stealing valid authentication tokens. ITDR monitors anomalous token behavior, impossible travel velocity, and unauthorized privilege delegation in real time."
+  },
+  {
+    "slug": "ransomware-resilience-immutable-backups",
+    "title": "Ransomware Defense Blueprint: Air-Gapping and Immutable Cloud Storage",
+    "excerpt": "How to architect WORM (Write Once, Read Many) cloud vaults and automated recovery runbooks to neutralize extortion attacks.",
+    "category": "Cloud Security",
+    "readTime": "8 min",
+    "date": "2026-10-01",
+    "content": "## Surviving Total Infrastructure Compromise\n\nRansomware operators specifically target shadow copies and online backups. Immutable object storage with strict bucket lock policies ensures that data cannot be encrypted or deleted even with compromised root credentials."
+  },
+  {
+    "slug": "cloud-workload-protection-kubernetes",
+    "title": "Hardening Kubernetes Workloads: eBPF-Based Runtime Threat Detection",
+    "excerpt": "Utilizing Linux kernel tracing with eBPF to detect container escapes, unauthorized binary execution, and anomalous network egress.",
+    "category": "DevSecOps",
+    "readTime": "9 min",
+    "date": "2026-10-02",
+    "content": "## Kernel-Level Visibility Without Overhead\n\neBPF allows security sensors to observe syscalls directly inside the Linux kernel with minimal CPU overhead. This enables instant detection of namespace escapes and shell spawns inside production containers."
+  },
+  {
+    "slug": "executive-cyber-risk-governance",
+    "title": "Translating Cyber Risk into Financial Impact for Boardroom Governance",
+    "excerpt": "Moving from technical vulnerability scores to Quantitative Value-at-Risk (VaR) modeling for C-suite decision-makers.",
+    "category": "Governance",
+    "readTime": "7 min",
+    "date": "2026-10-03",
+    "content": "## Speaking the Language of Capital\n\nBoard members require cyber risk articulated as financial exposure, not CVSS scores. Quantitative risk models map potential outage duration and regulatory fines directly to projected EBITDA impact."
+  }
+]
