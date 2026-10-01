@@ -1,4 +1,4 @@
-﻿import fs from 'fs'
+import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -15,12 +15,18 @@ if (!fs.existsSync(QUEUE_FILE)) {
   process.exit(0)
 }
 
-let queue = []
-try {
-  queue = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf8'))
-} catch {
-  queue = []
+function readJsonFile(filePath, fallback = []) {
+  try {
+    if (!fs.existsSync(filePath)) return fallback
+    const raw = fs.readFileSync(filePath, 'utf8').replace(/^\uFEFF/, '').trim()
+    return raw ? JSON.parse(raw) : fallback
+  } catch (err) {
+    console.error(`Error reading ${filePath}:`, err.message)
+    return fallback
+  }
 }
+
+let queue = readJsonFile(QUEUE_FILE, [])
 
 if (!Array.isArray(queue) || queue.length === 0) {
   console.log('Queue is empty. No articles to publish today.')
@@ -33,15 +39,7 @@ postToPublish.publishedAt = new Date().toISOString()
 console.log(`Publishing 1 post for TechVrs: ${postToPublish.title} (${postToPublish.slug})`)
 
 // 2. Append to published-posts.json
-let publishedList = []
-if (fs.existsSync(PUBLISHED_FILE)) {
-  try {
-    publishedList = JSON.parse(fs.readFileSync(PUBLISHED_FILE, 'utf8'))
-  } catch {
-    publishedList = []
-  }
-}
-
+let publishedList = readJsonFile(PUBLISHED_FILE, [])
 publishedList.unshift(postToPublish)
 fs.writeFileSync(PUBLISHED_FILE, JSON.stringify(publishedList, null, 2), 'utf8')
 
@@ -49,14 +47,7 @@ fs.writeFileSync(PUBLISHED_FILE, JSON.stringify(publishedList, null, 2), 'utf8')
 fs.writeFileSync(QUEUE_FILE, JSON.stringify(queue, null, 2), 'utf8')
 
 // 4. Update history
-let history = []
-if (fs.existsSync(HISTORY_FILE)) {
-  try {
-    history = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8'))
-  } catch {
-    history = []
-  }
-}
+let history = readJsonFile(HISTORY_FILE, [])
 
 history.push({
   slug: postToPublish.slug,

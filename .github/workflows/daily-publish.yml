@@ -1,4 +1,4 @@
-﻿name: Daily Scheduled Blog Publisher (12:00 AM BST)
+name: Daily Scheduled Blog Publisher (12:00 AM BST)
 
 on:
   schedule:
