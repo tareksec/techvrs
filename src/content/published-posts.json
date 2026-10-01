@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "ai-agent-security-owasp-top-10",
+    "title": "Securing Autonomous AI Agents: Navigating the OWASP Top 10 for LLMs",
+    "excerpt": "A deep dive into prompt injection, insecure output handling, and excessive agency in autonomous agent architectures.",
+    "category": "AI Security",
+    "readTime": "7 min",
+    "date": "2026-09-24",
+    "content": "## The New Attack Surface\n\nAs organizations deploy autonomous AI agents with database access and execution privileges, conventional boundary defenses fall short. Insecure output handling (LLM02) and excessive agency (LLM08) allow malicious actors to pivot from natural language queries into unauthorized execution pipelines.",
+    "publishedAt": "2026-10-01T08:42:24.723Z"
+  }
+]

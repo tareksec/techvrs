@@ -1,14 +1,5 @@
 [
   {
-    "slug": "ai-agent-security-owasp-top-10",
-    "title": "Securing Autonomous AI Agents: Navigating the OWASP Top 10 for LLMs",
-    "excerpt": "A deep dive into prompt injection, insecure output handling, and excessive agency in autonomous agent architectures.",
-    "category": "AI Security",
-    "readTime": "7 min",
-    "date": "2026-09-24",
-    "content": "## The New Attack Surface\n\nAs organizations deploy autonomous AI agents with database access and execution privileges, conventional boundary defenses fall short. Insecure output handling (LLM02) and excessive agency (LLM08) allow malicious actors to pivot from natural language queries into unauthorized execution pipelines."
-  },
-  {
     "slug": "zero-trust-cloud-architecture-2026",
     "title": "Implementing Zero Trust Network Access (ZTNA) in Hybrid Multi-Cloud Environments",
     "excerpt": "Why legacy VPNs fail in 2026 and how micro-segmentation and continuous identity verification protect distributed infrastructure.",
