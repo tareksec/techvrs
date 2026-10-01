@@ -3,18 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { SectionLabel } from "@/components/site-chrome";
 import publishedPostsData from "@/content/published-posts.json";
-
-export interface PublishedPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  readTime: string;
-  date: string;
-  tags?: string[];
-  content: string;
-  publishedAt?: string;
-}
+import { ArticleReaderModal, PublishedArticle } from "@/components/article-reader-modal";
 
 const MEDIUM_FEED = "https://medium.com/feed/@mdtareksec";
 
@@ -97,8 +86,8 @@ export const Route = createFileRoute("/blog")({
 });
 
 function BlogPage() {
-  const [activePost, setActivePost] = useState<PublishedPost | null>(null);
-  const localPosts = (publishedPostsData as PublishedPost[]) || [];
+  const [activePost, setActivePost] = useState<PublishedArticle | null>(null);
+  const localPosts = (publishedPostsData as PublishedArticle[]) || [];
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["medium-feed"],
@@ -106,164 +95,155 @@ function BlogPage() {
     staleTime: 1000 * 60 * 30,
   });
 
+  const featuredPost = localPosts[0] || null;
+  const remainingLocalPosts = localPosts.slice(1);
+
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
 
       {/* ── Header ── */}
-      <SectionLabel>AGENCY INSIGHTS</SectionLabel>
-      <h1 className="flip-fade-text font-display text-5xl md:text-6xl font-bold max-w-3xl">
-        Insights &amp; <span className="accent-shift">field notes.</span>
+      <SectionLabel>AGENCY INSIGHTS &amp; FIELD NOTES</SectionLabel>
+      <h1 className="flip-fade-text font-display text-4xl sm:text-5xl md:text-6xl font-bold max-w-4xl tracking-tight leading-[1.15]">
+        Engineering insights &amp; <span className="accent-shift">architectural field notes.</span>
       </h1>
-      <p className="flip-text mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-        Technical breakdowns on modern web development, Core Web Vitals, conversion UI/UX,
-        and secure enterprise AI workflows — authored by the TechVRS engineering team.
+      <p className="flip-text mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
+        Production breakdowns on modern full-stack web architectures, Core Web Vitals, conversion UX, and enterprise AI security — authored by the TechVRS engineering team.
       </p>
 
-      {/* ── TechVRS Publications (Published via GitHub Workflow) ── */}
+      {/* ── TechVRS Publications (Published via GitHub Daily Workflow) ── */}
       {localPosts.length > 0 && (
-        <section className="mt-14 mb-16">
+        <section className="mt-14 mb-20">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-hairline/80">
             <div>
               <span className="text-xs font-semibold uppercase tracking-wider text-signal border border-signal/40 px-3 py-1 rounded-full bg-signal/10 inline-flex items-center gap-1.5">
                 <span className="live-dot" aria-hidden />
-                TechVRS Original Publications
+                TechVRS Research Dispatches
               </span>
               <h2 className="font-display text-2xl md:text-3xl font-bold mt-3">
-                Field Notes &amp; Architectural Breakdowns
+                Original Architecture Breakdowns
               </h2>
             </div>
             <span className="text-xs text-muted-foreground font-mono">
-              Auto-published daily at 12:00 PM BST · {localPosts.length} post{localPosts.length > 1 ? "s" : ""} active
+              Auto-published daily at 12:00 PM BST · {localPosts.length} post{localPosts.length > 1 ? "s" : ""} published
             </span>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {localPosts.map((post) => (
-              <article
-                key={post.slug}
-                onClick={() => setActivePost(post)}
-                className="glass-card hover-lift flex flex-col gap-4 p-6 group rounded-2xl border border-hairline/80 cursor-pointer transition-all hover:border-signal/50"
-              >
-                <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
-                  <span>{fmtDate(post.date || post.publishedAt || "")}</span>
-                  <span className="text-signal font-semibold">{post.readTime}</span>
+          {/* Featured Article Card */}
+          {featuredPost && (
+            <div 
+              onClick={() => setActivePost(featuredPost)}
+              className="glass-card group flex flex-col lg:flex-row gap-0 mb-8 overflow-hidden hover-lift rounded-3xl border border-signal/30 shadow-lg cursor-pointer bg-gradient-to-br from-signal/[0.04] to-transparent hover:border-signal/60 transition-all"
+            >
+              <div className="flex-1 p-8 md:p-10 flex flex-col justify-between gap-6">
+                <div>
+                  <div className="flex flex-wrap items-center gap-3 mb-4">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider border border-signal/40 text-signal px-2.5 py-0.5 rounded-md flex items-center gap-1.5 bg-signal/15">
+                      <span className="live-dot" aria-hidden />
+                      LATEST PUBLICATION
+                    </span>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider border border-hairline px-2.5 py-0.5 rounded-md bg-muted/40 text-muted-foreground">
+                      {featuredPost.category}
+                    </span>
+                    <span className="text-xs text-muted-foreground font-mono">
+                      {fmtDate(featuredPost.date || featuredPost.publishedAt || "")} · {featuredPost.readTime}
+                    </span>
+                  </div>
+
+                  <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight group-hover:text-signal transition-colors">
+                    {featuredPost.title}
+                  </h3>
+
+                  <p className="mt-4 text-muted-foreground leading-relaxed line-clamp-3 text-sm sm:text-base">
+                    {featuredPost.excerpt}
+                  </p>
                 </div>
 
-                <span className="text-[10px] w-fit font-semibold uppercase tracking-wider text-signal border border-signal/40 px-2.5 py-0.5 rounded-md bg-signal/[0.04]">
-                  {post.category}
-                </span>
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-hairline/80">
+                  <div className="flex items-center gap-2">
+                    {featuredPost.tags?.slice(0, 3).map((tag) => (
+                      <span key={tag} className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-muted/30 border border-hairline text-muted-foreground">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
 
-                <h3 className="font-display text-[1.1rem] font-semibold leading-snug group-hover:text-signal transition-colors flex-1">
-                  {post.title}
-                </h3>
-
-                <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
-                  {post.excerpt}
-                </p>
-
-                <div className="mt-auto pt-4 border-t border-hairline flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-signal flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Read Breakdown →
+                  <span className="text-xs font-semibold uppercase tracking-wider text-signal flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                    Read Full Technical Analysis
+                    <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
                   </span>
                 </div>
-              </article>
-            ))}
-          </div>
+              </div>
+
+              {/* Decorative side accent banner */}
+              <div
+                className="hidden lg:flex w-72 flex-col items-center justify-center p-8 gap-5 shrink-0"
+                style={{
+                  background: "linear-gradient(160deg, rgba(2,132,199,0.12), rgba(14,165,233,0.04))",
+                  borderLeft: "1px solid rgba(2,132,199,0.2)",
+                }}
+              >
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-signal/90 text-center font-mono">
+                  TECHVRS LAB DISPATCH
+                </div>
+                <div
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg"
+                  style={{
+                    background: "rgba(2,132,199,0.15)",
+                    border: "1px solid rgba(2,132,199,0.3)",
+                  }}
+                >
+                  <span className="text-signal text-3xl font-bold">✦</span>
+                </div>
+                <div className="text-xs font-mono text-muted-foreground text-center">
+                  SEO · GEO · AEO Verified
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Remaining Local Articles Grid */}
+          {remainingLocalPosts.length > 0 && (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {remainingLocalPosts.map((post) => (
+                <article
+                  key={post.slug}
+                  onClick={() => setActivePost(post)}
+                  className="glass-card hover-lift flex flex-col gap-4 p-6 sm:p-7 group rounded-2xl border border-hairline/80 cursor-pointer transition-all hover:border-signal/50 bg-background/50 hover:bg-background/80"
+                >
+                  <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
+                    <span>{fmtDate(post.date || post.publishedAt || "")}</span>
+                    <span className="text-signal font-semibold">{post.readTime}</span>
+                  </div>
+
+                  <span className="text-[10px] w-fit font-semibold uppercase tracking-wider text-signal border border-signal/30 px-2.5 py-0.5 rounded-md bg-signal/[0.05]">
+                    {post.category}
+                  </span>
+
+                  <h4 className="font-display text-[1.1rem] font-bold leading-snug group-hover:text-signal transition-colors flex-1">
+                    {post.title}
+                  </h4>
+
+                  <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+
+                  <div className="mt-auto pt-4 border-t border-hairline flex items-center justify-between">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-signal flex items-center gap-1 group-hover:gap-2 transition-all">
+                      Read Breakdown →
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </section>
       )}
 
-      {/* Article Reader Modal */}
-      {activePost && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
-          onClick={() => setActivePost(null)}
-        >
-          <div 
-            className="glass-card border border-hairline max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-3xl p-6 md:p-10 shadow-2xl relative bg-background/95 text-left"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between pb-6 border-b border-hairline mb-8 sticky top-0 bg-background/95 backdrop-blur-md z-10">
-              <div className="flex items-center gap-3">
-                <span className="text-[10px] font-semibold uppercase tracking-wider border border-signal/40 text-signal px-2.5 py-0.5 rounded-md bg-signal/10">
-                  {activePost.category}
-                </span>
-                <span className="text-xs text-muted-foreground font-mono">
-                  {activePost.readTime} · Published {fmtDate(activePost.date || activePost.publishedAt || "")}
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setActivePost(null)}
-                className="text-xs font-mono uppercase tracking-wider px-3 py-1.5 rounded-lg border border-hairline hover:bg-hairline/40 transition-colors"
-              >
-                Close ✕
-              </button>
-            </div>
-
-            <h1 className="font-display text-2xl md:text-4xl font-bold leading-tight mb-6">
-              {activePost.title}
-            </h1>
-
-            <p className="text-base text-muted-foreground leading-relaxed italic border-l-2 border-signal pl-4 mb-8 bg-signal/[0.03] py-2 rounded-r-lg">
-              {activePost.excerpt}
-            </p>
-
-            <div className="space-y-6 text-foreground/90 leading-relaxed font-sans text-sm md:text-base">
-              {activePost.content.split('\n\n').map((block, idx) => {
-                if (block.startsWith('## ')) {
-                  return (
-                    <h2 key={idx} className="font-display text-xl md:text-2xl font-bold text-foreground mt-8 pt-4 border-t border-hairline/60">
-                      {block.replace('## ', '')}
-                    </h2>
-                  );
-                }
-                if (block.startsWith('### ')) {
-                  return (
-                    <h3 key={idx} className="font-display text-lg md:text-xl font-semibold text-signal mt-6">
-                      {block.replace('### ', '')}
-                    </h3>
-                  );
-                }
-                if (block.startsWith('```')) {
-                  return (
-                    <pre key={idx} className="p-4 rounded-xl bg-muted/60 border border-hairline font-mono text-xs overflow-x-auto text-emerald-300">
-                      <code>{block.replace(/```[a-z]*\n?/g, '')}</code>
-                    </pre>
-                  );
-                }
-                if (block.startsWith('> ')) {
-                  return (
-                    <blockquote key={idx} className="border-l-4 border-signal pl-4 py-2 italic text-muted-foreground bg-signal/5 rounded-r">
-                      {block.replace('> ', '')}
-                    </blockquote>
-                  );
-                }
-                return (
-                  <p key={idx} className="text-muted-foreground leading-relaxed">
-                    {block}
-                  </p>
-                );
-              })}
-            </div>
-
-            <div className="mt-12 pt-8 border-t border-hairline flex flex-wrap items-center justify-between gap-4">
-              <Link
-                to="/contact"
-                className="text-xs uppercase tracking-wider font-semibold bg-signal text-signal-foreground px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
-              >
-                Discuss Technical Implementation With TechVRS →
-              </Link>
-              <button
-                type="button"
-                onClick={() => setActivePost(null)}
-                className="text-xs uppercase tracking-wider font-semibold border border-hairline px-6 py-3 rounded-xl hover:bg-hairline/40 transition-colors"
-              >
-                Back to Archive
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Professional Article Reader Modal */}
+      <ArticleReaderModal 
+        article={activePost} 
+        onClose={() => setActivePost(null)} 
+      />
 
       {/* Live status strip */}
       <div className="mt-8 flex flex-wrap items-center gap-4">
