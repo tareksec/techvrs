@@ -1,9 +1,9 @@
-name: Daily Scheduled Blog Publisher (12:00 AM BST)
+name: Daily Scheduled Blog Publisher (12:00 PM BST)
 
 on:
   schedule:
-    # 18:00 UTC = 12:00 AM (00:00) Bangladesh Standard Time (BST = UTC+6)
-    - cron: '0 18 * * *'
+    # 06:00 UTC = 12:00 PM (Noon) Bangladesh Standard Time (BST = UTC+6)
+    - cron: '0 6 * * *'
   workflow_dispatch:
 
 permissions:

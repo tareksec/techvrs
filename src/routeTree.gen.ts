@@ -9,65 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WorkRouteImport } from './routes/work'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as PromptsRouteImport } from './routes/prompts'
-import { Route as PormtsRouteImport } from './routes/pormts'
-import { Route as DemosRouteImport } from './routes/demos'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BlogRouteImport } from './routes/blog'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PormtsIndexRouteImport } from './routes/pormts.index'
-import { Route as PormtsSavedRouteImport } from './routes/pormts.saved'
-import { Route as PormtsGuideRouteImport } from './routes/pormts.guide'
-import { Route as PormtsCollectionsRouteImport } from './routes/pormts.collections'
-import { Route as PormtsBuilderRouteImport } from './routes/pormts.builder'
-import { Route as PormtsAboutRouteImport } from './routes/pormts.about'
-import { Route as ApiChatRouteImport } from './routes/api/chat'
-import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DemosRouteImport } from './routes/demos'
+import { Route as PormtsRouteImport } from './routes/pormts'
+import { Route as PromptsRouteImport } from './routes/prompts'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as WorkRouteImport } from './routes/work'
 import { Route as AdminDemosRouteImport } from './routes/admin/demos'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as PormtsIndexRouteImport } from './routes/pormts.index'
+import { Route as PormtsAboutRouteImport } from './routes/pormts.about'
+import { Route as PormtsBuilderRouteImport } from './routes/pormts.builder'
+import { Route as PormtsCollectionsRouteImport } from './routes/pormts.collections'
+import { Route as PormtsGuideRouteImport } from './routes/pormts.guide'
+import { Route as PormtsSavedRouteImport } from './routes/pormts.saved'
 import { Route as PormtsPromptSlugRouteImport } from './routes/pormts.prompt.$slug'
 
-const WorkRoute = WorkRouteImport.update({
-  id: '/work',
-  path: '/work',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PromptsRoute = PromptsRouteImport.update({
-  id: '/prompts',
-  path: '/prompts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PormtsRoute = PormtsRouteImport.update({
-  id: '/pormts',
-  path: '/pormts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemosRoute = DemosRouteImport.update({
-  id: '/demos',
-  path: '/demos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -75,44 +40,49 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PormtsIndexRoute = PormtsIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => PormtsRoute,
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const PormtsSavedRoute = PormtsSavedRouteImport.update({
-  id: '/saved',
-  path: '/saved',
-  getParentRoute: () => PormtsRoute,
+const DemosRoute = DemosRouteImport.update({
+  id: '/demos',
+  path: '/demos',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const PormtsGuideRoute = PormtsGuideRouteImport.update({
-  id: '/guide',
-  path: '/guide',
-  getParentRoute: () => PormtsRoute,
+const PormtsRoute = PormtsRouteImport.update({
+  id: '/pormts',
+  path: '/pormts',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const PormtsCollectionsRoute = PormtsCollectionsRouteImport.update({
-  id: '/collections',
-  path: '/collections',
-  getParentRoute: () => PormtsRoute,
+const PromptsRoute = PromptsRouteImport.update({
+  id: '/prompts',
+  path: '/prompts',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const PormtsBuilderRoute = PormtsBuilderRouteImport.update({
-  id: '/builder',
-  path: '/builder',
-  getParentRoute: () => PormtsRoute,
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const PormtsAboutRoute = PormtsAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => PormtsRoute,
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const ApiChatRoute = ApiChatRouteImport.update({
-  id: '/api/chat',
-  path: '/api/chat',
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDemosRoute = AdminDemosRouteImport.update({
+  id: '/admin/demos',
+  path: '/admin/demos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
@@ -120,10 +90,40 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminDemosRoute = AdminDemosRouteImport.update({
-  id: '/admin/demos',
-  path: '/admin/demos',
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PormtsIndexRoute = PormtsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsAboutRoute = PormtsAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsBuilderRoute = PormtsBuilderRouteImport.update({
+  id: '/builder',
+  path: '/builder',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsCollectionsRoute = PormtsCollectionsRouteImport.update({
+  id: '/collections',
+  path: '/collections',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsGuideRoute = PormtsGuideRouteImport.update({
+  id: '/guide',
+  path: '/guide',
+  getParentRoute: () => PormtsRoute,
+} as any)
+const PormtsSavedRoute = PormtsSavedRouteImport.update({
+  id: '/saved',
+  path: '/saved',
+  getParentRoute: () => PormtsRoute,
 } as any)
 const PormtsPromptSlugRoute = PormtsPromptSlugRouteImport.update({
   id: '/prompt/$slug',
@@ -283,60 +283,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/work': {
-      id: '/work'
-      path: '/work'
-      fullPath: '/work'
-      preLoaderRoute: typeof WorkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/prompts': {
-      id: '/prompts'
-      path: '/prompts'
-      fullPath: '/prompts'
-      preLoaderRoute: typeof PromptsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pormts': {
-      id: '/pormts'
-      path: '/pormts'
-      fullPath: '/pormts'
-      preLoaderRoute: typeof PormtsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demos': {
-      id: '/demos'
-      path: '/demos'
-      fullPath: '/demos'
-      preLoaderRoute: typeof DemosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -346,60 +297,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pormts/': {
-      id: '/pormts/'
-      path: '/'
-      fullPath: '/pormts/'
-      preLoaderRoute: typeof PormtsIndexRouteImport
-      parentRoute: typeof PormtsRoute
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/pormts/saved': {
-      id: '/pormts/saved'
-      path: '/saved'
-      fullPath: '/pormts/saved'
-      preLoaderRoute: typeof PormtsSavedRouteImport
-      parentRoute: typeof PormtsRoute
+    '/demos': {
+      id: '/demos'
+      path: '/demos'
+      fullPath: '/demos'
+      preLoaderRoute: typeof DemosRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/pormts/guide': {
-      id: '/pormts/guide'
-      path: '/guide'
-      fullPath: '/pormts/guide'
-      preLoaderRoute: typeof PormtsGuideRouteImport
-      parentRoute: typeof PormtsRoute
+    '/pormts': {
+      id: '/pormts'
+      path: '/pormts'
+      fullPath: '/pormts'
+      preLoaderRoute: typeof PormtsRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/pormts/collections': {
-      id: '/pormts/collections'
-      path: '/collections'
-      fullPath: '/pormts/collections'
-      preLoaderRoute: typeof PormtsCollectionsRouteImport
-      parentRoute: typeof PormtsRoute
+    '/prompts': {
+      id: '/prompts'
+      path: '/prompts'
+      fullPath: '/prompts'
+      preLoaderRoute: typeof PromptsRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/pormts/builder': {
-      id: '/pormts/builder'
-      path: '/builder'
-      fullPath: '/pormts/builder'
-      preLoaderRoute: typeof PormtsBuilderRouteImport
-      parentRoute: typeof PormtsRoute
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/pormts/about': {
-      id: '/pormts/about'
-      path: '/about'
-      fullPath: '/pormts/about'
-      preLoaderRoute: typeof PormtsAboutRouteImport
-      parentRoute: typeof PormtsRoute
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/api/chat': {
-      id: '/api/chat'
-      path: '/api/chat'
-      fullPath: '/api/chat'
-      preLoaderRoute: typeof ApiChatRouteImport
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/demos': {
+      id: '/admin/demos'
+      path: '/admin/demos'
+      fullPath: '/admin/demos'
+      preLoaderRoute: typeof AdminDemosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/login': {
@@ -409,12 +367,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/demos': {
-      id: '/admin/demos'
-      path: '/admin/demos'
-      fullPath: '/admin/demos'
-      preLoaderRoute: typeof AdminDemosRouteImport
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/pormts/': {
+      id: '/pormts/'
+      path: '/'
+      fullPath: '/pormts/'
+      preLoaderRoute: typeof PormtsIndexRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/about': {
+      id: '/pormts/about'
+      path: '/about'
+      fullPath: '/pormts/about'
+      preLoaderRoute: typeof PormtsAboutRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/builder': {
+      id: '/pormts/builder'
+      path: '/builder'
+      fullPath: '/pormts/builder'
+      preLoaderRoute: typeof PormtsBuilderRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/collections': {
+      id: '/pormts/collections'
+      path: '/collections'
+      fullPath: '/pormts/collections'
+      preLoaderRoute: typeof PormtsCollectionsRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/guide': {
+      id: '/pormts/guide'
+      path: '/guide'
+      fullPath: '/pormts/guide'
+      preLoaderRoute: typeof PormtsGuideRouteImport
+      parentRoute: typeof PormtsRoute
+    }
+    '/pormts/saved': {
+      id: '/pormts/saved'
+      path: '/saved'
+      fullPath: '/pormts/saved'
+      preLoaderRoute: typeof PormtsSavedRouteImport
+      parentRoute: typeof PormtsRoute
     }
     '/pormts/prompt/$slug': {
       id: '/pormts/prompt/$slug'
