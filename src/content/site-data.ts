@@ -251,6 +251,24 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: "tasneem-knit-industry-b2b-platform",
+    index: "B2B-01",
+    category: "SEO",
+    title: "Tasneem Knit Industry: High-Performance Digital Platform & B2B SEO",
+    challenge:
+      "A premier textile machinery supplier in Bangladesh struggled with mobile latency, zero search indexation on complex machinery catalogs, and missing commercial inquiries.",
+    approach:
+      "Engineered edge-rendered web architecture, structured Product and Organization schemas, and executed a targeted technical SEO campaign for circular knitting machinery queries.",
+    outcome:
+      "80x visibility surge, 19 top-3 commercial rankings, 1.1s mobile LCP, and 12x inbound qualified factory procurement leads.",
+    metrics: [
+      { label: "Search Visibility", value: "80x" },
+      { label: "Mobile LCP", value: "1.1s" },
+      { label: "Inbound Leads", value: "12x" },
+    ],
+    stack: ["Technical SEO", "Schema.org", "React", "TypeScript", "Core Web Vitals"],
+  },
+  {
     slug: "saas-web-platform",
     index: "WEB-01",
     category: "Web",

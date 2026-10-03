@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { SectionLabel } from "@/components/site-chrome";
@@ -98,8 +98,105 @@ function BlogPage() {
   const featuredPost = localPosts[0] || null;
   const remainingLocalPosts = localPosts.slice(1);
 
+  // Deep-link support: open article modal if ?article=slug is present in URL
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const articleSlug = params.get("article");
+      if (articleSlug) {
+        const found = localPosts.find((p) => p.slug === articleSlug);
+        if (found) {
+          setActivePost(found);
+        }
+      }
+    }
+  }, [localPosts]);
+
+  const handleOpenArticle = (post: PublishedArticle) => {
+    setActivePost(post);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("article", post.slug);
+      window.history.replaceState({}, "", url.toString());
+    }
+  };
+
+  const handleCloseArticle = () => {
+    setActivePost(null);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("article");
+      window.history.replaceState({}, "", url.toString());
+    }
+  };
+
+  // Structured Schema Markup (JSON-LD) connecting TechVRS & Tasneem Knit Industry
+  const schemaOrg = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "https://techvrs.com/blog#tasneem-knit-industry-case-study",
+        "headline": "How We Engineered a High-Performance Digital Platform for Tasneem Knit Industry (B2B SEO Case Study)",
+        "name": "How We Engineered a High-Performance Digital Platform for Tasneem Knit Industry (B2B SEO Case Study)",
+        "description": "A technical B2B case study on how TechVRS engineered a high-speed web architecture, structured schema catalog, and technical SEO engine for Tasneem Knit Industry in Bangladesh.",
+        "url": "https://techvrs.com/blog?article=how-we-engineered-a-high-performance-digital-platform-for-tasneem-knit-industry",
+        "datePublished": "2026-10-03T08:00:00+06:00",
+        "dateModified": "2026-10-03T08:00:00+06:00",
+        "inLanguage": "en-US",
+        "author": {
+          "@type": "Organization",
+          "name": "TechVRS",
+          "url": "https://techvrs.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "TechVRS",
+          "url": "https://techvrs.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://techvrs.com/hero-main.png"
+          }
+        },
+        "about": [
+          {
+            "@type": "Organization",
+            "name": "Tasneem Knit Industry",
+            "url": "https://tasneemknitindustry.com/",
+            "description": "Leading industrial circular knitting and textile machinery supplier in Bangladesh."
+          }
+        ],
+        "mentions": [
+          {
+            "@type": "Organization",
+            "name": "Tasneem Knit Industry",
+            "url": "https://tasneemknitindustry.com/"
+          },
+          {
+            "@type": "Product",
+            "name": "Industrial Circular Knitting Machine",
+            "category": "Industrial Textile Machinery",
+            "offers": {
+              "@type": "Offer",
+              "url": "https://tasneemknitindustry.com/"
+            }
+          }
+        ],
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://techvrs.com/blog?article=how-we-engineered-a-high-performance-digital-platform-for-tasneem-knit-industry"
+        }
+      }
+    ]
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
+      />
 
       {/* ── Header ── */}
       <SectionLabel>AGENCY INSIGHTS &amp; FIELD NOTES</SectionLabel>
@@ -131,7 +228,7 @@ function BlogPage() {
           {/* Featured Article Card */}
           {featuredPost && (
             <div 
-              onClick={() => setActivePost(featuredPost)}
+              onClick={() => handleOpenArticle(featuredPost)}
               className="glass-card group flex flex-col lg:flex-row gap-0 mb-8 overflow-hidden hover-lift rounded-3xl border border-signal/30 shadow-lg cursor-pointer bg-gradient-to-br from-signal/[0.04] to-transparent hover:border-signal/60 transition-all"
             >
               <div className="flex-1 p-8 md:p-10 flex flex-col justify-between gap-6">
@@ -207,7 +304,7 @@ function BlogPage() {
               {remainingLocalPosts.map((post) => (
                 <article
                   key={post.slug}
-                  onClick={() => setActivePost(post)}
+                  onClick={() => handleOpenArticle(post)}
                   className="glass-card hover-lift flex flex-col gap-4 p-6 sm:p-7 group rounded-2xl border border-hairline/80 cursor-pointer transition-all hover:border-signal/50 bg-background/50 hover:bg-background/80"
                 >
                   <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
@@ -242,7 +339,7 @@ function BlogPage() {
       {/* Professional Article Reader Modal */}
       <ArticleReaderModal 
         article={activePost} 
-        onClose={() => setActivePost(null)} 
+        onClose={handleCloseArticle} 
       />
 
       {/* Live status strip */}

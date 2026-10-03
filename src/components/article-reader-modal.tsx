@@ -408,7 +408,7 @@ function renderMarkdown(
                   <tr key={rIdx} className="hover:bg-muted/30 transition-colors">
                     {row.map((cell, cIdx) => (
                       <td key={cIdx} className="px-4 py-3 text-foreground/80 leading-snug">
-                        {cell.replace(/\*\*(.*?)\*\*/g, "$1")}
+                        {renderInline(cell)}
                       </td>
                     ))}
                   </tr>
@@ -428,7 +428,7 @@ function renderMarkdown(
           key={idx} 
           className="my-5 border-l-4 border-signal pl-4 sm:pl-5 py-3 italic text-foreground/90 bg-signal/[0.04] rounded-r-xl font-medium text-sm sm:text-base leading-relaxed"
         >
-          {quoteText}
+          {renderInline(quoteText)}
         </blockquote>
       );
     }
@@ -448,7 +448,7 @@ function renderMarkdown(
             return (
               <li key={itemIdx} className="flex items-start gap-2.5 text-muted-foreground leading-relaxed text-sm sm:text-base">
                 <span className="w-1.5 h-1.5 rounded-full bg-signal mt-2 shrink-0" />
-                <span>{cleanItem}</span>
+                <span>{renderInline(cleanItem)}</span>
               </li>
             );
           })}
@@ -459,8 +459,70 @@ function renderMarkdown(
     // Standard Paragraph
     return (
       <p key={idx} className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-        {trimmed}
+        {renderInline(trimmed)}
       </p>
     );
   });
+}
+
+function renderInline(text: string): React.ReactNode {
+  const parts: React.ReactNode[] = [];
+  const regex = /\[([^\]]+)\]\(([^)]+)\)|(\*\*[^*]+\*\*)|(\*[^*]+\*)|(`[^`]+`)/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+
+    if (match[1] && match[2]) {
+      const label = match[1];
+      const url = match[2];
+      const isExternal = url.startsWith("http://") || url.startsWith("https://");
+      parts.push(
+        <a
+          key={match.index}
+          href={url}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "dofollow noopener" : undefined}
+          className="text-signal underline hover:opacity-80 transition-colors font-semibold decoration-signal/50 underline-offset-2"
+        >
+          {label}
+        </a>
+      );
+    } else if (match[3]) {
+      const boldText = match[3].slice(2, -2);
+      parts.push(
+        <strong key={match.index} className="text-foreground font-semibold">
+          {boldText}
+        </strong>
+      );
+    } else if (match[4]) {
+      const italicText = match[4].slice(1, -1);
+      parts.push(
+        <em key={match.index} className="italic text-foreground/90">
+          {italicText}
+        </em>
+      );
+    } else if (match[5]) {
+      const codeText = match[5].slice(1, -1);
+      parts.push(
+        <code
+          key={match.index}
+          className="font-mono text-xs px-1.5 py-0.5 rounded bg-muted/60 border border-hairline text-signal"
+        >
+          {codeText}
+        </code>
+      );
+    }
+
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
 }
