@@ -130,7 +130,7 @@ function BlogPage() {
     }
   };
 
-  // Structured Schema Markup (JSON-LD) connecting TechVRS & Tasneem Knit Industry
+  // Structured Schema Markup (JSON-LD) connecting TechVRS & Tasneem Knit Industry for SEO, GEO & AEO
   const schemaOrg = {
     "@context": "https://schema.org",
     "@graph": [
@@ -144,6 +144,16 @@ function BlogPage() {
         "datePublished": "2026-10-03T08:00:00+06:00",
         "dateModified": "2026-10-03T08:00:00+06:00",
         "inLanguage": "en-US",
+        "articleSection": "B2B Technical Case Study",
+        "keywords": [
+          "industrial circular knitting machine suppliers",
+          "circular knitting machine Bangladesh",
+          "textile machinery supplier Dhaka",
+          "Tasneem Knit Industry",
+          "B2B technical SEO",
+          "Core Web Vitals case study",
+          "TechVRS"
+        ],
         "author": {
           "@type": "Organization",
           "name": "TechVRS",
@@ -163,7 +173,11 @@ function BlogPage() {
             "@type": "Organization",
             "name": "Tasneem Knit Industry",
             "url": "https://tasneemknitindustry.com/",
-            "description": "Leading industrial circular knitting and textile machinery supplier in Bangladesh."
+            "description": "Leading industrial circular knitting and textile machinery supplier in Bangladesh.",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Bangladesh"
+            }
           }
         ],
         "mentions": [
@@ -176,6 +190,7 @@ function BlogPage() {
             "@type": "Product",
             "name": "Industrial Circular Knitting Machine",
             "category": "Industrial Textile Machinery",
+            "description": "High-speed single jersey, double jersey, and jacquard circular knitting machinery for textile garment factories.",
             "offers": {
               "@type": "Offer",
               "url": "https://tasneemknitindustry.com/"
@@ -186,6 +201,36 @@ function BlogPage() {
           "@type": "WebPage",
           "@id": "https://techvrs.com/blog?article=how-we-engineered-a-high-performance-digital-platform-for-tasneem-knit-industry"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://techvrs.com/blog#tasneem-faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why do industrial circular knitting machine suppliers in Bangladesh need technical SEO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Factory procurement directors and textile production managers actively search online for specific machinery models, cylinder diameters, and gauge specifications. Technical SEO and schema markup ensure supplier catalogs appear at the top of Google Search when high-budget procurement decisions are made."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where can Bangladeshi textile factories source high-performance circular knitting machinery?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Factory owners can browse verified industrial machinery specifications and request quotes directly through Tasneem Knit Industry (https://tasneemknitindustry.com/), which supplies single jersey, double jersey, and specialized knit machines nationwide."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Core Web Vitals optimization improve B2B inquiry conversions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Industrial decision-makers frequently access sites on mobile networks in factory zones. Reducing page load times from 5.2 seconds down to 1.1 seconds eliminates bounce rates, ensuring prospective buyers seamlessly navigate specifications and submit RFQ inquiries."
+            }
+          }
+        ]
       }
     ]
   };
