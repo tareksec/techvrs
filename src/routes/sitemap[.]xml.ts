@@ -17,6 +17,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/services", changefreq: "monthly", priority: "0.9" },
           { path: "/work", changefreq: "weekly", priority: "0.9" },
+          { path: "/tasneem-knit-industry", changefreq: "weekly", priority: "0.9" },
           { path: "/demos", changefreq: "weekly", priority: "0.9" },
           { path: "/about", changefreq: "monthly", priority: "0.8" },
           { path: "/blog", changefreq: "weekly", priority: "0.7" },

@@ -18,6 +18,7 @@ import { Route as PormtsRouteImport } from './routes/pormts'
 import { Route as PromptsRouteImport } from './routes/prompts'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TasneemKnitIndustryRouteImport } from './routes/tasneem-knit-industry'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as AdminDemosRouteImport } from './routes/admin/demos'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
@@ -73,6 +74,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TasneemKnitIndustryRoute = TasneemKnitIndustryRouteImport.update({
+  id: '/tasneem-knit-industry',
+  path: '/tasneem-knit-industry',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkRoute = WorkRouteImport.update({
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/prompts': typeof PromptsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tasneem-knit-industry': typeof TasneemKnitIndustryRoute
   '/work': typeof WorkRoute
   '/admin/demos': typeof AdminDemosRoute
   '/admin/login': typeof AdminLoginRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/prompts': typeof PromptsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tasneem-knit-industry': typeof TasneemKnitIndustryRoute
   '/work': typeof WorkRoute
   '/admin/demos': typeof AdminDemosRoute
   '/admin/login': typeof AdminLoginRoute
@@ -185,6 +193,7 @@ export interface FileRoutesById {
   '/prompts': typeof PromptsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tasneem-knit-industry': typeof TasneemKnitIndustryRoute
   '/work': typeof WorkRoute
   '/admin/demos': typeof AdminDemosRoute
   '/admin/login': typeof AdminLoginRoute
@@ -209,6 +218,7 @@ export interface FileRouteTypes {
     | '/prompts'
     | '/services'
     | '/sitemap.xml'
+    | '/tasneem-knit-industry'
     | '/work'
     | '/admin/demos'
     | '/admin/login'
@@ -230,6 +240,7 @@ export interface FileRouteTypes {
     | '/prompts'
     | '/services'
     | '/sitemap.xml'
+    | '/tasneem-knit-industry'
     | '/work'
     | '/admin/demos'
     | '/admin/login'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/prompts'
     | '/services'
     | '/sitemap.xml'
+    | '/tasneem-knit-industry'
     | '/work'
     | '/admin/demos'
     | '/admin/login'
@@ -275,6 +287,7 @@ export interface RootRouteChildren {
   PromptsRoute: typeof PromptsRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TasneemKnitIndustryRoute: typeof TasneemKnitIndustryRoute
   WorkRoute: typeof WorkRoute
   AdminDemosRoute: typeof AdminDemosRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -344,6 +357,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tasneem-knit-industry': {
+      id: '/tasneem-knit-industry'
+      path: '/tasneem-knit-industry'
+      fullPath: '/tasneem-knit-industry'
+      preLoaderRoute: typeof TasneemKnitIndustryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/work': {
@@ -459,6 +479,7 @@ const rootRouteChildren: RootRouteChildren = {
   PromptsRoute: PromptsRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TasneemKnitIndustryRoute: TasneemKnitIndustryRoute,
   WorkRoute: WorkRoute,
   AdminDemosRoute: AdminDemosRoute,
   AdminLoginRoute: AdminLoginRoute,
@@ -467,13 +488,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

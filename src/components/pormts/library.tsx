@@ -71,7 +71,7 @@ export function Library() {
   ]);
   const change = (patch: LibraryFilters) =>
     navigate({
-      search: (previous) => ({ ...previous, ...patch }),
+      search: (previous: any) => ({ ...previous, ...patch }),
       resetScroll: false,
     });
   return (

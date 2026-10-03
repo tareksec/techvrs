@@ -105,7 +105,7 @@ function DemosPage() {
       navigate({
         resetScroll: false,
         replace,
-        search: (prev) => {
+        search: (prev: any) => {
           const next: DemosSearchParams = { ...prev };
           if (newParams.category !== undefined) {
             if (newParams.category) next.category = newParams.category;
