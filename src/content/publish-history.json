@@ -34,5 +34,11 @@
     "title": "Zero-Trust Frontend Architecture: Mitigating Modern Web Security Threats",
     "publishedAt": "2026-10-04T12:10:52.524Z",
     "remainingInQueue": 16
+  },
+  {
+    "slug": "enterprise-semantic-search-postgresql-pgvector",
+    "title": "Building Enterprise Hybrid Search with PostgreSQL and pgvector",
+    "publishedAt": "2026-10-05T14:20:27.239Z",
+    "remainingInQueue": 15
   }
 ]
