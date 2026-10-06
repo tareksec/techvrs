@@ -40,5 +40,11 @@
     "title": "Building Enterprise Hybrid Search with PostgreSQL and pgvector",
     "publishedAt": "2026-10-05T14:20:27.239Z",
     "remainingInQueue": 15
+  },
+  {
+    "slug": "spa-technical-seo-pre-rendering-hydration-guide",
+    "title": "Technical SEO for Single Page Applications (SPA): Pre-rendering and Indexation",
+    "publishedAt": "2026-10-06T13:11:18.087Z",
+    "remainingInQueue": 14
   }
 ]
