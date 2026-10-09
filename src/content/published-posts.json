@@ -1,5 +1,22 @@
 [
   {
+    "slug": "answer-engine-optimization-aeo-schema-markup-guide",
+    "title": "Answer Engine Optimization (AEO): Structuring Schema for AI Overviews",
+    "excerpt": "How to engineer structured Schema.org JSON-LD markups, Q&A taxonomy, and microdata to capture Google AI Overviews and featured snippets.",
+    "category": "SEO",
+    "readTime": "8 min",
+    "date": "2026-10-11",
+    "tags": [
+      "AEO",
+      "Schema Markup",
+      "JSON-LD",
+      "AI Overviews",
+      "Technical SEO"
+    ],
+    "content": "## Quick Answer: What is Answer Engine Optimization (AEO)?\n\n**Answer Engine Optimization (AEO)** is the discipline of structuring web content and semantic metadata to be the direct, definitive answer selected by answer engines—including **Google AI Overviews (formerly SGE)**, **Google Featured Snippets**, **Apple Intelligence**, and **Voice Assistants (Siri, Alexa)**. AEO requires concise definitions, structured tables, sequential ordered lists, and rigorous **JSON-LD Schema markup** that search algorithms can parse deterministically without NLP ambiguity.\n\n---\n\n## 1. The Anatomy of an AEO-Ready Content Section\n\nAnswer engines search for answers matching exact syntactic query patterns:\n\n```\n[ Question Heading: H2 or H3 ]\n      │\n      ▼\n[ Definitive 45-Word Answer Block in bold or clean prose ]\n      │\n      ▼\n[ Bulleted List or Table expanding on technical specifics ]\n```\n\n### Example:\n```markdown\n### How often should an enterprise execute API penetration testing?\nEnterprises handling sensitive customer telemetry, financial transactions, or health records should conduct third-party API penetration testing **at least twice per year**, as well as immediately following any major architectural redesign or core dependency migration.\n```\n\n---\n\n## 2. Advanced JSON-LD Implementation for AEO\n\nDeploy comprehensive schema structures incorporating nested FAQ, Author credentials, and Entity definitions:\n\n```html\n<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"WebPage\",\n      \"@id\": \"https://techvrs.com/services/secure-seo#webpage\",\n      \"url\": \"https://techvrs.com/services/secure-seo\",\n      \"name\": \"Enterprise Secure SEO & Technical Optimization Services\",\n      \"isPartOf\": { \"@id\": \"https://techvrs.com/#website\" }\n    },\n    {\n      \"@type\": \"FAQPage\",\n      \"@id\": \"https://techvrs.com/services/secure-seo#faq\",\n      \"mainEntity\": [\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What is the primary difference between SEO and AEO?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"SEO optimizes web pages for keyword rankings and organic click-throughs within search engine result pages. AEO optimizes content to provide direct, authoritative answers synthesized into AI Overviews, voice search responses, and featured snippet cards.\"\n          }\n        }\n      ]\n    }\n  ]\n}\n</script>\n```\n\n---\n\n## 3. Optimizing for Table and List Extraction\n\nSearch bots prioritize markdown tables and HTML `<table>` elements for comparative queries (\"X vs Y\", \"pricing comparisons\", \"specifications\"):\n- Ensure tables contain clear header rows (`<th>`).\n- Keep data concise, comparative, and factual.\n- Avoid nesting complex components inside table cells.\n\n---\n\n## Frequently Asked Questions (FAQ)\n\n### Can Schema markup alone earn Google AI Overviews?\nNo. Schema informs search algorithms of your content's structure, but the on-page text must demonstrate high information gain, authoritativeness (E-E-A-T), and verifiable domain reputation to be selected as an AI Overview citation.\n\n### Where should the JSON-LD script tag be placed?\nWhile placing it in the HTML `<head>` is traditional, Googlebot parses JSON-LD anywhere in the DOM, including within the `<body>`. However, server-side pre-rendered placement guarantees immediate extraction.",
+    "publishedAt": "2026-10-09T13:01:34.237Z"
+  },
+  {
     "slug": "hardening-saas-apis-bola-mass-assignment-defense",
     "title": "Hardening SaaS APIs: Defending Against BOLA and Mass Assignment Flaws",
     "excerpt": "Production AppSec guide to auditing, preventing, and fixing Broken Object Level Authorization (BOLA) and Mass Assignment flaws in REST and GraphQL APIs.",

@@ -58,5 +58,11 @@
     "title": "Hardening SaaS APIs: Defending Against BOLA and Mass Assignment Flaws",
     "publishedAt": "2026-10-08T13:14:55.090Z",
     "remainingInQueue": 12
+  },
+  {
+    "slug": "answer-engine-optimization-aeo-schema-markup-guide",
+    "title": "Answer Engine Optimization (AEO): Structuring Schema for AI Overviews",
+    "publishedAt": "2026-10-09T13:01:34.242Z",
+    "remainingInQueue": 11
   }
 ]
