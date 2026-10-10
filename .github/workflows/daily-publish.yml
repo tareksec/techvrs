@@ -1,16 +1,13 @@
-name: Daily Scheduled Blog Publisher (12:00 PM BST)
+name: Manual Legacy Blog Publisher
 
 on:
-  schedule:
-    # 06:00 UTC = 12:00 PM (Noon) Bangladesh Standard Time (BST = UTC+6)
-    - cron: '0 6 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  publish-daily-post:
+  publish-qualified-post:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +22,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run daily post publisher
+      - name: Run quality-gated publisher
         run: node scripts/publish-daily.mjs
 
       - name: Commit and push changes
@@ -34,9 +31,9 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           if [ -n "$(git status --porcelain src/content/)" ]; then
             git add src/content/
-            git commit -m "chore(blog): publish daily post [skip ci]"
+            git commit -m "chore(blog): publish qualified post [skip ci]"
             git push origin HEAD:${{ github.ref_name }}
-            echo "Successfully committed and pushed daily published article."
+            echo "Successfully committed and pushed qualified blog article."
           else
-            echo "No file changes detected."
+            echo "No qualified article was published."
           fi
