@@ -1,5 +1,21 @@
 [
   {
+    "slug": "micro-frontends-vs-monolithic-spas-architecture-analysis",
+    "title": "Micro-Frontends vs Monolithic SPAs: Architecture Decisions for High-Velocity Teams",
+    "excerpt": "Technical trade-off breakdown between Module Federation micro-frontends and well-architected monolithic SPAs for enterprise web engineering.",
+    "category": "Web Development",
+    "readTime": "9 min",
+    "date": "2026-10-12",
+    "tags": [
+      "Micro-frontends",
+      "Web Architecture",
+      "Module Federation",
+      "React"
+    ],
+    "content": "## Quick Answer: When Should You Use Micro-Frontends?\n\n**Micro-Frontends** decompose a monolithic frontend codebase into independent, smaller applications developed, tested, and deployed autonomously by separate engineering squads. You should adopt micro-frontends **only** when your organization exceeds 50+ frontend engineers divided into distinct business domains where deployment pipeline congestion is the primary operational bottleneck. For smaller teams, micro-frontends introduce severe overhead: duplicate JavaScript bundle downloads, complex shared state synchronization, CSS collision hazards, and difficult end-to-end debugging.\n\n---\n\n## 1. Architecture Comparison Matrix\n\n| Dimension | Monolithic SPA (Single Repo / Monorepo) | Micro-Frontends (Webpack 5 Module Federation) |\n| :--- | :--- | :--- |\n| **Deployment Autonomy** | Coupled (Entire app builds and deploys together) | Decoupled (Squads deploy independently) |\n| **Initial Bundle Size** | Optimized (Shared dependencies tree-shaken) | Higher risk of duplicate libraries (e.g. multiple React runtimes) |\n| **Operational Complexity** | Low to Moderate | High (Distributed network tracing, version skew) |\n| **Ideal Team Size** | 1 – 40 engineers | 50+ engineers across multiple autonomous squads |\n\n---\n\n## 2. Implementing Webpack Module Federation\n\nModule Federation allows a host container to dynamically import remote components at runtime:\n\n```javascript\n// remote-app/webpack.config.js\nmodule.exports = {\n  plugins: [\n    new ModuleFederationPlugin({\n      name: 'billing_app',\n      filename: 'remoteEntry.js',\n      exposes: {\n        './SubscriptionTable': './src/components/SubscriptionTable',\n      },\n      shared: {\n        react: { singleton: true, requiredVersion: '^19.0.0' },\n        'react-dom': { singleton: true, requiredVersion: '^19.0.0' }\n      }\n    })\n  ]\n};\n```\n\n```tsx\n// host-app/src/App.tsx\nimport React, { Suspense } from 'react';\n\nconst RemoteSubscriptionTable = React.lazy(\n  () => import('billing_app/SubscriptionTable')\n);\n\nexport function HostDashboard() {\n  return (\n    <main className=\"p-8\">\n      <h1>Enterprise Billing Overview</h1>\n      <Suspense fallback={<div>Loading billing module...</div>}>\n        <RemoteSubscriptionTable />\n      </Suspense>\n    </main>\n  );\n}\n```\n\n---\n\n## 3. Resolving Cross-Micro-Frontend Hazards\n\n1. **CSS Collisions:** Enforce CSS Modules, Tailwind CSS prefixes (`tw-billing-`), or Shadow DOM boundaries to prevent global style contamination across remotes.\n2. **Version Skew:** Use singleton dependency flags in Module Federation to prevent shipping multiple copies of state management libraries or UI component systems.\n3. **Resilient Fallbacks:** Always wrap remote imports in React Error Boundaries so a failure in an isolated module (e.g. marketing promo banner) does not crash the entire core user application.\n\n---\n\n## Frequently Asked Questions (FAQ)\n\n### Can you use micro-frontends with Next.js?\nYes, using the Next.js Module Federation plugin or multi-zone routing (`rewrites`). Multi-zone routing—where different sub-paths like `/blog` and `/dashboard` are completely separate Next.js deployments—is significantly simpler and more reliable than runtime component federation.",
+    "publishedAt": "2026-10-10T12:18:23.698Z"
+  },
+  {
     "slug": "answer-engine-optimization-aeo-schema-markup-guide",
     "title": "Answer Engine Optimization (AEO): Structuring Schema for AI Overviews",
     "excerpt": "How to engineer structured Schema.org JSON-LD markups, Q&A taxonomy, and microdata to capture Google AI Overviews and featured snippets.",

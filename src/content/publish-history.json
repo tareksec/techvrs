@@ -64,5 +64,11 @@
     "title": "Answer Engine Optimization (AEO): Structuring Schema for AI Overviews",
     "publishedAt": "2026-10-09T13:01:34.242Z",
     "remainingInQueue": 11
+  },
+  {
+    "slug": "micro-frontends-vs-monolithic-spas-architecture-analysis",
+    "title": "Micro-Frontends vs Monolithic SPAs: Architecture Decisions for High-Velocity Teams",
+    "publishedAt": "2026-10-10T12:18:23.703Z",
+    "remainingInQueue": 10
   }
 ]
