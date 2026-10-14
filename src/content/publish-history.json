@@ -98,5 +98,12 @@
     "publishedAt": "2026-10-14T06:31:38.907Z",
     "wordCount": 2103,
     "remainingInQueue": 10
+  },
+  {
+    "slug": "devsecops-pipeline-security-sast-secrets-gates",
+    "title": "DevSecOps Pipeline Security: SAST, Secrets Scanning, and Release Gates That Don't Slow Teams Down",
+    "publishedAt": "2026-10-14T11:30:15.198Z",
+    "wordCount": 1982,
+    "remainingInQueue": 9
   }
 ]
