@@ -91,5 +91,12 @@
     "publishedAt": "2026-10-14T06:31:10.967Z",
     "wordCount": 2158,
     "remainingInQueue": 11
+  },
+  {
+    "slug": "vulnerability-prioritization-epss-kev-framework",
+    "title": "Vulnerability Prioritization with EPSS and CISA KEV: A Practical Framework",
+    "publishedAt": "2026-10-14T06:31:38.907Z",
+    "wordCount": 2103,
+    "remainingInQueue": 10
   }
 ]
