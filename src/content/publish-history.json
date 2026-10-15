@@ -105,5 +105,12 @@
     "publishedAt": "2026-10-14T11:30:15.198Z",
     "wordCount": 1982,
     "remainingInQueue": 9
+  },
+  {
+    "slug": "owasp-api-top-10-enterprise-testing-guide",
+    "title": "OWASP API Top 10: An Enterprise API Security Testing Guide",
+    "publishedAt": "2026-10-15T11:07:27.440Z",
+    "wordCount": 2052,
+    "remainingInQueue": 8
   }
 ]
