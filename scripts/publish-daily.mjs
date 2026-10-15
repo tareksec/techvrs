@@ -65,6 +65,16 @@ if (!Array.isArray(queue) || queue.length === 0) {
 }
 
 const publishedSlugs = new Set(publishedList.map((post) => post.slug))
+// Guard: skip if an article was already published today (prevents double publishes
+// from accidental double workflow_dispatch runs). A failed publish leaves no
+// history entry, so a genuine same-day retry still works.
+const history = readJsonFile(HISTORY_FILE, [])
+const today = new Date().toISOString().slice(0, 10)
+if (history.some((h) => (h.publishedAt || '').slice(0, 10) === today)) {
+  console.log(`An article was already published today (${today}). Skipping to avoid a double publish.`)
+  process.exit(0)
+}
+
 const eligibleIndex = queue.findIndex((post) => !publishedSlugs.has(post.slug) && isStrongArticle(post))
 
 if (eligibleIndex === -1) {
@@ -83,7 +93,6 @@ publishedList.unshift(postToPublish)
 fs.writeFileSync(PUBLISHED_FILE, JSON.stringify(publishedList, null, 2) + '\n', 'utf8')
 fs.writeFileSync(QUEUE_FILE, JSON.stringify(queue, null, 2) + '\n', 'utf8')
 
-const history = readJsonFile(HISTORY_FILE, [])
 history.push({
   slug: postToPublish.slug,
   title: postToPublish.title,
